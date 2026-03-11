@@ -15,12 +15,21 @@ export async function GET(request) {
     if (category && category !== "all")
       query.category = decodeURIComponent(category);
 
-    const newsheadline = await News.find(query, "title").sort({
-      createdAt: -1,
-    });
+    const page = parseInt(url.searchParams.get("page") || "1", 10);
+    const limit = parseInt(url.searchParams.get("limit") || "10", 10);
+    const skip = (page - 1) * limit;
+
+    const newsheadline = await News.find(query, "title")
+      .sort({ createdAt: -1 })
+      .limit(20);
+
     const totalNewsCount = await News.countDocuments({});
     const filteredNewsCount = await News.countDocuments(query);
-    const news = await News.find(query).sort({ createdAt: -1 });
+    
+    const news = await News.find(query)
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit);
 
     return NextResponse.json({
       success: true,
@@ -28,6 +37,8 @@ export async function GET(request) {
       newsheadline,
       totalCount: totalNewsCount,
       filteredCount: filteredNewsCount,
+      currentPage: page,
+      totalPages: Math.ceil(filteredNewsCount / limit),
     });
   } catch (error) {
     console.error("GET News Error:", error);

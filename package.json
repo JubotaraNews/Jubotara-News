@@ -16,14 +16,14 @@
     "cloudinary": "^2.9.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.575.0",
-    "mongoose": "^9.2.4",
-    "next": "16.1.6",
-    "next-auth": "^4.24.13",
-    "next-themes": "^0.4.6",
-    "postcss": "^8.5.6",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "react-icons": "^5.5.0",
+    "mongoose": "^8.9.5",
+    "next": "15.1.6",
+    "next-auth": "^4.24.11",
+    "next-themes": "^0.4.4",
+    "postcss": "^8.5.1",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-icons": "^5.4.0",
     "react-redux": "^9.2.0",
     "react-toastify": "^11.0.5",
     "swiper": "^12.1.2",
@@ -33,11 +33,11 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.0",
     "@types/node": "20.14.10",
-    "@types/react": "19.2.14",
+    "@types/react": "19.0.8",
     "eslint": "^9",
-    "eslint-config-next": "16.1.6"
+    "eslint-config-next": "15.1.6"
   },
   "overrides": {
-    "@types/react": "19.2.14"
+    "@types/react": "19.0.8"
   }
 }
