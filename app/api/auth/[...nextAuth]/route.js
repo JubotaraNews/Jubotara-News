@@ -4,6 +4,8 @@ import dbConnect from "@/lib/db"; // Ensure this path is correct based on your f
 import User from "@/models/User";
 import bcrypt from "bcryptjs";
 
+// update 4
+
 export const authOptions = {
   session: { strategy: "jwt" },
   secret: process.env.NEXTAUTH_SECRET,
