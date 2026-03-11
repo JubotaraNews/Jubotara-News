@@ -1,5 +1,3 @@
-import Header from '@/components/common/Header/Header';
-import Footer from '@/components/common/Footer';
 import Container from '@/components/common/Container';
 import { getSingleVideoNews, getVideoNews } from '@/lib/fetchData';
 import { notFound } from 'next/navigation';

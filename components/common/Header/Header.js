@@ -5,11 +5,9 @@ import HeaderActions from "./HeaderActions.jsx";
 import BreakingNews from "@/components/common/Header/BreakingNews";
 import {
   getBreakingNews,
-  getFeaturedCategories,
   getSettings,
   getNavbarItems,
 } from "@/lib/localData";
-import { getImageUrl, getMediaLinkByMetaName } from "@/utils/metaHelpers";
 
 const Header = async () => {
   const breakingNews = await getBreakingNews();

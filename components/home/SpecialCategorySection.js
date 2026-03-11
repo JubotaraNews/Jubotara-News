@@ -2,7 +2,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import Container from '../common/Container.jsx';
-import { getNewsByCat } from '@/lib/localData';
 import truncate from '@/utils/truncate';
 
 const SpecialCategorySection = async ({ title, firstNews = {}, sideNews = [], slug }) => {
@@ -54,7 +53,7 @@ const SpecialCategorySection = async ({ title, firstNews = {}, sideNews = [], sl
                     {/* Right: Small News Items in 2 Columns */}
                     <div className="lg:col-span-8">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                            {sideNews?.map((item, index) => (
+                            {sideNews?.map((item) => (
                                 <Link key={item.id} href={`/news/${item.slug}`} className="flex gap-2 p-2 md:gap-4 md:p-4 border border-slate-300 mb-0 hover:bg-[#eff3f6] transition-colors group h-fit">
                                     <div className="flex-1 space-y-1">
                                         <h4 className="text-gray-600 text-lg md:text-[22px] leading-[24px] md:leading-[26px] group-hover:text-primary font-semibold transition-colors line-clamp-2">

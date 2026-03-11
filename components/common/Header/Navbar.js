@@ -3,7 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-const Navbar = ({ news_categories, settings }) => {
+const Navbar = ({ news_categories }) => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 

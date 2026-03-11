@@ -20,6 +20,7 @@ export async function PATCH(req, { params }) {
     
     return NextResponse.json({ success: true, data: updatedItem });
   } catch (error) {
+    console.error(error)
     return NextResponse.json({ success: false, message: "Failed to update navbar item" }, { status: 500 });
   }
 }
@@ -39,6 +40,7 @@ export async function DELETE(req, { params }) {
     
     return NextResponse.json({ success: true, message: "Navbar item deleted" });
   } catch (error) {
+    console.error(error)
     return NextResponse.json({ success: false, message: "Failed to delete navbar item" }, { status: 500 });
   }
 }

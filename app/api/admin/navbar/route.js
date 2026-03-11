@@ -10,6 +10,7 @@ export async function GET() {
     const items = await Navbar.find().sort({ order: 1 });
     return NextResponse.json({ success: true, data: items });
   } catch (error) {
+    console.error(error)
     return NextResponse.json({ success: false, message: "Failed to fetch navbar items" }, { status: 500 });
   }
 }
@@ -26,6 +27,7 @@ export async function POST(req) {
     const item = await Navbar.create(body);
     return NextResponse.json({ success: true, data: item }, { status: 201 });
   } catch (error) {
+    console.error(error)
     return NextResponse.json({ success: false, message: "Failed to create navbar item" }, { status: 500 });
   }
 }
@@ -46,6 +48,7 @@ export async function PUT(req) {
 
     return NextResponse.json({ success: true, message: "Navbar order updated" });
   } catch (error) {
+    console.error(error)
     return NextResponse.json({ success: false, message: "Failed to update navbar order" }, { status: 500 });
   }
 }

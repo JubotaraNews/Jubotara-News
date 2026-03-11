@@ -10,6 +10,7 @@ export async function GET() {
     const ads = await Ads.find().sort({ createdAt: -1 });
     return NextResponse.json({ success: true, data: ads });
   } catch (error) {
+    console.error(error)
     return NextResponse.json({ success: false, message: "Failed to fetch ads" }, { status: 500 });
   }
 }
@@ -26,6 +27,7 @@ export async function POST(req) {
     const ad = await Ads.create(body);
     return NextResponse.json({ success: true, data: ad }, { status: 201 });
   } catch (error) {
+    console.error(error)
     return NextResponse.json({ success: false, message: "Failed to create ad" }, { status: 500 });
   }
 }
@@ -49,6 +51,7 @@ export async function PATCH(req) {
     
     return NextResponse.json({ success: true, data: updatedAd });
   } catch (error) {
+    console.error(error)
     return NextResponse.json({ success: false, message: "Failed to update ad" }, { status: 500 });
   }
 }
@@ -71,6 +74,7 @@ export async function DELETE(req) {
     
     return NextResponse.json({ success: true, message: "Ad deleted" });
   } catch (error) {
+    console.error(error)
     return NextResponse.json({ success: false, message: "Failed to delete ad" }, { status: 500 });
   }
 }

@@ -16,6 +16,7 @@ export async function GET() {
     
     return NextResponse.json({ success: true, data: settingsObj });
   } catch (error) {
+    console.error(error)
     return NextResponse.json({ success: false, message: "Failed to fetch settings" }, { status: 500 });
   }
 }
@@ -38,6 +39,7 @@ export async function POST(req) {
 
     return NextResponse.json({ success: true, data: updatedSetting });
   } catch (error) {
+    console.error(error)
     return NextResponse.json({ success: false, message: "Failed to update setting" }, { status: 500 });
   }
 }

@@ -9,15 +9,6 @@ import { Autoplay } from "swiper/modules";
 
 import "swiper/css";
 
-const trendingTopics = [
-  { id: 1, name: "নির্বাচন", slug: "/search?q=guthrie" },
-  { id: 2, name: "বাজেট ২০২৫", slug: "/search?q=olympics" },
-  { id: 3, name: "ক্রিকেট", slug: "/search?q=minnesota" },
-  { id: 4, name: "আবহাওয়া", slug: "/search?q=iran" },
-  { id: 5, name: "ডলার রেট", slug: "/search?q=dollar" },
-  { id: 6, name: "শেয়ারবাজার", slug: "/search?q=stock" },
-];
-
 const TrendingBar = ({ trendingTags }) => {
   return (
     <div className=" py-3.5">

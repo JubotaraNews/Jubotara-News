@@ -23,6 +23,7 @@ export async function GET(req, context) {
 
     return NextResponse.json(news.toObject());
   } catch (error) {
+    console.error(error)
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

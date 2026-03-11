@@ -37,7 +37,7 @@ const BreakingNews = ({ news = [] }) => {
             ))}
             {/* Repeat for continuous scroll effect if list is short */}
             {news?.length < 5 &&
-              news.map((item, idx) => (
+              news.map((item) => (
                 <span
                   key={`repeat-${item.id}`}
                   className="flex items-center  font-medium text-gray-900"

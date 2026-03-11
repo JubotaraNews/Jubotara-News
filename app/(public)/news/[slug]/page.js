@@ -134,8 +134,6 @@ export default async function NewsDetailPage({ params }) {
 
   const formattedPublishedDate = formatBengaliDate(news?.created_at);
 
-  const allNews = await getNews();
-
   // Get current URL for sharing
   const fullUrl = `${FRONT_END_URL}/news/${slug}`;
 

@@ -1,8 +1,4 @@
-
-import Header from '@/components/common/Header/Header';
-import Footer from '@/components/common/Footer';
-import BreakingNews from '@/components/common/Header/BreakingNews';
-import { searchNews, getNews, getTrandingNews } from '@/lib/fetchData';
+import { searchNews, getTrandingNews } from '@/lib/fetchData';
 import Container from '@/components/common/Container';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -52,7 +48,7 @@ export default async function SearchPage({ searchParams }) {
                         <div className="lg:w-3/4">
                             <div className="mb-4 p-6 bg-white/70 border border-gray-200 shadow-sm rounded-lg">
                                 <h1 className="text-2xl md:text-3xl font-bold text-[#003366]">
-                                    অনুসন্ধান ফলাফল: <span className="text-red-600">"{query}"</span>
+                                    অনুসন্ধান ফলাফল: <span className="text-red-600">&quot;{query}&quot;</span>
                                 </h1>
                                 <p className="text-gray-500 mt-2 text-base md:text-xl font-medium">
                                     মোট <span className="text-red-600 font-bold">{toBanglaNumber(results.length)}</span> টি সংবাদ পাওয়া গেছে।

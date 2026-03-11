@@ -1,11 +1,8 @@
-import Header from '@/components/common/Header/Header';
-import Footer from '@/components/common/Footer';
 import Container from '@/components/common/Container';
 import { getVideoNews } from '@/lib/fetchData';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getYoutubeThumbnail } from '@/utils/youtube';
-import { FRONT_END_URL } from '@/utils/baseUrl';
 import { formatBengaliDate } from '@/utils/formatDate';
 
 export const metadata = {

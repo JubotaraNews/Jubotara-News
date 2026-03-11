@@ -1,5 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
 
-import Image from 'next/image';
 import { FRONT_END_URL } from '@/utils/baseUrl';
 import { formatBengaliDate } from '@/utils/formatDate';
 

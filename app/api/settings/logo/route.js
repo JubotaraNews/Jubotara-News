@@ -11,6 +11,7 @@ export async function GET() {
     const logos = await Logo.find().sort({ createdAt: -1 });
     return NextResponse.json({ success: true, logos });
   } catch (error) {
+    console.error(error)
     return NextResponse.json({ success: false, message: "Failed to fetch logo" }, { status: 500 });
   }
 }
@@ -72,6 +73,7 @@ export async function DELETE() {
       message: "Logo removed",
     });
   } catch (error) {
+    console.error(error)
     return NextResponse.json({ success: false, message: "Failed to remove logo" }, { status: 500 });
   }
 }

@@ -16,7 +16,6 @@ import {
   Youtube,
   ChevronRight,
   YoutubeIcon,
-  Video,
   User,
 } from "lucide-react";
 
@@ -24,6 +23,7 @@ export default function MobileBottomNav({ news_categories }) {
   const { data: session } = useSession();
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {

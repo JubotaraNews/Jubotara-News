@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Share2, Link2, Check } from 'lucide-react';
+import {  Link2, Check } from 'lucide-react';
 
 const ShareButtons = ({ title, url }) => {
   const [copied, setCopied] = useState(false);

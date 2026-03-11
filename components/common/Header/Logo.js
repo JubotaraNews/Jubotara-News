@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import logoImg from "@/public/images/logo4.png";
 
-const Logo = ({ logoUrl }) => {
+const Logo = () => {
   // console.log('logoUrl', logoUrl)
   return (
     <Link href="/" className="relative z-60">
