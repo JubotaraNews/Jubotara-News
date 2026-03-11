@@ -13,7 +13,6 @@ import {
   getSingleNews,
   getTrandingNews,
   getSettings,
-  getNews,
 } from "@/lib/fetchData";
 import { formatBengaliDate } from "@/utils/formatDate";
 import { FRONT_END_URL } from "@/utils/baseUrl";
