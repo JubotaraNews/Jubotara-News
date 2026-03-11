@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import dbConnect from "./db"; // Ensure this path is correct based on your folder structure
+import dbConnect from "./db.js"; // Ensure this path is correct based on your folder structure
 import User from "@/models/User";
 import bcrypt from "bcryptjs";
 
