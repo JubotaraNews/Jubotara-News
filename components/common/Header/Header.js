@@ -22,7 +22,7 @@ const Header = async () => {
       {/* Top Thick Red Bar (Matching Fox style) */}
 
       {/* Main Section with Logo and Nav items */}
-      <div className="bg-secondary text-white py-1">
+      <div className="bg-white text-black py-1 border-b border-gray-100">
         <Container className="flex items-center justify-between min-h-12.5">
           <div className="flex items-start ">
             {/* Logo Container - Absolute Positioned to Overlap */}

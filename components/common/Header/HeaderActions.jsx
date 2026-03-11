@@ -42,14 +42,14 @@ export default function HeaderActions() {
           {session ? (
             <Link
               href="/dashboard"
-              className="text-white font-bold text-[13px] sm:text-sm md:text-lg hover:underline"
+              className="text-black font-bold text-[13px] sm:text-sm md:text-lg hover:underline"
             >
               {language === "bn" ? "ড্যাশবোর্ড" : "Dashboard"}
             </Link>
           ) : (
             <Link
               href="/login"
-              className="text-white font-bold text-[13px] sm:text-sm md:text-lg hover:underline"
+              className="text-black font-bold text-[13px] sm:text-sm md:text-lg hover:underline"
             >
               {language === "bn" ? "লগইন" : "Log In"}
             </Link>

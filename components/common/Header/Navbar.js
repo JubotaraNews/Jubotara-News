@@ -31,8 +31,8 @@ const Navbar = ({ news_categories }) => {
               href={`/video`}
               className={`px-3 py-4 text-[13px] sm:text-sm md:text-xl font-semibold tracking-wide transition-colors duration-200 flex items-center gap-1 ${
                 pathname === "/video"
-                  ? "text-white underline decoration-2 underline-offset-8"
-                  : "text-white/90 hover:text-white"
+                  ? "text-black underline decoration-2 underline-offset-8"
+                  : "text-black/90 hover:text-black"
               }`}
             >
               ভিডিও
@@ -45,7 +45,7 @@ const Navbar = ({ news_categories }) => {
       <div className="lg:hidden flex items-center py-3">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="text-white focus:outline-none p-2"
+          className="text-black focus:outline-none p-2"
           aria-label="Toggle menu"
         >
           <svg
@@ -67,7 +67,7 @@ const Navbar = ({ news_categories }) => {
 
       {/* Mobile Menu Overlay */}
       {isOpen && (
-        <div className="fixed inset-0 top-15 bg-secondary z-100 p-6 lg:hidden overflow-y-auto">
+        <div className="fixed inset-0 top-15 bg-white z-100 p-6 lg:hidden overflow-y-auto">
           <ul className="flex flex-col gap-5">
             {news_categories?.map((item) => (
               <li key={item?.id} className="flex flex-col gap-3 group">
@@ -76,8 +76,8 @@ const Navbar = ({ news_categories }) => {
                   onClick={() => setIsOpen(false)}
                   className={`text-2xl font-black flex items-center justify-between ${
                     pathname === item.href
-                      ? "text-white"
-                      : "text-white/70 hover:text-white"
+                      ? "text-black"
+                      : "text-black/70 hover:text-black"
                   }`}
                 >
                   {item?.name}
@@ -89,7 +89,7 @@ const Navbar = ({ news_categories }) => {
                 href="/video"
                 onClick={() => setIsOpen(false)}
                 className={`text-2xl font-black ${
-                  pathname === "/video" ? "text-white" : "text-white/70"
+                  pathname === "/video" ? "text-black" : "text-black/70"
                 }`}
               >
                 ভিডিও

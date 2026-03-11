@@ -68,14 +68,14 @@ export default function MobileBottomNav({ news_categories }) {
         }`}
       >
         {/* Drawer Header */}
-        <div className="p-6 border-b border-gray-100 flex items-center justify-between bg-secondary text-white">
+        <div className="p-6 border-b border-gray-100 flex items-center justify-between bg-white text-black">
           <div>
             <h2 className="text-lg font-black">Bangla Star</h2>
             <p className="text-base opacity-80">সর্বশেষ সংবাদ ও বিনোদন</p>
           </div>
           <button
             onClick={() => setIsMenuOpen(false)}
-            className="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+            className="w-8 h-8 flex items-center justify-center rounded-full bg-black/10 hover:bg-black/20 transition-colors"
           >
             <X size={20} />
           </button>
@@ -154,7 +154,7 @@ export default function MobileBottomNav({ news_categories }) {
       </div>
 
       {/* Bottom Navigation Bar */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-secondary backdrop-blur-xl border-t border-gray-100 shadow-[0_-8px_30px_rgba(0,0,0,0.08)] pb-safe">
+      <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white backdrop-blur-xl border-t border-gray-100 shadow-[0_-8px_30px_rgba(0,0,0,0.08)] pb-safe">
         <div className="flex items-center justify-between h-16 px-2 max-w-lg mx-auto">
           {navItems.map((item) => {
             const isActive = pathname === item.path;
@@ -163,7 +163,7 @@ export default function MobileBottomNav({ news_categories }) {
                 key={item.path}
                 href={item.path}
                 className={`flex flex-col items-center justify-center w-full h-full space-y-1 transition-all duration-300 ${
-                  isActive ? "text-primary" : "text-white hover:text-primary"
+                  isActive ? "text-primary" : "text-black hover:text-primary"
                 }`}
               >
                 <div
@@ -184,7 +184,7 @@ export default function MobileBottomNav({ news_categories }) {
           <button
             onClick={() => setIsMenuOpen(true)}
             className={`flex flex-col items-center justify-center w-full h-full space-y-1 transition-all duration-300 ${
-              isMenuOpen ? "text-primary" : "text-white hover:text-primary"
+              isMenuOpen ? "text-primary" : "text-black hover:text-primary"
             }`}
           >
             <div
