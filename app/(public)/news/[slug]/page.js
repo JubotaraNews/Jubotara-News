@@ -234,7 +234,7 @@ export default async function NewsDetailPage({ params }) {
                 {/* Content */}
                 <div>
                   <div
-                    className="text-base md:text-xl lg:md:text-[22px] text-gray-800 font-medium"
+                    className="text-base md:text-xl lg:md:text-[22px] text-gray-800 font-medium whitespace-pre-line [&_p]:mb-4"
                     dangerouslySetInnerHTML={{
                       __html:
                         news.description || "<p>No content available.</p>",
