@@ -1,97 +1,7 @@
+"use client";
+import React, { useEffect, useState } from 'react';
 import Container from '@/components/common/Container';
 import Image from 'next/image';
-
-export const metadata = {
-    title: 'আমাদের টিম | বাংলা স্টার নিউজ',
-    description: 'বাংলা স্টার নিউজ পরিবারের সদস্যবৃন্দ',
-};
-
-// Team data organized by sections
-const teamData = {
-    head: {
-        name: 'তানভীর আহমেদ',
-        designation: 'সম্পাদক ও প্রকাশক',
-        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop',
-    },
-    sections: [
-        {
-            title: 'উপদেষ্টা পরিষদ',
-            members: [
-                { name: 'আব্দুল করিম', designation: 'প্রধান উপদেষ্টা', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&auto=format&fit=crop' },
-                { name: 'রহিমা বেগম', designation: 'উপদেষ্টা', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&auto=format&fit=crop' },
-                { name: 'মোস্তাফিজুর রহমান', designation: 'উপদেষ্টা', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop' },
-                { name: 'কামরুল হাসান', designation: 'উপদেষ্টা', image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&auto=format&fit=crop' },
-                { name: 'সালমা খাতুন', designation: 'উপদেষ্টা', image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=400&auto=format&fit=crop' },
-            ],
-        },
-        {
-            title: 'সম্পাদনা বিভাগ',
-            members: [
-                { name: 'ফারহানা রহমান', designation: 'বার্তা সম্পাদক', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&auto=format&fit=crop' },
-                { name: 'মাহমুদ হাসান', designation: 'প্রধান প্রতিবেদক', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&auto=format&fit=crop' },
-                { name: 'নাসরিন সুলতানা', designation: 'ফিচার এডিটর', image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=400&auto=format&fit=crop' },
-                { name: 'তানভীর আহমেদ', designation: 'সিনিয়র সাব-এডিটর', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop' },
-                { name: 'সায়মা আক্তার', designation: 'সাব-এডিটর', image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop' },
-                { name: 'রাশেদ চৌধুরী', designation: 'সাব-এডিটর', image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&auto=format&fit=crop' },
-                { name: 'শাহিন আলম', designation: 'সাব-এডিটর', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop' },
-            ],
-        },
-        {
-            title: 'রিপোর্টিং বিভাগ',
-            members: [
-                { name: 'আরিফুল ইসলাম', designation: 'সিনিয়র রিপোর্টার', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&auto=format&fit=crop' },
-                { name: 'ফাতেমা জান্নাত', designation: 'রিপোর্টার', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&auto=format&fit=crop' },
-                { name: 'মিজানুর রহমান', designation: 'রিপোর্টার', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop' },
-                { name: 'সুমন দাস', designation: 'রিপোর্টার', image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&auto=format&fit=crop' },
-                { name: 'জাহিদ হাসান', designation: 'রিপোর্টার', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop' },
-                { name: 'নাফিসা ইসলাম', designation: 'রিপোর্টার', image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=400&auto=format&fit=crop' },
-            ],
-        },
-        {
-            title: 'ফটো ও ভিডিও বিভাগ',
-            members: [
-                { name: 'রাকিব হাসান', designation: 'চিফ ফটোগ্রাফার', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&auto=format&fit=crop' },
-                { name: 'সায়মা আক্তার', designation: 'ভিজুয়াল এডিটর', image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop' },
-                { name: 'তৌহিদ ইকবাল', designation: 'ভিডিওগ্রাফার', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop' },
-                { name: 'আশিকুর রহমান', designation: 'ফটোগ্রাফার', image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&auto=format&fit=crop' },
-            ],
-        },
-        {
-            title: 'অনলাইন বিভাগ',
-            members: [
-                { name: 'ইমরান হোসেন', designation: 'অনলাইন এডিটর', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&auto=format&fit=crop' },
-                { name: 'রুবিনা আক্তার', designation: 'সোশ্যাল মিডিয়া ম্যানেজার', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&auto=format&fit=crop' },
-                { name: 'শাকিল আহমেদ', designation: 'কন্টেন্ট ম্যানেজার', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop' },
-                { name: 'তাসনিম জাহান', designation: 'ডিজিটাল মার্কেটার', image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=400&auto=format&fit=crop' },
-                { name: 'জুবায়ের আলম', designation: 'ওয়েব ডেভেলপার', image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&auto=format&fit=crop' },
-            ],
-        },
-        {
-            title: 'জেলা প্রতিনিধি',
-            members: [
-                { name: 'আকবর আলী', designation: 'চট্টগ্রাম', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&auto=format&fit=crop' },
-                { name: 'রফিকুল ইসলাম', designation: 'রাজশাহী', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop' },
-                { name: 'মনিরুল হক', designation: 'খুলনা', image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&auto=format&fit=crop' },
-                { name: 'শামীম আহমেদ', designation: 'সিলেট', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop' },
-                { name: 'কামাল উদ্দিন', designation: 'বরিশাল', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&auto=format&fit=crop' },
-                { name: 'আব্দুস সালাম', designation: 'রংপুর', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop' },
-                { name: 'নাজমুল হুদা', designation: 'ময়মনসিংহ', image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&auto=format&fit=crop' },
-                { name: 'সাইফুল ইসলাম', designation: 'কুমিল্লা', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop' },
-            ],
-        },
-        {
-            title: 'উপজেলা প্রতিনিধি',
-            members: [
-                { name: 'হাবিবুর রহমান', designation: 'সাভার', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&auto=format&fit=crop' },
-                { name: 'আনোয়ার হোসেন', designation: 'গাজীপুর', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop' },
-                { name: 'দিলদার হোসেন', designation: 'নারায়ণগঞ্জ', image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&auto=format&fit=crop' },
-                { name: 'মাসুদ রানা', designation: 'মানিকগঞ্জ', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop' },
-                { name: 'জসিম উদ্দিন', designation: 'টাঙ্গাইল', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&auto=format&fit=crop' },
-                { name: 'সোহেল রানা', designation: 'নরসিংদী', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop' },
-            ],
-        },
-    ],
-};
 
 // Member card component
 function MemberCard({ member, size = 'normal' }) {
@@ -134,36 +44,103 @@ function SectionHeader({ title }) {
 }
 
 export default function TeamPage() {
+    const [teamData, setTeamData] = useState({ head: null, sections: [] });
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchTeam = async () => {
+            try {
+                const res = await fetch('/api/team');
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    const members = data.members;
+                    
+                    // Identify head
+                    const head = members.find(m => m.isHead);
+                    
+                    // Group by section (excluding the head member)
+                    const sectionsMap = {};
+                    members.forEach(m => {
+                        if (m.isHead) return;
+                        
+                        if (!sectionsMap[m.section]) {
+                            sectionsMap[m.section] = [];
+                        }
+                        sectionsMap[m.section].push(m);
+                    });
+
+                    // Convert map to array of sections in a specific order if needed, 
+                    // or just use the order from the enum
+                    const sectionOrder = [
+                        'পৃষ্ঠপোষক',
+                        'উপদেষ্টা পরিষদ', 
+                        'সম্পাদনা বিভাগ', 
+                        'রিপোর্টিং বিভাগ', 
+                        'ফটো ও ভিডিও বিভাগ', 
+                        'অনলাইন বিভাগ', 
+                        'জেলা প্রতিনিধি', 
+                        'উপজেলা প্রতিনিধি'
+                    ];
+
+                    const sections = sectionOrder.map(title => ({
+                        title,
+                        members: sectionsMap[title] || []
+                    })).filter(s => s.members.length > 0);
+
+                    setTeamData({ head, sections });
+                }
+            } catch (err) {
+                console.error("Failed to fetch team:", err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchTeam();
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-[#eff3f6]">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+            </div>
+        );
+    }
+
     return (
         <main className="bg-[#eff3f6] py-6 md:py-10">
             <Container>
-
                 <div className='flex flex-col items-center'>
                     <span className="text-center text-4xl font-bold text-gray-900 mb-10 pb-2 border-b border-gray-400">আমাদের পরিবার</span>
+                    
                     {/* Head / Chief Section */}
-                    <div className="flex flex-col items-center mb-8">
-                        <div className="relative w-[180px] md:w-[220px] h-[210px] md:h-[260px] border-3 border-primary bg-gray-100 overflow-hidden rounded-sm shadow-lg">
-                            <Image
-                                src={teamData.head.image}
-                                alt={teamData.head.name}
-                                fill
-                                className="object-cover"
-                                sizes="220px"
-                                priority
-                            />
+                    {teamData.head && (
+                        <div className="flex flex-col items-center mb-8">
+                            <div className="relative w-[180px] md:w-[220px] h-[210px] md:h-[260px] border-3 border-primary bg-gray-100 overflow-hidden rounded-sm shadow-lg">
+                                <Image
+                                    src={teamData.head.image}
+                                    alt={teamData.head.name}
+                                    fill
+                                    className="object-cover"
+                                    sizes="220px"
+                                    priority
+                                />
+                            </div>
+                            <div className="mt-3 text-center">
+                                <h2 className="text-xl md:text-2xl font-bold text-gray-900">{teamData.head.name}</h2>
+                                <p className="text-base md:text-lg text-primary font-semibold">{teamData.head.designation}</p>
+                            </div>
                         </div>
-                        <div className="mt-3 text-center">
-                            <h2 className="text-xl md:text-2xl font-bold text-gray-900">{teamData.head.name}</h2>
-                            <p className="text-base md:text-lg text-primary font-semibold">{teamData.head.designation}</p>
-                        </div>
-                    </div>
+                    )}
 
                     {/* Divider line */}
-                    <div className="w-full h-[2px] bg-gradient-to-r from-transparent via-gray-300 to-transparent mb-4"></div>
+                    {teamData.head && teamData.sections.length > 0 && (
+                        <div className="w-full h-[2px] bg-gradient-to-r from-transparent via-gray-300 to-transparent mb-4"></div>
+                    )}
 
                     {/* Team Sections */}
-                    {teamData?.sections?.map((section, sectionIndex) => (
-                        <div key={sectionIndex} className="mb-8">
+                    {teamData.sections.map((section, sectionIndex) => (
+                        <div key={sectionIndex} className="mb-8 w-full flex flex-col items-center">
                             <SectionHeader title={section.title} />
 
                             {/* Members grid */}
@@ -178,6 +155,10 @@ export default function TeamPage() {
                             </div>
                         </div>
                     ))}
+                    
+                    {!teamData.head && teamData.sections.length === 0 && (
+                        <div className="py-20 text-gray-500">কোন সদস্য পাওয়া যায়নি।</div>
+                    )}
                 </div>
             </Container>
         </main>

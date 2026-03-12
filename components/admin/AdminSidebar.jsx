@@ -24,6 +24,7 @@ const NAV_LINKS = [
   { id: 4, label: "Videos", icon: MdVideoLibrary, href: "/videos" },
   { id: 5, label: "ADS", icon: MdAdsClick, href: "/ads" },
   { id: 6, label: "Users", icon: MdPeople, href: "/users" },
+  { id: 11, label: "Team Manager", icon: MdPeople, href: "/teammanager" },
   { id: 7, label: "Add Category", icon: MdSettings, href: "/addCategory" },
   { id: 8, label: "Nav Manager", icon: MdMenu, href: "/navmanager" },
   { id: 9, label: "Footer Manager", icon: MdSettings, href: "/footermanager" },
