@@ -36,13 +36,13 @@ export default function MobileBottomNav({ news_categories }) {
 
   const navItems = [
     { name: "হোম", icon: <Home size={22} />, path: "/" },
-    { name: "সারাদেশ", icon: <Globe size={22} />, path: "/category/national" },
+    { name: "সারাদেশ", icon: <Globe size={22} />, path: "/category/সারাদেশ" },
     {
       name: "রাজনীতি",
       icon: <Newspaper size={22} />,
-      path: "/category/politics",
+      path: "/category/রাজনীতি",
     },
-    { name: "ভিডিও", icon: <YoutubeIcon size={25} />, path: "/category/video" },
+    { name: "ভিডিও", icon: <YoutubeIcon size={25} />, path: "/video" },
     // { name: 'অনুসন্ধান', icon: <Search size={22} />, path: '/search' },
   ];
 
@@ -70,7 +70,7 @@ export default function MobileBottomNav({ news_categories }) {
         {/* Drawer Header */}
         <div className="p-6 border-b border-gray-100 flex items-center justify-between bg-white text-black">
           <div>
-            <h2 className="text-lg font-black">Bangla Star</h2>
+            <h2 className="text-lg font-black">যুবতারা নিউজ</h2>
             <p className="text-base opacity-80">সর্বশেষ সংবাদ ও বিনোদন</p>
           </div>
           <button
