@@ -15,7 +15,7 @@ export const dynamic = "force-dynamic";
 export default async function Home() {
   const trendingTags = await getTrendingTags();
 
-  const politicsNews = await getNewsByCat("রাজনীতি", 7);
+  const politicsNews = await getNewsByCat("বিজ্ঞাপন", 7);
   const politicsFirstNews = politicsNews[0];
   const politicsSideNews = politicsNews.slice(1, 7);
 
