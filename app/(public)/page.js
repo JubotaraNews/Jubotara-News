@@ -15,18 +15,18 @@ export const dynamic = "force-dynamic";
 export default async function Home() {
   const trendingTags = await getTrendingTags();
 
-  const politicsNews = await getNewsByCat("বিজ্ঞাপন", 7);
+  const politicsNews = await getNewsByCat("রাজনীতি", 7);
   const politicsFirstNews = politicsNews[0];
   const politicsSideNews = politicsNews.slice(1, 7);
 
-  const nationalNews = await getNewsByCat("national", 10);
+  const nationalNews = await getNewsByCat("জাতীয়", 10);
   const crimeNews = await getNewsByCat("crime", 10);
   const lifestyleNews = await getNewsByCat("lifestyle", 10);
-  const sportsNews = await getNewsByCat("sports", 7);
+  const sportsNews = await getNewsByCat("খেলা", 7);
   const sportsFirstNews = sportsNews[0];
   const sportsSideNews = sportsNews.slice(1, 7);
 
-  const saraDeshNews = await getNewsByCat("town_village", 7);
+  const saraDeshNews = await getNewsByCat("সারাদেশ", 7);
   const saradeshFirstNews = saraDeshNews[0];
   const saradeshSideNews = saraDeshNews.slice(1, 7);
 
@@ -58,10 +58,10 @@ export default async function Home() {
         />
 
         <SpecialCategorySection
-          title="বিজ্ঞাপন"
+          title="রাজনীতি"
           firstNews={politicsFirstNews}
           sideNews={politicsSideNews}
-          slug={"politics"}
+          slug={"রাজনীতি"}
         />
 
         <Container>
@@ -74,7 +74,7 @@ export default async function Home() {
           title="সারাদেশ"
           featureNews={saradeshFirstNews}
           gridNews={saradeshSideNews}
-          slug={"town_village"}
+          slug={"সারাদেশ"}
         />
 
         <VideoSection videos={videoNews} />
@@ -84,7 +84,7 @@ export default async function Home() {
             title="খেলাধুলা"
             firstNews={sportsFirstNews}
             sideNews={sportsSideNews}
-            slug={"sports"}
+            slug={"খেলা"}
           />
         )}
 
@@ -93,12 +93,12 @@ export default async function Home() {
             <PremiumCategoryBlock
               title="জাতীয়"
               news={nationalNews}
-              slug={"national"}
+              slug={"জাতীয়"}
             />
             <PremiumCategoryBlock
               title="আন্তর্জাতিক"
               news={internationalNews}
-              slug={"international"}
+              slug={"আন্তর্জাতিক"}
             />
           </div>
         </Container>
