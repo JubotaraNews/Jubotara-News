@@ -1,5 +1,5 @@
 import Container from '@/components/common/Container';
-import { getVideoNews } from '@/lib/fetchData';
+import { getVideoNews } from '@/lib/localData';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getYoutubeThumbnail } from '@/utils/youtube';

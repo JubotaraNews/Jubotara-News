@@ -1,5 +1,5 @@
 
-import { getNews, getNewsByLocation, getDivisions, getDistricts } from '@/lib/fetchData';
+import { getNews, getNewsByLocation, getDivisions, getDistricts } from '@/lib/localData';
 import Container from '@/components/common/Container';
 import Link from 'next/link';
 import Image from 'next/image';

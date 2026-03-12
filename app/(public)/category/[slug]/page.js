@@ -1,5 +1,5 @@
 
-import { getNews, getCategoryNews, getMenus, getSingleCategories } from '@/lib/fetchData';
+import { getNews, getCategoryNews, getMenus, getSingleCategories } from '@/lib/localData';
 import Container from '@/components/common/Container';
 import Link from 'next/link';
 import Image from 'next/image';
