@@ -4,6 +4,8 @@ import dbConnect from "@/lib/db";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
 
+export const dynamic = "force-dynamic";
+
 // POST: create new category (Protected)
 export async function POST(req) {
   try {

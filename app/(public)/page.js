@@ -10,6 +10,8 @@ import HeronNewsSection from "@/components/home/HeronNewsSection";
 import VideoSection from "@/components/home/VideoSection";
 import { getNewsByCat, getTrendingTags, getVideoNews } from "@/lib/localData";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const trendingTags = await getTrendingTags();
 

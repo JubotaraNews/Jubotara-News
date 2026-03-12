@@ -4,6 +4,8 @@ import News from "@/models/News";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request) {
   try {
     await dbConnect();
