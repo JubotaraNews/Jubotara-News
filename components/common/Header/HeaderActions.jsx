@@ -38,18 +38,18 @@ export default function HeaderActions() {
           </button>
         )} */}
 
-        <div className="hidden md:flex items-center gap-4">
+        <div className="flex items-center gap-4">
           {session ? (
             <Link
               href="/dashboard"
-              className="text-black font-bold text-[13px] sm:text-sm md:text-lg hover:underline"
+              className="text-black font-bold text-xs sm:text-sm md:text-lg hover:underline whitespace-nowrap"
             >
               {language === "bn" ? "ড্যাশবোর্ড" : "Dashboard"}
             </Link>
           ) : (
             <Link
               href="/login"
-              className="text-black font-bold text-[13px] sm:text-sm md:text-lg hover:underline"
+              className="text-black font-bold text-xs sm:text-sm md:text-lg hover:underline whitespace-nowrap"
             >
               {language === "bn" ? "লগইন" : "Log In"}
             </Link>
