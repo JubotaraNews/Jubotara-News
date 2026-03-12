@@ -31,7 +31,7 @@ export default async function Home() {
   const videoNewsResponse = await getVideoNews(1, 4);
   const videoNews = videoNewsResponse?.data || [];
 
-  const internationalNews = await getNewsByCat("international", 10);
+  const internationalNews = await getNewsByCat("আন্তর্জাতিক", 10);
   const entertainmentNews = await getNewsByCat("entertainment", 10);
   const economyNews = await getNewsByCat("economy", 10);
 
