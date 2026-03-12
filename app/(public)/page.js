@@ -20,8 +20,8 @@ export default async function Home() {
   const politicsSideNews = politicsNews.slice(1, 7);
 
   const nationalNews = await getNewsByCat("জাতীয়", 10);
-  const crimeNews = await getNewsByCat("crime", 10);
-  const lifestyleNews = await getNewsByCat("lifestyle", 10);
+  const crimeNews = await getNewsByCat("অপরাধ", 10);
+  const lifestyleNews = await getNewsByCat("জীবনযাপন", 10);
   const sportsNews = await getNewsByCat("খেলা", 7);
   const sportsFirstNews = sportsNews[0];
   const sportsSideNews = sportsNews.slice(1, 7);
@@ -34,8 +34,8 @@ export default async function Home() {
   const videoNews = videoNewsResponse?.data || [];
 
   const internationalNews = await getNewsByCat("আন্তর্জাতিক", 10);
-  const entertainmentNews = await getNewsByCat("entertainment", 10);
-  const economyNews = await getNewsByCat("economy", 10);
+  const entertainmentNews = await getNewsByCat("বিনোদন", 10);
+  const economyNews = await getNewsByCat("অর্থনীতি", 10);
 
   return (
     <div className=" min-h-screen bg-[#eff3f6]">
@@ -115,19 +115,19 @@ export default async function Home() {
               title="অপরাধ"
               news={crimeNews}
               vertical={true}
-              slug={"crime"}
+              slug={"অপরাধ"}
             />
             <PremiumCategoryBlock
               title="বিনোদন"
               news={entertainmentNews}
               vertical={true}
-              slug={"entertainment"}
+              slug={"বিনোদন"}
             />
             <PremiumCategoryBlock
               title="অর্থনীতি"
               news={economyNews}
               vertical={true}
-              slug={"economy"}
+              slug={"অর্থনীতি"}
             />
           </div>
         </Container>
