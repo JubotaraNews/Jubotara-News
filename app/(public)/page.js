@@ -58,7 +58,7 @@ export default async function Home() {
         />
 
         <SpecialCategorySection
-          title="রাজনীতি"
+          title="বিজ্ঞাপন"
           firstNews={politicsFirstNews}
           sideNews={politicsSideNews}
           slug={"politics"}
