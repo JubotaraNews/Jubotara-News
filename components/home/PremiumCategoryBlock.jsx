@@ -63,8 +63,7 @@ export default function PremiumCategoryBlock({ title, news, vertical = false, sl
                     {item?.name}
                   </h4>
                   {/* <p className="text-gray-600 text-base md:text-xl leading-relaxed line-clamp-1">
-                 {item.summary}
-               </p> */}
+                 {item.reporterInfo}               </p> */}
                 </div>
 
               </Link>

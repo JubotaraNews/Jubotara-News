@@ -15,7 +15,7 @@ export default function NewsForm({ initialData, onSuccess }) {
   const [formData, setFormData] = useState(
     initialData || {
       title: "",
-      summary: "",
+      reporterInfo: "",
       category: "",
       content: "",
       imageSrc: "",
@@ -65,7 +65,7 @@ export default function NewsForm({ initialData, onSuccess }) {
     e.preventDefault();
     if (
       !formData.title ||
-      !formData.summary ||
+      !formData.reporterInfo ||
       !formData.category ||
       !formData.content
     ) {
@@ -87,7 +87,7 @@ export default function NewsForm({ initialData, onSuccess }) {
 
       const submitData = {
         title: formData.title,
-        summary: formData.summary,
+        reporterInfo: formData.reporterInfo,
         category: formData.category,
         content: formData.content,
         imageSrc: uploadedImageUrl,
@@ -102,7 +102,7 @@ export default function NewsForm({ initialData, onSuccess }) {
         toast.success("সংবাদ সফলভাবে যুক্ত হয়েছে!");
         setFormData({
           title: "",
-          summary: "",
+          reporterInfo: "",
           category: "",
           content: "",
           imageSrc: "",
@@ -142,9 +142,9 @@ export default function NewsForm({ initialData, onSuccess }) {
             </li>
             <li>
               <textarea
-                name="summary"
-                placeholder="সংক্ষিপ্ত বিবরণ"
-                value={formData.summary}
+                name="reporterInfo"
+                placeholder="রিপোর্টার ইনফো"
+                value={formData.reporterInfo}
                 onChange={handleChange}
                 className="w-full border px-3 py-2 rounded"
                 required

@@ -26,7 +26,7 @@ const MainCard = ({ news }) => {
                             {news.title}
                         </h2>
                         <p className="text-gray-200 mt-2 text-sm line-clamp-2 md:line-clamp-none">
-                            {news.summary}
+                            {news.reporterInfo}
                         </p>
                         <div className="flex items-center gap-4 mt-4 text-xs text-gray-300">
                             <span className="flex items-center gap-1">

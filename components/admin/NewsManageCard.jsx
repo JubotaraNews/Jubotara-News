@@ -14,7 +14,7 @@ const NewsManageCard = ({ item, onEdit, onDelete }) => {
 
       <p className="text-gray-600 mt-2">
         <span className="font-semibold text-black">সংক্ষিপ্ত বিবরণ :</span>{" "}
-        {item.summary}
+        {item.reporterInfo}
       </p>
 
       {item.content && (

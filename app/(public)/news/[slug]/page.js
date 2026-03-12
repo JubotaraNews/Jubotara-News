@@ -36,7 +36,7 @@ export async function generateMetadata({ params }) {
   // Strip HTML and trim for description
   const plainDescription = (
     news.meta_description ||
-    news.summary ||
+    news.reporterInfo ||
     news.description ||
     ""
   )
