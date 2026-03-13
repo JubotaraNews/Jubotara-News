@@ -20,6 +20,8 @@ export default function NewsForm({ initialData, onSuccess }) {
     imageSrc: initialData?.imageSrc || "",
     imageCaption: initialData?.imageCaption || "",
     isFeatured: initialData?.isFeatured || false,
+    metaTitle: initialData?.metaTitle || "",
+    metaDescription: initialData?.metaDescription || "",
     _id: initialData?._id,
   });
 
@@ -93,6 +95,8 @@ export default function NewsForm({ initialData, onSuccess }) {
         imageSrc: uploadedImageUrl,
         imageCaption: formData.imageCaption,
         isFeatured: formData.isFeatured,
+        metaTitle: formData.metaTitle,
+        metaDescription: formData.metaDescription,
       };
 
       if (e.nativeEvent.submitter?.name === "draft") {
@@ -113,6 +117,8 @@ export default function NewsForm({ initialData, onSuccess }) {
           imageSrc: "",
           imageCaption: "",
           isFeatured: false,
+          metaTitle: "",
+          metaDescription: "",
         });
         setPreviewUrl("");
         setImageFile(null);
@@ -237,7 +243,36 @@ export default function NewsForm({ initialData, onSuccess }) {
                 )}
               </li>
             )}
-            <li className="flex gap-4">
+
+            {/* SEO Settings */}
+            <li className="pt-6 border-t mt-6">
+              <h3 className="text-lg font-semibold mb-4 text-gray-700">SEO সেটিংস (ঐচ্ছিক)</h3>
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-600 mb-1">মেটা শিরোনাম (Meta Title)</label>
+                  <input
+                    type="text"
+                    name="metaTitle"
+                    placeholder="মেটা শিরোনাম দিন"
+                    value={formData.metaTitle}
+                    onChange={handleChange}
+                    className="w-full border px-3 py-2 rounded"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-600 mb-1">মেটা বর্ণনা (Meta Description)</label>
+                  <textarea
+                    name="metaDescription"
+                    placeholder="মেটা বর্ণনা দিন (সংক্ষিপ্ত বিবরণ)"
+                    value={formData.metaDescription}
+                    onChange={handleChange}
+                    className="w-full border px-3 py-2 rounded h-24"
+                  />
+                </div>
+              </div>
+            </li>
+
+            <li className="flex gap-4 pt-6">
               <button
                 type="submit"
                 disabled={loading}

@@ -8,6 +8,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import ThumbnailNewsSection from "@/components/home/ThumbnailNewsSection";
 import { FaGoogle, FaWhatsapp } from "react-icons/fa";
+import truncate from "@/utils/truncate";
 import {
   getNewsByCat,
   getSingleNews,
@@ -33,20 +34,13 @@ export async function generateMetadata({ params }) {
   }
 
   //  title/description
-  const newsTitle = news?.meta_title || news?.name || news.headline;
+  const newsTitle = news?.metaTitle || news?.name || news.headline;
   const title = `${newsTitle} | যুবতারা নিউজ`;
 
   // Strip HTML and trim for description
-  const plainDescription = (
-    news.meta_description ||
-    news.reporterInfo ||
-    news.description ||
-    ""
-  )
-    .replace(/<[^>]*>/g, "")
-    .split("\n")[0]
-    .slice(0, 160)
-    .trim();
+  const plainDescription =
+    news.metaDescription ||
+    truncate(news.content || news.reporterInfo || "", 160);
 
   const imageUrl = news?.featured_image || "";
   const siteUrl = FRONT_END_URL;
@@ -168,10 +162,7 @@ export default async function NewsDetailPage({ params }) {
         url: `${FRONT_END_URL}/logo.png`,
       },
     },
-    description: news.content
-      ?.replace(/<[^>]*>/g, "")
-      .slice(0, 160)
-      .trim(),
+    description: truncate(news.content || news.reporterInfo || "", 160),
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": fullUrl,

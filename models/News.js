@@ -18,6 +18,8 @@ const NewsSchema = new Schema(
     approvedBy: { type: Schema.Types.ObjectId, ref: "User" },
     publishedAt: { type: Date, default: Date.now },
     isFeatured: { type: Boolean, default: false },
+    metaTitle: { type: String, required: false },
+    metaDescription: { type: String, required: false },
     likesCount: { type: Number, default: 0 },
     comments: [
       {
