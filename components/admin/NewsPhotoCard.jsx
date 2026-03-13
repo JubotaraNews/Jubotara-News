@@ -2,17 +2,17 @@
 
 import React from "react";
 
-const NewsPhotoCard = ({ 
-  headline, 
-  category, 
-  imageSrc, 
-  logoUrl, 
-  date, 
+const NewsPhotoCard = ({
+  headline,
+  category,
+  imageSrc,
+  logoUrl,
+  date,
   commentText = "বিস্তারিত কমেন্টে",
   accentColor = "#D9232D",
   imageScale = 1,
   isPreview = false,
-  cardRef 
+  cardRef,
 }) => {
   const cardContent = (
     <div
@@ -77,21 +77,22 @@ const NewsPhotoCard = ({
           top: 0,
           right: "50px",
           zIndex: 10,
-          width: "140px",
+          width: "165px",
           height: "240px",
           backgroundColor: accentColor,
-          borderBottomRightRadius: "65px",
-          borderBottomLeftRadius: "65px",
+          borderBottomRightRadius: "80px",
+          borderBottomLeftRadius: "80px",
           display: "flex",
           alignItems: "flex-end",
           justifyContent: "center",
           paddingBottom: "25px",
+          opacity: 0.8,
         }}
       >
         <div
           style={{
-            width: "110px",
-            height: "110px",
+            width: "135px",
+            height: "130px",
             borderRadius: "50%",
             backgroundColor: "white",
             display: "flex",
@@ -234,32 +235,33 @@ const NewsPhotoCard = ({
 
   if (isPreview) {
     return (
-      <div className="preview-container" style={{
-        width: "100%",
-        maxWidth: "400px",
-        aspectRatio: "1/1",
-        overflow: "hidden",
-        position: "relative",
-        border: "1px solid #e5e7eb",
-        borderRadius: "8px"
-      }}>
-        <div style={{
-          transform: "scale(calc(400 / 1080))",
-          transformOrigin: "top left",
-          width: "1080px",
-          height: "1080px"
-        }}>
+      <div
+        className="preview-container"
+        style={{
+          width: "100%",
+          maxWidth: "400px",
+          aspectRatio: "1/1",
+          overflow: "hidden",
+          position: "relative",
+          border: "1px solid #e5e7eb",
+          borderRadius: "8px",
+        }}
+      >
+        <div
+          style={{
+            transform: "scale(calc(400 / 1080))",
+            transformOrigin: "top left",
+            width: "1080px",
+            height: "1080px",
+          }}
+        >
           {cardContent}
         </div>
       </div>
     );
   }
 
-  return (
-    <div className="absolute -left-[9999px] top-0">
-      {cardContent}
-    </div>
-  );
+  return <div className="absolute -left-[9999px] top-0">{cardContent}</div>;
 };
 
 export default NewsPhotoCard;
