@@ -6,7 +6,7 @@ import { authOptions } from "@/lib/authOptions";
 export async function POST(req) {
   try {
     const session = await getServerSession(authOptions);
-    if (!session || session.user.role !== "admin") {
+    if (!session || (session.user.role !== "admin" && session.user.role !== "user")) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
 
@@ -29,7 +29,7 @@ export async function POST(req) {
   } catch (err) {
     console.error("Upload error:", err);
     return NextResponse.json(
-      { success: false, message: "Upload failed" },
+      { success: false, message: err.message || "Upload failed" },
       { status: 500 },
     );
   }

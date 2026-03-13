@@ -34,7 +34,7 @@ export async function GET(req, context) {
 export async function PUT(req, context) {
   try {
     const session = await getServerSession(authOptions);
-    if (!session || session.user.role !== "admin") {
+    if (!session || (session.user.role !== "admin" && session.user.role !== "user")) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
 
@@ -45,16 +45,39 @@ export async function PUT(req, context) {
     }
 
     await dbConnect();
+    const existingNews = await News.findById(id);
+
+    if (!existingNews) {
+      return NextResponse.json({ error: "News not found" }, { status: 404 });
+    }
+
+    // Permission check
+    if (session.user.role !== "admin") {
+      // If not admin, must be author and news must not be published
+      if (existingNews.authorId?.toString() !== session.user.id) {
+        return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+      }
+      if (existingNews.status === "published") {
+        return NextResponse.json({ message: "Cannot edit published news. Please contact admin." }, { status: 403 });
+      }
+    }
+
     const data = await req.json();
+    
+    // Only admin can change status to "published" or "approvedBy"
+    if (session.user.role !== "admin") {
+      delete data.status;
+      delete data.approvedBy;
+    } else {
+      if (data.status === "published" && !existingNews.approvedBy) {
+        data.approvedBy = session.user.id;
+      }
+    }
 
     const updated = await News.findByIdAndUpdate(id, data, {
       new: true,
       runValidators: true,
     });
-
-    if (!updated) {
-      return NextResponse.json({ error: "News not found" }, { status: 404 });
-    }
 
     return NextResponse.json(updated.toObject(), { status: 200 });
   } catch (error) {
@@ -73,7 +96,7 @@ export async function PUT(req, context) {
 export async function DELETE(req, context) {
   try {
     const session = await getServerSession(authOptions);
-    if (!session || session.user.role !== "admin") {
+    if (!session || (session.user.role !== "admin" && session.user.role !== "user")) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
 
@@ -84,11 +107,23 @@ export async function DELETE(req, context) {
     }
 
     await dbConnect();
-    const deleted = await News.findByIdAndDelete(newsId);
+    const existingNews = await News.findById(newsId);
 
-    if (!deleted) {
+    if (!existingNews) {
       return NextResponse.json({ error: "News not found" }, { status: 404 });
     }
+
+    // Permission check
+    if (session.user.role !== "admin") {
+      if (existingNews.authorId?.toString() !== session.user.id) {
+        return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+      }
+      if (existingNews.status === "published") {
+        return NextResponse.json({ message: "Cannot delete published news." }, { status: 403 });
+      }
+    }
+
+    const deleted = await News.findByIdAndDelete(newsId);
 
     return NextResponse.json({ success: true, id: newsId }, { status: 200 });
   } catch (error) {

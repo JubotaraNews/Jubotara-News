@@ -18,7 +18,8 @@ const Footer = async () => {
               <Logo logoUrl={settings.site_logo} />
             </div>
             <div className="text-gray-700 text-base md:text-xl lg:text-xl leading-relaxed whitespace-pre-line">
-              {settings.about_text || "বাংলাদেশের অন্যতম নির্ভরযোগ্য অনলাইন সংবাদ মাধ্যম।"}
+              {settings.about_text ||
+                "বাংলাদেশের অন্যতম নির্ভরযোগ্য অনলাইন সংবাদ মাধ্যম।"}
             </div>
             <div className="flex items-center gap-4">
               {settings.facebook_url && (
@@ -181,7 +182,7 @@ const Footer = async () => {
 
         {/* Bottom Bar */}
         <div className="mt-3 pt-4 border-t border-gray-200 text-center text-base md:text-lg text-gray-700 ">
-          <p>© {currentYear} বাংলা স্টার নিউজ | সর্বস্বত্ব সংরক্ষিত।</p>
+          <p>© {currentYear} যুবতারা নিউজ | সর্বস্বত্ব সংরক্ষিত।</p>
         </div>
       </Container>
     </footer>

@@ -14,25 +14,29 @@ import {
   MdAdsClick,
   MdVideoLibrary,
 } from "react-icons/md";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Logo from "@/components/common/Header/Logo";
 
 const NAV_LINKS = [
-  { id: 1, label: "Dashboard", icon: MdDashboard, href: "/dashboard" },
-  { id: 2, label: "Add News", icon: MdArticle, href: "/addnews" },
-  { id: 3, label: "News List", icon: MdCategory, href: "/newslist" },
-  { id: 4, label: "Videos", icon: MdVideoLibrary, href: "/videos" },
-  { id: 5, label: "ADS", icon: MdAdsClick, href: "/ads" },
-  { id: 6, label: "Users", icon: MdPeople, href: "/users" },
-  { id: 11, label: "Team Manager", icon: MdPeople, href: "/teammanager" },
-  { id: 7, label: "Add Category", icon: MdSettings, href: "/addCategory" },
-  { id: 8, label: "Nav Manager", icon: MdMenu, href: "/navmanager" },
-  { id: 9, label: "Footer Manager", icon: MdSettings, href: "/footermanager" },
-  { id: 10, label: "Settings", icon: MdSettings, href: "/settings" },
+  { id: 1, label: "Dashboard", icon: MdDashboard, href: "/dashboard", roles: ["admin", "user"] },
+  { id: 2, label: "Add News", icon: MdArticle, href: "/addnews", roles: ["admin", "user"] },
+  { id: 3, label: "News List", icon: MdCategory, href: "/newslist", roles: ["admin", "user"] },
+  { id: 4, label: "Videos", icon: MdVideoLibrary, href: "/videos", roles: ["admin", "user"] },
+  { id: 5, label: "ADS", icon: MdAdsClick, href: "/ads", roles: ["admin"] },
+  { id: 6, label: "Users", icon: MdPeople, href: "/users", roles: ["admin"] },
+  { id: 11, label: "Team Manager", icon: MdPeople, href: "/teammanager", roles: ["admin"] },
+  { id: 7, label: "Add Category", icon: MdSettings, href: "/addCategory", roles: ["admin"] },
+  { id: 8, label: "Nav Manager", icon: MdMenu, href: "/navmanager", roles: ["admin"] },
+  { id: 9, label: "Footer Manager", icon: MdSettings, href: "/footermanager", roles: ["admin"] },
+  { id: 10, label: "Settings", icon: MdSettings, href: "/settings", roles: ["admin"] },
 ];
 
 const AdminSidebar = ({ isOpen, setIsOpen }) => {
   const pathname = usePathname();
+  const { data: session } = useSession();
+  const userRole = session?.user?.role || "user";
+
+  const filteredLinks = NAV_LINKS.filter(link => link.roles.includes(userRole));
 
   return (
     <>
@@ -61,7 +65,7 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
         </div>
 
         <nav className="p-4 space-y-1 overflow-y-auto max-h-[calc(100vh-120px)]">
-          {NAV_LINKS.map((link) => {
+          {filteredLinks.map((link) => {
             const isActive = pathname === link.href;
             const Icon = link.icon;
             return (

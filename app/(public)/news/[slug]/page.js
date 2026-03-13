@@ -19,6 +19,9 @@ import { FRONT_END_URL } from "@/utils/baseUrl";
 import FacebookComments from "@/components/news/FacebookComments";
 import { getMetaValueByMetaName } from "@/utils/metaHelpers";
 
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/authOptions";
+
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const news = await getSingleNews(slug);
@@ -30,7 +33,7 @@ export async function generateMetadata({ params }) {
   }
 
   //  title/description
-  const newsTitle = news?.meta_title || news?.name || news.title;
+  const newsTitle = news?.meta_title || news?.name || news.headline;
   const title = `${newsTitle} | যুবতারা নিউজ`;
 
   // Strip HTML and trim for description
@@ -57,8 +60,8 @@ export async function generateMetadata({ params }) {
     keywords: [
       categoryName,
       "বাংলাদেশ সংবাদ",
-      "বাংলা স্টার নিউজ",
-      "Bangla Star News",
+      "যুবতারা নিউজ",
+      "Jubotara News",
       "সর্বশেষ খবর",
       ...newsTitle.split(" "),
     ].slice(0, 15),
@@ -69,7 +72,7 @@ export async function generateMetadata({ params }) {
       title,
       description: plainDescription,
       url: postUrl,
-      siteName: "বাংলা স্টার নিউজ",
+      siteName: "যুবতারা নিউজ",
       images: imageUrl
         ? [
             {
@@ -91,7 +94,7 @@ export async function generateMetadata({ params }) {
       title,
       description: plainDescription,
       images: imageUrl ? [imageUrl] : [],
-      site: "@banglastar",
+      site: "@jubotaranews",
     },
     robots: {
       index: true,
@@ -109,6 +112,9 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function NewsDetailPage({ params }) {
+  const session = await getServerSession(authOptions);
+  const isAdmin = session?.user?.role === "admin";
+  
   const trendingNews = await getTrandingNews();
   const { slug } = await params;
 
@@ -116,6 +122,9 @@ export default async function NewsDetailPage({ params }) {
   if (!news) {
     notFound();
   }
+
+  const displayName = isAdmin ? (news.authorName || "অজানা") : "নিজস্ব প্রতিবেদক";
+
   const settings = await getSettings();
   const googleNewsUrl =
     getMetaValueByMetaName(settings, "google_news_channle_link") || "#";
@@ -140,20 +149,20 @@ export default async function NewsDetailPage({ params }) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
-    headline: news.name || news.title,
+    headline: news.name || news.headline,
     image: [news.featured_image || ""],
     datePublished: news.created_at,
     dateModified: news.updated_at || news.created_at,
     author: [
       {
         "@type": "Person",
-        name: "নিজস্ব প্রতিবেদক",
+        name: displayName,
         url: FRONT_END_URL,
       },
     ],
     publisher: {
       "@type": "Organization",
-      name: "বাংলা স্টার নিউজ",
+      name: "যুবতারা নিউজ",
       logo: {
         "@type": "ImageObject",
         url: `${FRONT_END_URL}/logo.png`,
@@ -195,7 +204,7 @@ export default async function NewsDetailPage({ params }) {
                 </div>
 
                 {/* Title */}
-                <h1 className="text-3xl md:text-4xl font-semibold text-gray-900 leading-none md:leading-6">
+                <h1 className="text-3xl md:text-4xl font-semibold text-gray-900 leading-none md:leading-8">
                   {news?.name}
                 </h1>
 
@@ -203,36 +212,47 @@ export default async function NewsDetailPage({ params }) {
                 <div className="flex flex-wrap items-center justify-between gap-4 border-y border-gray-100 py-3">
                   <div className="flex items-center gap-3">
                     <div>
-                      <p className="text-base md:text-xl font-bold text-gray-800">
-                        নিজস্ব প্রতিবেদক
-                      </p>
+                      {isAdmin && (
+                        <p className="text-base md:text-xl font-bold text-gray-800">
+                          {news.authorName || "অজানা"}
+                        </p>
+                      )}
                       <span className="text-gray-500 font-medium">
                         {formattedPublishedDate}
                       </span>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <ShareButtons
-                      title={news?.name || news?.title}
-                      url={fullUrl}
-                    />
+                    <ShareButtons title={news?.name} url={fullUrl} />
                     <PrintButton />
                   </div>
                 </div>
 
                 {/* Main Image */}
-                <div className="relative h-75 md:h-125 w-full overflow-hidden shadow-inner">
-                  <Image
-                    src={news?.featured_image}
-                    alt={news?.name || "news image"}
-                    fill
-                    priority
-                    className="object-cover"
-                  />
+                <div className="space-y-2">
+                  <div className="relative h-75 md:h-125 w-full overflow-hidden shadow-inner">
+                    <Image
+                      src={news?.featured_image}
+                      alt={news?.name || "news image"}
+                      fill
+                      priority
+                      className="object-cover"
+                    />
+                  </div>
+                  {news.image_caption && (
+                    <p className="text-sm text-gray-500 italic border-l-2 border-primary pl-2">
+                      {news.image_caption}
+                    </p>
+                  )}
                 </div>
 
                 {/* Content */}
                 <div>
+                  {news.reporterInfo && (
+                    <p className="text-lg md:text-xl font-bold text-gray-900 mb-4 border-b pb-2">
+                      {news.reporterInfo}
+                    </p>
+                  )}
                   <div
                     className="text-base md:text-xl lg:md:text-[22px] text-gray-800 font-medium whitespace-pre-line [&_p]:mb-4"
                     dangerouslySetInnerHTML={{

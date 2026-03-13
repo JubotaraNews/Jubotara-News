@@ -15,14 +15,20 @@ export const uploadToCloudinary = async (file) => {
       body: formData,
     });
 
-    if (!res.ok) {
-      throw new Error("Upload failed");
+    let data;
+    try {
+      data = await res.json();
+    } catch (e) {
+      throw new Error(`Server returned status ${res.status}`);
     }
 
-    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.message || data.error || `Upload failed with status ${res.status}`);
+    }
+
     return data.secure_url;
   } catch (error) {
     console.error("Client upload error:", error);
-    return null;
+    throw error;
   }
 };

@@ -12,16 +12,16 @@ import {
 export default function NewsForm({ initialData, onSuccess }) {
   const isEditMode = !!initialData?._id;
 
-  const [formData, setFormData] = useState(
-    initialData || {
-      title: "",
-      reporterInfo: "",
-      category: "",
-      content: "",
-      imageSrc: "",
-      isFeatured: false,
-    }
-  );
+  const [formData, setFormData] = useState({
+    headline: initialData?.headline || initialData?.title || "",
+    reporterInfo: initialData?.reporterInfo || "",
+    category: initialData?.category || "",
+    content: initialData?.content || "",
+    imageSrc: initialData?.imageSrc || "",
+    imageCaption: initialData?.imageCaption || "",
+    isFeatured: initialData?.isFeatured || false,
+    _id: initialData?._id,
+  });
 
   const [categories, setCategories] = useState([]);
   const [imageFile, setImageFile] = useState(null);
@@ -64,7 +64,7 @@ export default function NewsForm({ initialData, onSuccess }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (
-      !formData.title ||
+      !formData.headline ||
       !formData.reporterInfo ||
       !formData.category ||
       !formData.content
@@ -86,13 +86,18 @@ export default function NewsForm({ initialData, onSuccess }) {
       }
 
       const submitData = {
-        title: formData.title,
+        headline: formData.headline,
         reporterInfo: formData.reporterInfo,
         category: formData.category,
         content: formData.content,
         imageSrc: uploadedImageUrl,
+        imageCaption: formData.imageCaption,
         isFeatured: formData.isFeatured,
       };
+
+      if (e.nativeEvent.submitter?.name === "draft") {
+        submitData.status = "draft";
+      }
 
       if (isEditMode && formData._id) {
         await updateNews({ id: formData._id, data: submitData }).unwrap();
@@ -101,11 +106,12 @@ export default function NewsForm({ initialData, onSuccess }) {
         await addNews(submitData).unwrap();
         toast.success("সংবাদ সফলভাবে যুক্ত হয়েছে!");
         setFormData({
-          title: "",
+          headline: "",
           reporterInfo: "",
           category: "",
           content: "",
           imageSrc: "",
+          imageCaption: "",
           isFeatured: false,
         });
         setPreviewUrl("");
@@ -132,16 +138,17 @@ export default function NewsForm({ initialData, onSuccess }) {
             <li>
               <input
                 type="text"
-                name="title"
-                placeholder="শিরোনাম"
-                value={formData.title}
+                name="headline"
+                placeholder="শিরোনাম (Headline)"
+                value={formData.headline}
                 onChange={handleChange}
                 className="w-full border px-3 py-2 rounded"
                 required
               />
             </li>
             <li>
-              <textarea
+              <input
+                type="text"
                 name="reporterInfo"
                 placeholder="রিপোর্টার ইনফো"
                 value={formData.reporterInfo}
@@ -188,13 +195,23 @@ export default function NewsForm({ initialData, onSuccess }) {
               </label>
             </li>
             <li>
-              <label className="block mb-1">ছবি আপলোড করুন</label>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleImageChange}
-                className="w-full"
-              />
+              <div className="space-y-2">
+                <label className="block mb-1 font-medium">ছবি আপলোড করুন</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  className="w-full"
+                />
+                <input
+                  type="text"
+                  name="imageCaption"
+                  placeholder="ছবির ক্যাপশন (ঐচ্ছিক)"
+                  value={formData.imageCaption}
+                  onChange={handleChange}
+                  className="w-full border px-3 py-2 rounded text-sm"
+                />
+              </div>
             </li>
             {previewUrl && (
               <li className="relative">
@@ -220,11 +237,11 @@ export default function NewsForm({ initialData, onSuccess }) {
                 )}
               </li>
             )}
-            <li>
+            <li className="flex gap-4">
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 disabled:bg-gray-400"
+                className="flex-1 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 disabled:bg-gray-400"
               >
                 {loading
                   ? "আপলোড হচ্ছে..."
@@ -232,6 +249,16 @@ export default function NewsForm({ initialData, onSuccess }) {
                     ? "সংবাদ আপডেট করুন"
                     : "সংবাদ যুক্ত করুন"}
               </button>
+              {!isEditMode && (
+                <button
+                  type="submit"
+                  name="draft"
+                  disabled={loading}
+                  className="flex-1 bg-gray-500 text-white py-2 rounded hover:bg-gray-600 disabled:bg-gray-400"
+                >
+                  ড্রাফট হিসেবে সেভ করুন
+                </button>
+              )}
             </li>
           </ul>
         </form>
