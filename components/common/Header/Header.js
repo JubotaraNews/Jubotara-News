@@ -18,15 +18,15 @@ const Header = async () => {
   // console.log("logo", logo)
 
   return (
-    <header className="w-full sticky top-0 z-50 ">
+    <header className="w-full sticky top-0 z-[100] shadow-sm">
       {/* Top Thick Red Bar (Matching Fox style) */}
 
       {/* Main Section with Logo and Nav items */}
       <div className="bg-white text-black py-1 border-b border-gray-100">
         <Container className="flex items-center justify-between min-h-12.5">
           <div className="flex items-start ">
-            {/* Logo Container - Absolute Positioned to Overlap */}
-            <div>
+            {/* Logo Container */}
+            <div className="relative">
               <Logo logoUrl={logoUrl} />
             </div>
 

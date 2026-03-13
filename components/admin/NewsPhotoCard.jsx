@@ -86,7 +86,6 @@ const NewsPhotoCard = ({
           alignItems: "flex-end",
           justifyContent: "center",
           paddingBottom: "25px",
-          opacity: 0.8,
         }}
       >
         <div

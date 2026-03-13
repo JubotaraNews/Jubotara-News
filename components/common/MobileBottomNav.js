@@ -55,7 +55,7 @@ export default function MobileBottomNav({ news_categories }) {
     <>
       {/* Drawer Overlay */}
       <div
-        className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-60 transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-[105] transition-opacity duration-300 md:hidden ${
           isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setIsMenuOpen(false)}
@@ -63,7 +63,7 @@ export default function MobileBottomNav({ news_categories }) {
 
       {/* Category Drawer */}
       <div
-        className={`fixed inset-y-0 left-0 w-[85%] max-w-sm bg-white z-70 shadow-2xl transition-transform duration-500 ease-out md:hidden flex flex-col ${
+        className={`fixed inset-y-0 left-0 w-[85%] max-w-sm bg-white z-[110] shadow-2xl transition-transform duration-500 ease-out md:hidden flex flex-col ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -154,7 +154,7 @@ export default function MobileBottomNav({ news_categories }) {
       </div>
 
       {/* Bottom Navigation Bar */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white backdrop-blur-xl border-t border-gray-100 shadow-[0_-8px_30px_rgba(0,0,0,0.08)] pb-safe">
+      <nav className="fixed bottom-0 left-0 right-0 z-[100] md:hidden bg-white backdrop-blur-xl border-t border-gray-100 shadow-[0_-8px_30px_rgba(0,0,0,0.08)] pb-safe">
         <div className="flex items-center justify-between h-16 px-2 max-w-lg mx-auto">
           {navItems.map((item) => {
             const isActive = pathname === item.path;

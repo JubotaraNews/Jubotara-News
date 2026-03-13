@@ -12,7 +12,7 @@ const AdminNavbar = ({ onMenuClick }) => {
   const [adminMenu, setAdminMenu] = useState(false);
 
   return (
-    <header className="w-full bg-white shadow-sm border-b fixed top-0 left-0 z-40 lg:pl-64 h-16 transition-all duration-300">
+    <header className="w-full bg-white shadow-sm border-b fixed top-0 left-0 z-50 lg:pl-64 h-16 transition-all duration-300">
       <div className="flex justify-between items-center h-full px-4 sm:px-6">
         <div className="flex items-center gap-4">
           <button
