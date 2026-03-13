@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import "../globals.css";
 import { Providers } from "@/provider/provider";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const solaimanLipi = localFont({
   src: "../../public/fonts/SolaimanLipi.ttf",
@@ -19,6 +20,7 @@ export default function AuthLayout({ children }) {
       <body className="bg-white">
         <Providers>
           {children}
+          <SpeedInsights />
         </Providers>
       </body>
     </html>

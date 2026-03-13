@@ -5,6 +5,7 @@ import Header from "@/components/common/Header/Header";
 import Footer from "@/components/common/Footer";
 import { Providers } from "@/provider/provider";
 import { getNavbarItems } from "@/lib/localData";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const solaimanLipi = localFont({
   src: "../../public/fonts/SolaimanLipi.ttf",
@@ -30,6 +31,7 @@ export default async function PublicLayout({ children }) {
           {children}
           <MobileBottomNav news_categories={news_categories} />
           <Footer />
+          <SpeedInsights />
         </Providers>
       </body>
     </html>
