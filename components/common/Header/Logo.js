@@ -4,7 +4,7 @@ import logoImg from "@/public/images/logo4.png";
 
 const Logo = ({ logoUrl, className = "" }) => {
   const displayLogo = logoUrl || logoImg;
-  
+
   return (
     <Link href="/" className={`relative inline-block ${className}`}>
       <div className="flex items-center justify-center -mt-2 -ml-2 transition-transform duration-200 hover:scale-105">

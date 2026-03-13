@@ -1,20 +1,43 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 
-const NewsPhotoCard = ({
-  headline,
-  category,
-  imageSrc,
-  logoUrl,
-  date,
+const NewsPhotoCard = ({ 
+  headline, 
+  category, 
+  imageSrc, 
+  logoUrl, 
+  date, 
   commentText = "বিস্তারিত কমেন্টে",
   accentColor = "#D9232D",
   imageScale = 1,
   isPreview = false,
-  cardRef,
+  cardRef 
 }) => {
+  const containerRef = useRef(null);
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    if (!isPreview) return;
+
+    const updateScale = () => {
+      if (containerRef.current) {
+        const containerWidth = containerRef.current.offsetWidth;
+        setScale(containerWidth / 1080);
+      }
+    };
+
+    const observer = new ResizeObserver(updateScale);
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    updateScale();
+    return () => observer.disconnect();
+  }, [isPreview]);
+
   const cardContent = (
+
     <div
       ref={isPreview ? null : cardRef}
       className="gradient-news-theme"
@@ -235,6 +258,7 @@ const NewsPhotoCard = ({
   if (isPreview) {
     return (
       <div
+        ref={containerRef}
         className="preview-container"
         style={{
           width: "100%",
@@ -244,14 +268,18 @@ const NewsPhotoCard = ({
           position: "relative",
           border: "1px solid #e5e7eb",
           borderRadius: "8px",
+          display: "flex",
+          justifyContent: "center",
         }}
       >
         <div
           style={{
-            transform: "scale(calc(400 / 1080))",
-            transformOrigin: "top left",
+            transform: `scale(${scale})`,
+            transformOrigin: "top center",
             width: "1080px",
             height: "1080px",
+            position: "absolute",
+            top: 0,
           }}
         >
           {cardContent}
