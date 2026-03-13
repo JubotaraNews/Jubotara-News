@@ -10,6 +10,10 @@ const UserSchema = new Schema(
       enum: ["admin", "user"],
       default: "user",
     },
+    isActivated: { type: Boolean, default: false },
+    emailVerified: { type: Boolean, default: false },
+    activationToken: { type: String },
+    activationExpires: { type: Date },
   },
   { timestamps: true },
 );

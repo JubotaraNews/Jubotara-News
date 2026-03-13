@@ -18,6 +18,16 @@ export const userApi = createApi({
       providesTags: ["Users"],
     }),
 
+    /* ------------------ REGISTER USER ------------------ */
+    registerUser: builder.mutation({
+      query: (userData) => ({
+        url: `/register`,
+        method: "POST",
+        body: userData,
+      }),
+      invalidatesTags: ["Users"],
+    }),
+
     /* ------------------ UPDATE ROLE ------------------ */
     updateRole: builder.mutation({
       query: ({ id, role }) => ({
@@ -43,6 +53,7 @@ export const userApi = createApi({
 
 export const {
   useGetUsersQuery,
+  useRegisterUserMutation,
   useUpdateRoleMutation,
   useDeleteUserMutation,
 } = userApi;

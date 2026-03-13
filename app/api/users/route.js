@@ -13,7 +13,9 @@ export async function GET() {
 
     await dbConnect();
 
-    const users = await User.find().sort({ createdAt: -1 });
+    const users = await User.find()
+      .select("+activationToken")
+      .sort({ createdAt: -1 });
     const totalUserCount = await User.countDocuments({});
 
     return NextResponse.json({ users, totalUser: totalUserCount });
