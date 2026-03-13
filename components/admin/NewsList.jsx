@@ -2,6 +2,32 @@
 
 import { useEffect, useState } from "react";
 import NewsManageCard from "@/components/admin/NewsManageCard";
+import Skeleton from "@/components/common/Skeleton";
+
+const NewsListSkeleton = () => (
+  <div className="space-y-4">
+    {[1, 2, 3, 4, 5].map((i) => (
+      <div key={i} className="p-4 bg-white border-b border-gray-300 rounded-md shadow-sm">
+        <div className="flex justify-between mb-4">
+          <Skeleton className="h-4 w-24" />
+          <Skeleton className="h-6 w-16" />
+        </div>
+        <Skeleton className="h-8 w-3/4 mb-4" />
+        <div className="flex gap-2 mb-4">
+          <Skeleton className="h-3 w-20" />
+          <Skeleton className="h-3 w-32" />
+        </div>
+        <Skeleton className="h-4 w-full mb-2" />
+        <Skeleton className="h-4 w-5/6 mb-4" />
+        <div className="flex gap-2 mt-4">
+          <Skeleton className="h-10 w-24" />
+          <Skeleton className="h-10 w-24" />
+          <Skeleton className="h-10 w-24" />
+        </div>
+      </div>
+    ))}
+  </div>
+);
 
 const NewsList = ({ onEditClick }) => {
   const [news, setNews] = useState([]);
@@ -140,7 +166,7 @@ const NewsList = ({ onEditClick }) => {
       </div>
 
       {isLoading ? (
-        <p>সংবাদ লোড হচ্ছে...</p>
+        <NewsListSkeleton />
       ) : news.length === 0 ? (
         <p>কোনো সংবাদ পাওয়া যায়নি।</p>
       ) : (

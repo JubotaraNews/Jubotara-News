@@ -1,11 +1,38 @@
 "use client";
 import React from "react";
 import { toast } from "react-toastify";
+import Skeleton from "@/components/common/Skeleton";
 import {
   useGetUsersQuery,
   useUpdateRoleMutation,
   useDeleteUserMutation,
 } from "@/app/redux/features/user/userApi";
+
+const UsersTableSkeleton = () => (
+  <div className="bg-white shadow-md rounded-lg overflow-hidden animate-pulse">
+    <div className="overflow-x-auto">
+      <table className="min-w-full divide-y divide-gray-200">
+        <thead className="bg-gray-50">
+          <tr>
+            {[1, 2, 3, 4].map((i) => (
+              <th key={i} className="px-6 py-3"><Skeleton className="h-4 w-20" /></th>
+            ))}
+          </tr>
+        </thead>
+        <tbody className="bg-white divide-y divide-gray-200">
+          {[1, 2, 3, 4, 5].map((i) => (
+            <tr key={i}>
+              <td className="px-6 py-4"><Skeleton className="h-4 w-32" /></td>
+              <td className="px-6 py-4"><Skeleton className="h-4 w-48" /></td>
+              <td className="px-6 py-4"><Skeleton className="h-8 w-24" /></td>
+              <td className="px-6 py-4"><Skeleton className="h-4 w-16" /></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+);
 
 export default function UsersPage() {
   const { data, isLoading, isError } = useGetUsersQuery();
@@ -35,8 +62,13 @@ export default function UsersPage() {
     }
   };
 
-  if (isLoading) return <div className="p-8 text-center">Loading users...</div>;
-  if (isError) return <div className="p-8 text-center text-red-500">Error loading users</div>;
+  if (isLoading) return (
+    <div className="max-w-7xl mx-auto px-4 py-8">
+      <Skeleton className="h-8 w-48 mb-6" />
+      <UsersTableSkeleton />
+    </div>
+  );
+  if (isError) return <div className="p-8 text-center text-red-500 font-bold">সার্ভার থেকে ব্যবহারকারী তথ্য আনতে ব্যর্থ হয়েছে।</div>;
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">

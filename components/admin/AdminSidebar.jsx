@@ -18,17 +18,71 @@ import { signOut, useSession } from "next-auth/react";
 import Logo from "@/components/common/Header/Logo";
 
 const NAV_LINKS = [
-  { id: 1, label: "Dashboard", icon: MdDashboard, href: "/dashboard", roles: ["admin", "user"] },
-  { id: 2, label: "Add News", icon: MdArticle, href: "/addnews", roles: ["admin", "user"] },
-  { id: 3, label: "News List", icon: MdCategory, href: "/newslist", roles: ["admin", "user"] },
-  { id: 4, label: "Videos", icon: MdVideoLibrary, href: "/videos", roles: ["admin", "user"] },
+  {
+    id: 1,
+    label: "Dashboard",
+    icon: MdDashboard,
+    href: "/dashboard",
+    roles: ["admin", "user"],
+  },
+  {
+    id: 2,
+    label: "Add News",
+    icon: MdArticle,
+    href: "/addnews",
+    roles: ["admin", "user"],
+  },
+  {
+    id: 3,
+    label: "News List",
+    icon: MdCategory,
+    href: "/newslist",
+    roles: ["admin", "user"],
+  },
+  {
+    id: 4,
+    label: "Videos",
+    icon: MdVideoLibrary,
+    href: "/videos",
+    roles: ["admin", "user"],
+  },
   { id: 5, label: "ADS", icon: MdAdsClick, href: "/ads", roles: ["admin"] },
   { id: 6, label: "Users", icon: MdPeople, href: "/users", roles: ["admin"] },
-  { id: 11, label: "Team Manager", icon: MdPeople, href: "/teammanager", roles: ["admin"] },
-  { id: 7, label: "Add Category", icon: MdSettings, href: "/addCategory", roles: ["admin"] },
-  { id: 8, label: "Nav Manager", icon: MdMenu, href: "/navmanager", roles: ["admin"] },
-  { id: 9, label: "Footer Manager", icon: MdSettings, href: "/footermanager", roles: ["admin"] },
-  { id: 10, label: "Settings", icon: MdSettings, href: "/settings", roles: ["admin"] },
+  {
+    id: 11,
+    label: "Team Manager",
+    icon: MdPeople,
+    href: "/teammanager",
+    roles: ["admin"],
+  },
+  {
+    id: 7,
+    label: "Add Category",
+    icon: MdSettings,
+    href: "/addCategory",
+    roles: ["admin"],
+  },
+  {
+    id: 8,
+    label: "Nav Manager",
+    icon: MdMenu,
+    href: "/navmanager",
+    roles: ["admin"],
+  },
+  {
+    id: 9,
+    label: "Footer Manager",
+    icon: MdSettings,
+    href: "/footermanager",
+    roles: ["admin"],
+  },
+  {
+    id: 10,
+    label: "Settings",
+    icon: MdSettings,
+    href: "/settings",
+    roles: ["admin"],
+  },
 ];
 
 const AdminSidebar = ({ isOpen, setIsOpen }) => {
@@ -36,7 +90,9 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
   const { data: session } = useSession();
   const userRole = session?.user?.role || "user";
 
-  const filteredLinks = NAV_LINKS.filter(link => link.roles.includes(userRole));
+  const filteredLinks = NAV_LINKS.filter((link) =>
+    link.roles.includes(userRole),
+  );
 
   return (
     <>
@@ -50,7 +106,7 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-full w-64 bg-white border-r border-gray-200 z-50 transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 h-full w-64 bg-white border-r border-gray-200 z-500 transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         }`}
       >
