@@ -34,6 +34,7 @@ const SpecialCategorySection = async ({ title, firstNews = {}, sideNews = [], sl
                                 src={firstNews?.featured_image}
                                 alt={firstNews?.name}
                                 fill
+                                sizes="(max-width: 1024px) 100vw, 33vw"
                                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                             />
                         </Link>
@@ -68,6 +69,7 @@ const SpecialCategorySection = async ({ title, firstNews = {}, sideNews = [], sl
                                             src={item?.featured_image}
                                             alt={item?.name}
                                             fill
+                                            sizes="80px"
                                             className="object-cover"
                                         />
                                     </div>

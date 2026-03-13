@@ -31,6 +31,7 @@ const CountryWideSection = ({ title, featureNews, gridNews = [], slug }) => {
                                 src={featureNews?.featured_image}
                                 alt={featureNews?.name}
                                 fill
+                                sizes="(max-width: 768px) 100vw, 50vw"
                                 className="object-cover transition-transform duration-700 hover:scale-105"
                             />
                         </Link>
@@ -62,6 +63,7 @@ const CountryWideSection = ({ title, featureNews, gridNews = [], slug }) => {
                                     src={news?.featured_image}
                                     alt={news?.name}
                                     fill
+                                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                                     className="object-cover group-hover:scale-110 transition-transform duration-500"
                                 />
                             </div>

@@ -105,21 +105,25 @@ export async function generateMetadata({ params }) {
   };
 }
 
+export const revalidate = 600; // 10 minutes
+
 export default async function NewsDetailPage({ params }) {
   const session = await getServerSession(authOptions);
   const isAdmin = session?.user?.role === "admin";
-
-  const trendingNews = await getTrandingNews();
   const { slug } = await params;
 
-  const news = await getSingleNews(slug);
+  const [trendingNews, news, settings] = await Promise.all([
+    getTrandingNews(),
+    getSingleNews(slug),
+    getSettings(),
+  ]);
+
   if (!news) {
     notFound();
   }
 
   const displayName = isAdmin ? news.authorName || "অজানা" : "নিজস্ব প্রতিবেদক";
 
-  const settings = await getSettings();
   const googleNewsUrl =
     getMetaValueByMetaName(settings, "google_news_channle_link") || "#";
   const whatsappChannelUrl =
@@ -131,8 +135,6 @@ export default async function NewsDetailPage({ params }) {
   }
 
   const reletedNews = await getNewsByCat(category?.slug, 5);
-
-  // console.log("reletedNews details page", reletedNews,)
 
   const formattedPublishedDate = formatBengaliDate(news?.created_at);
 
@@ -227,6 +229,7 @@ export default async function NewsDetailPage({ params }) {
                       alt={news?.name || "news image"}
                       fill
                       priority
+                      sizes="(max-width: 1024px) 100vw, 800px"
                       className="object-cover"
                     />
                   </div>

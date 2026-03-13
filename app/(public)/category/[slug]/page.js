@@ -67,22 +67,24 @@ export async function generateMetadata({ params }) {
   };
 }
 
+export const revalidate = 300; // 5 minutes
+
 export default async function CategoryPage({ params, searchParams }) {
   const { slug } = await params;
-
-  const category = await getSingleCategories(slug);
-  // console.log("category", category)
-
   const sParams = await searchParams;
   const currentPage = parseInt(sParams.page) || 1;
   const perPage = 10;
 
-  const menus = await getMenus();
+  const [category, menus, newsResponse, allNews] = await Promise.all([
+    getSingleCategories(slug),
+    getMenus(),
+    getCategoryNews(slug, currentPage, perPage),
+    getNews(15),
+  ]);
 
-  // Fetch news by category from live API
-  const newsResponse = await getCategoryNews(slug, currentPage, perPage);
   const categoryNews = newsResponse?.data || [];
   const meta = newsResponse?.meta || {};
+  const latestNews = allNews.slice(0, 7);
 
   // Robust category detection
   const categoryFromMenu = menus.find(
@@ -97,10 +99,6 @@ export default async function CategoryPage({ params, searchParams }) {
     categoryFromMenu?.name ||
     categoryFromNews?.name ||
     "বিভাগ";
-
-  // Fetch latest news for sidebar
-  const allNews = await getNews(15);
-  const latestNews = allNews.slice(0, 7);
 
   const featuredNews = categoryNews[0];
   const otherNews = categoryNews.slice(1);
@@ -185,6 +183,7 @@ export default async function CategoryPage({ params, searchParams }) {
                             alt={featuredNews.name}
                             fill
                             priority
+                            sizes="(max-width: 768px) 100vw, 400px"
                             className="object-cover rounded-md"
                           />
                         </div>

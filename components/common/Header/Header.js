@@ -6,9 +6,11 @@ import BreakingNews from "@/components/common/Header/BreakingNews";
 import { getBreakingNews, getSettings, getNavbarItems } from "@/lib/localData";
 
 const Header = async () => {
-  const breakingNews = await getBreakingNews();
-  const news_categories = await getNavbarItems();
-  const settings = await getSettings();
+  const [breakingNews, news_categories, settings] = await Promise.all([
+    getBreakingNews(),
+    getNavbarItems(),
+    getSettings(),
+  ]);
 
   const logoUrl = settings.site_logo;
   // console.log("logo", logo)

@@ -10,32 +10,45 @@ import HeronNewsSection from "@/components/home/HeronNewsSection";
 import VideoSection from "@/components/home/VideoSection";
 import { getNewsByCat, getTrendingTags, getVideoNews } from "@/lib/localData";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export default async function Home() {
-  const trendingTags = await getTrendingTags();
+  const [
+    trendingTags,
+    politicsNews,
+    nationalNews,
+    crimeNews,
+    lifestyleNews,
+    sportsNews,
+    saraDeshNews,
+    videoNewsResponse,
+    internationalNews,
+    entertainmentNews,
+    economyNews
+  ] = await Promise.all([
+    getTrendingTags(),
+    getNewsByCat("রাজনীতি", 7),
+    getNewsByCat("জাতীয়", 10),
+    getNewsByCat("অপরাধ", 10),
+    getNewsByCat("জীবনযাপন", 10),
+    getNewsByCat("খেলা", 7),
+    getNewsByCat("সারাদেশ", 7),
+    getVideoNews(1, 4),
+    getNewsByCat("আন্তর্জাতিক", 10),
+    getNewsByCat("বিনোদন", 10),
+    getNewsByCat("অর্থনীতি", 10)
+  ]);
 
-  const politicsNews = await getNewsByCat("রাজনীতি", 7);
   const politicsFirstNews = politicsNews[0];
   const politicsSideNews = politicsNews.slice(1, 7);
 
-  const nationalNews = await getNewsByCat("জাতীয়", 10);
-  const crimeNews = await getNewsByCat("অপরাধ", 10);
-  const lifestyleNews = await getNewsByCat("জীবনযাপন", 10);
-  const sportsNews = await getNewsByCat("খেলা", 7);
   const sportsFirstNews = sportsNews[0];
   const sportsSideNews = sportsNews.slice(1, 7);
 
-  const saraDeshNews = await getNewsByCat("সারাদেশ", 7);
   const saradeshFirstNews = saraDeshNews[0];
   const saradeshSideNews = saraDeshNews.slice(1, 7);
 
-  const videoNewsResponse = await getVideoNews(1, 4);
   const videoNews = videoNewsResponse?.data || [];
-
-  const internationalNews = await getNewsByCat("আন্তর্জাতিক", 10);
-  const entertainmentNews = await getNewsByCat("বিনোদন", 10);
-  const economyNews = await getNewsByCat("অর্থনীতি", 10);
 
   return (
     <div className=" min-h-screen bg-[#eff3f6]">

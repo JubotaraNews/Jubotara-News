@@ -53,7 +53,6 @@ const HeronNewsSection = async () => {
                         </div>
                     </div>
 
-                    {/* Image Side */}
                     <div className="md:col-span-5 lg:col-span-5">
                         <Link href={`/news/${featuredNewsFirst?.slug}`} className="block relative h-[250px] md:h-full w-full overflow-hidden">
                             <Image
@@ -61,6 +60,7 @@ const HeronNewsSection = async () => {
                                 alt={featuredNewsFirst?.name}
                                 fill
                                 priority
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
                                 className="object-cover transition-transform duration-700 hover:scale-105"
                             />
                         </Link>

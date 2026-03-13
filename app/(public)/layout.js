@@ -18,7 +18,7 @@ export const metadata = {
     "বাংলাদেশের অন্যতম নির্ভরযোগ্য অনলাইন সংবাদ মাধ্যম। সর্বশেষ জাতীয়, রাজনীতি, আন্তর্জাতিক, খেলাধুলা ও বিনোদন সংবাদ পেতে আমাদের সাথেই থাকুন।",
 };
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300; // 5 minutes
 
 export default async function PublicLayout({ children }) {
   const news_categories = await getNavbarItems();
