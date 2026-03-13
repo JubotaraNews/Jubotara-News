@@ -1,12 +1,16 @@
 "use client";
 
+import React, { useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
+import NewsPhotoCard from "./NewsPhotoCard";
+import PhotoCardModal from "./PhotoCardModal";
 
-const NewsManageCard = ({ item, onEdit, onDelete, onStatusUpdate }) => {
+const NewsManageCard = ({ item, onEdit, onDelete, onStatusUpdate, logoUrl }) => {
   const { data: session } = useSession();
   const isAdmin = session?.user?.role === "admin";
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleApprove = async () => {
     try {
@@ -87,20 +91,27 @@ const NewsManageCard = ({ item, onEdit, onDelete, onStatusUpdate }) => {
       )}
 
       {/* Edit / Delete Buttons */}
-      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-4">
+      <div className="flex flex-wrap gap-2 mt-4">
         {isAdmin && item.status === "pending" && (
           <button
             onClick={handleApprove}
-            className="w-full sm:w-auto px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
+            className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition text-sm font-medium"
           >
             Approve
           </button>
         )}
 
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm font-medium"
+        >
+          Create Card
+        </button>
+
         {(isAdmin || item.status !== "published") && (
           <button
             onClick={() => onEdit(item?._id)}
-            className="w-full sm:w-auto px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition"
+            className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition text-sm font-medium"
           >
             Edit
           </button>
@@ -108,11 +119,20 @@ const NewsManageCard = ({ item, onEdit, onDelete, onStatusUpdate }) => {
 
         <button
           onClick={() => onDelete(item?._id)}
-          className="w-full sm:w-auto px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
+          className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition text-sm font-medium"
         >
           Delete
         </button>
       </div>
+
+      {/* Modal for Customization and Download */}
+      {isModalOpen && (
+        <PhotoCardModal 
+          news={item} 
+          logoUrl={logoUrl} 
+          onClose={() => setIsModalOpen(false)} 
+        />
+      )}
     </div>
   );
 };

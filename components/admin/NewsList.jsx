@@ -9,9 +9,10 @@ const NewsList = ({ onEditClick }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedStatus, setSelectedStatus] = useState("all");
+  const [logoUrl, setLogoUrl] = useState("");
 
   // =========================
-  // 🔹 Fetch categories from backend
+  // 🔹 Fetch categories and settings
   // =========================
   useEffect(() => {
     const fetchCategories = async () => {
@@ -28,7 +29,20 @@ const NewsList = ({ onEditClick }) => {
       }
     };
 
+    const fetchLogo = async () => {
+      try {
+        const res = await fetch("/api/settings/logo");
+        const data = await res.json();
+        if (data.success && data.logos && data.logos.length > 0) {
+          setLogoUrl(data.logos[0].logoUrl);
+        }
+      } catch (err) {
+        console.error("Logo fetch error:", err);
+      }
+    };
+
     fetchCategories();
+    fetchLogo();
   }, []);
 
   // =========================
@@ -138,6 +152,7 @@ const NewsList = ({ onEditClick }) => {
               onEdit={() => handleEdit(item._id)}
               onDelete={handleDelete}
               onStatusUpdate={() => fetchNews(selectedCategory, selectedStatus)}
+              logoUrl={logoUrl}
             />
           ))}
         </div>

@@ -108,7 +108,7 @@ export async function generateMetadata({ params }) {
 export default async function NewsDetailPage({ params }) {
   const session = await getServerSession(authOptions);
   const isAdmin = session?.user?.role === "admin";
-  
+
   const trendingNews = await getTrandingNews();
   const { slug } = await params;
 
@@ -117,7 +117,7 @@ export default async function NewsDetailPage({ params }) {
     notFound();
   }
 
-  const displayName = isAdmin ? (news.authorName || "অজানা") : "নিজস্ব প্রতিবেদক";
+  const displayName = isAdmin ? news.authorName || "অজানা" : "নিজস্ব প্রতিবেদক";
 
   const settings = await getSettings();
   const googleNewsUrl =
@@ -137,7 +137,7 @@ export default async function NewsDetailPage({ params }) {
   const formattedPublishedDate = formatBengaliDate(news?.created_at);
 
   // Get current URL for sharing
-  const fullUrl = `${FRONT_END_URL}/news/${slug}`;
+  const fullUrl = `https://jubotaranews.com/news/${slug}`;
 
   // JSON-LD Structured Data
   const jsonLd = {
