@@ -36,6 +36,18 @@ const Navbar = ({ news_categories }) => {
               ভিডিও
             </Link>
           </li>
+          <li className="relative group">
+            <Link
+              href={`/epaper`}
+              className={`px-3 py-4 text-[13px] sm:text-sm md:text-xl font-semibold tracking-wide transition-colors duration-200 flex items-center gap-1 ${
+                pathname === "/epaper"
+                  ? "text-black underline decoration-2 underline-offset-8"
+                  : "text-black/90 hover:text-black"
+              }`}
+            >
+              ই-পেপার
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>

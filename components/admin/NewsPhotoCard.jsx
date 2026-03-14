@@ -2,17 +2,17 @@
 
 import React, { useState, useEffect, useRef } from "react";
 
-const NewsPhotoCard = ({ 
-  headline, 
-  category, 
-  imageSrc, 
-  logoUrl, 
-  date, 
+const NewsPhotoCard = ({
+  headline,
+  category,
+  imageSrc,
+  logoUrl,
+  date,
   commentText = "বিস্তারিত কমেন্টে",
   accentColor = "#D9232D",
   imageScale = 1,
   isPreview = false,
-  cardRef 
+  cardRef,
 }) => {
   const containerRef = useRef(null);
   const [scale, setScale] = useState(1);
@@ -37,7 +37,6 @@ const NewsPhotoCard = ({
   }, [isPreview]);
 
   const cardContent = (
-
     <div
       ref={isPreview ? null : cardRef}
       className="gradient-news-theme"
@@ -166,7 +165,7 @@ const NewsPhotoCard = ({
           />
           <h1
             style={{
-              fontSize: "60px",
+              fontSize: "75px",
               lineHeight: "1.2",
               fontWeight: "800",
               margin: 0,

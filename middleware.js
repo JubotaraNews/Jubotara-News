@@ -23,5 +23,6 @@ export const config = {
     "/ads/:path*",
     "/addCategory/:path*",
     "/navmanager/:path*",
+    "/epaper-manager/:path*",
   ],
 };

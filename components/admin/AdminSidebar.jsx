@@ -46,6 +46,13 @@ const NAV_LINKS = [
     href: "/videos",
     roles: ["admin", "user"],
   },
+  {
+    id: 12,
+    label: "EPaper",
+    icon: MdArticle,
+    href: "/epaper-manager",
+    roles: ["admin"],
+  },
   { id: 5, label: "ADS", icon: MdAdsClick, href: "/ads", roles: ["admin"] },
   { id: 6, label: "Users", icon: MdPeople, href: "/users", roles: ["admin"] },
   {
