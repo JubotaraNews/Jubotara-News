@@ -6,6 +6,7 @@ import Footer from "@/components/common/Footer";
 import { Providers } from "@/provider/provider";
 import { getNavbarItems } from "@/lib/localData";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 const solaimanLipi = localFont({
   src: "../../public/fonts/SolaimanLipi.ttf",
@@ -24,7 +25,11 @@ export const revalidate = 300; // 5 minutes
 export default async function PublicLayout({ children }) {
   const news_categories = await getNavbarItems();
   return (
-    <html lang="bn" className={`${solaimanLipi.variable} font-sans`} suppressHydrationWarning>
+    <html
+      lang="bn"
+      className={`${solaimanLipi.variable} font-sans`}
+      suppressHydrationWarning
+    >
       <body className=" bg-[#eff3f6] pb-16 md:pb-0">
         <Providers>
           <Header />
@@ -32,6 +37,7 @@ export default async function PublicLayout({ children }) {
           <MobileBottomNav news_categories={news_categories} />
           <Footer />
           <SpeedInsights />
+          <Analytics />
         </Providers>
       </body>
     </html>

@@ -165,12 +165,13 @@ const NewsPhotoCard = ({
           />
           <h1
             style={{
-              fontSize: "75px",
+              fontSize: "65px",
               lineHeight: "1.2",
               fontWeight: "800",
               margin: 0,
               color: "white",
               textShadow: "0 4px 12px rgba(0,0,0,0.8)",
+              whiteSpace: "preserve-breaks",
             }}
           >
             {headline}
@@ -185,13 +186,13 @@ const NewsPhotoCard = ({
           bottom: 0,
           left: 0,
           width: "100%",
-          height: "80px",
+          height: "100px",
           backgroundColor: accentColor,
           zIndex: 10,
           display: "flex",
           alignItems: "center",
           padding: "0 60px",
-          fontSize: "24px",
+          fontSize: "34px",
         }}
       >
         {/* Left: Category | Date */}
