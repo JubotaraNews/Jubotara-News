@@ -11,6 +11,9 @@ const NewsPhotoCard = ({
   commentText = "বিস্তারিত কমেন্টে",
   accentColor = "#D9232D",
   imageScale = 1,
+  headlineFontSize = 65,
+  footerBarFontSize = 34,
+  centerTextFontSize = 28,
   isPreview = false,
   cardRef,
 }) => {
@@ -165,7 +168,7 @@ const NewsPhotoCard = ({
           />
           <h1
             style={{
-              fontSize: "65px",
+              fontSize: `${headlineFontSize}px`,
               lineHeight: "1.2",
               fontWeight: "800",
               margin: 0,
@@ -192,7 +195,7 @@ const NewsPhotoCard = ({
           display: "flex",
           alignItems: "center",
           padding: "0 60px",
-          fontSize: "34px",
+          fontSize: `${footerBarFontSize}px`,
         }}
       >
         {/* Left: Category | Date */}
@@ -217,7 +220,7 @@ const NewsPhotoCard = ({
             display: "flex",
             justifyContent: "center",
             fontWeight: "700",
-            fontSize: "28px",
+            fontSize: `${centerTextFontSize}px`,
           }}
         >
           <span>{commentText}</span>

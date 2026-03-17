@@ -7,8 +7,11 @@ import { MdClose, MdDownload } from "react-icons/md";
 
 const PhotoCardModal = ({ news, logoUrl, onClose }) => {
   const [headline, setHeadline] = useState(news.headline);
+  const [headlineFontSize, setHeadlineFontSize] = useState("65");
   const [category, setCategory] = useState(news.category);
+  const [footerBarFontSize, setFooterBarFontSize] = useState(34);
   const [commentText, setCommentText] = useState("বিস্তারিত কমেন্টে");
+  const [centerTextFontSize, setCenterTextFontSize] = useState(28);
   const [accentColor, setAccentColor] = useState("#D9232D");
   const [imageScale, setImageScale] = useState(1);
   const [isDownloading, setIsDownloading] = useState(false);
@@ -41,24 +44,29 @@ const PhotoCardModal = ({ news, logoUrl, onClose }) => {
 
   return (
     <div className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col md:flex-row">
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-5xl h-[90vh] overflow-hidden flex flex-col md:flex-row">
         {/* Left: Preview */}
-        <div className="flex-1 bg-gray-100 p-6 flex items-center justify-center border-b md:border-b-0 md:border-r">
-          <div className="w-full max-w-100">
+        <div className="flex-1 bg-gray-100 p-6 flex items-center justify-center overflow-hidden border-b md:border-b-0 md:border-r">
+          <div className="w-full max-w-100 h-full flex flex-col">
             <h3 className="text-sm font-bold text-gray-500 mb-4 uppercase tracking-wider text-center">
               Live Preview
             </h3>
-            <NewsPhotoCard
-              headline={headline}
-              category={category}
-              imageSrc={news.imageSrc}
-              logoUrl={logoUrl}
-              date={date}
-              commentText={commentText}
-              accentColor={accentColor}
-              imageScale={imageScale}
-              isPreview={true}
-            />
+            <div className="flex-1 flex items-center justify-center">
+              <NewsPhotoCard
+                headline={headline}
+                category={category}
+                imageSrc={news.imageSrc}
+                logoUrl={logoUrl}
+                date={date}
+                commentText={commentText}
+                accentColor={accentColor}
+                imageScale={imageScale}
+                headlineFontSize={headlineFontSize}
+                footerBarFontSize={footerBarFontSize}
+                centerTextFontSize={centerTextFontSize}
+                isPreview={true}
+              />
+            </div>
           </div>
         </div>
 
@@ -86,7 +94,32 @@ const PhotoCardModal = ({ news, logoUrl, onClose }) => {
                 placeholder="Enter headline..."
               />
             </div>
-
+            {/* Adjustable headline font size */}
+            <div className="flex justify-between items-center mb-2">
+              <label className="block text-sm font-bold text-gray-700 uppercase">
+                Headline Font Size
+              </label>
+              <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-lg">
+                {headlineFontSize}px
+              </span>
+            </div>
+            <div className="flex gap-4 items-center">
+              <input
+                type="range"
+                min="45"
+                max="100"
+                step="5"
+                value={headlineFontSize}
+                onChange={(e) => setHeadlineFontSize(e.target.value)}
+                className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+              />
+              <button
+                onClick={() => setHeadlineFontSize(65)}
+                className="text-xs font-bold text-gray-400 hover:text-red-500 transition"
+              >
+                RESET
+              </button>
+            </div>
             <div>
               <label className="block text-sm font-bold text-gray-700 mb-2 uppercase">
                 Category
@@ -99,7 +132,32 @@ const PhotoCardModal = ({ news, logoUrl, onClose }) => {
                 placeholder="Enter category..."
               />
             </div>
-
+            {/* Adjustable footerBar font size */}
+            <div className="flex justify-between items-center mb-2">
+              <label className="block text-sm font-bold text-gray-700 uppercase">
+                Footer Bar Font Size
+              </label>
+              <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-lg">
+                {footerBarFontSize}px
+              </span>
+            </div>
+            <div className="flex gap-4 items-center">
+              <input
+                type="range"
+                min="20"
+                max="37"
+                step="1"
+                value={footerBarFontSize}
+                onChange={(e) => setFooterBarFontSize(e.target.value)}
+                className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+              />
+              <button
+                onClick={() => setFooterBarFontSize(34)}
+                className="text-xs font-bold text-gray-400 hover:text-red-500 transition"
+              >
+                RESET
+              </button>
+            </div>
             <div>
               <label className="block text-sm font-bold text-gray-700 mb-2 uppercase">
                 Center Text (Bottom Bar)
@@ -112,7 +170,32 @@ const PhotoCardModal = ({ news, logoUrl, onClose }) => {
                 placeholder="e.g. বিস্তারিত কমেন্টে"
               />
             </div>
-
+            {/* Adjustable footerBar font size */}
+            <div className="flex justify-between items-center mb-2">
+              <label className="block text-sm font-bold text-gray-700 uppercase">
+                Center Text Font Size
+              </label>
+              <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-lg">
+                {centerTextFontSize}px
+              </span>
+            </div>
+            <div className="flex gap-4 items-center">
+              <input
+                type="range"
+                min="20"
+                max="37"
+                step="1"
+                value={centerTextFontSize}
+                onChange={(e) => setCenterTextFontSize(e.target.value)}
+                className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+              />
+              <button
+                onClick={() => setCenterTextFontSize(28)}
+                className="text-xs font-bold text-gray-400 hover:text-red-500 transition"
+              >
+                RESET
+              </button>
+            </div>
             <div>
               <label className="block text-sm font-bold text-gray-700 mb-2 uppercase">
                 Theme Color
@@ -132,7 +215,6 @@ const PhotoCardModal = ({ news, logoUrl, onClose }) => {
                 />
               </div>
             </div>
-
             <div>
               <div className="flex justify-between items-center mb-2">
                 <label className="block text-sm font-bold text-gray-700 uppercase">
@@ -192,6 +274,9 @@ const PhotoCardModal = ({ news, logoUrl, onClose }) => {
         commentText={commentText}
         accentColor={accentColor}
         imageScale={imageScale}
+        headlineFontSize={headlineFontSize}
+        footerBarFontSize={footerBarFontSize}
+        centerTextFontSize={centerTextFontSize}
         isPreview={false}
       />
     </div>
