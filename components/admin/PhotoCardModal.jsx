@@ -6,11 +6,11 @@ import { domToPng } from "modern-screenshot";
 import { MdClose, MdDownload } from "react-icons/md";
 
 const PhotoCardModal = ({ news, logoUrl, onClose }) => {
+  const commentText = "বিস্তারিত কমেন্টে";
+  const category = news.category || "অশ্রেণীভুক্ত";
   const [headline, setHeadline] = useState(news.headline);
   const [headlineFontSize, setHeadlineFontSize] = useState("65");
-  const [category, setCategory] = useState(news.category);
   const [footerBarFontSize, setFooterBarFontSize] = useState(34);
-  const [commentText, setCommentText] = useState("বিস্তারিত কমেন্টে");
   const [centerTextFontSize, setCenterTextFontSize] = useState(28);
   const [accentColor, setAccentColor] = useState("#D9232D");
   const [imageScale, setImageScale] = useState(1);
@@ -44,10 +44,10 @@ const PhotoCardModal = ({ news, logoUrl, onClose }) => {
 
   return (
     <div className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-5xl h-[90vh] overflow-hidden flex flex-col md:flex-row">
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-5xl max-h-[95vh] overflow-hidden flex flex-col md:flex-row">
         {/* Left: Preview */}
-        <div className="flex-1 bg-gray-100 p-6 flex items-center justify-center overflow-hidden border-b md:border-b-0 md:border-r">
-          <div className="w-full max-w-100 h-full flex flex-col">
+        <div className="flex-1 bg-gray-100 p-6 flex items-center justify-center border-b md:border-b-0 md:border-r">
+          <div className="w-full max-w-100">
             <h3 className="text-sm font-bold text-gray-500 mb-4 uppercase tracking-wider text-center">
               Live Preview
             </h3>
@@ -90,7 +90,7 @@ const PhotoCardModal = ({ news, logoUrl, onClose }) => {
               <textarea
                 value={headline}
                 onChange={(e) => setHeadline(e.target.value)}
-                className="w-full border-2 border-gray-200 p-3 rounded-xl focus:border-blue-500 focus:ring-0 transition h-32 text-lg font-medium"
+                className="w-full border-2 border-gray-200 p-3 rounded-xl focus:border-blue-500 focus:ring-0 transition h-19 md:h-28 text-lg font-medium"
                 placeholder="Enter headline..."
               />
             </div>
@@ -120,18 +120,6 @@ const PhotoCardModal = ({ news, logoUrl, onClose }) => {
                 RESET
               </button>
             </div>
-            <div>
-              <label className="block text-sm font-bold text-gray-700 mb-2 uppercase">
-                Category
-              </label>
-              <input
-                type="text"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                className="w-full border-2 border-gray-200 p-3 rounded-xl focus:border-blue-500 focus:ring-0 transition font-medium"
-                placeholder="Enter category..."
-              />
-            </div>
             {/* Adjustable footerBar font size */}
             <div className="flex justify-between items-center mb-2">
               <label className="block text-sm font-bold text-gray-700 uppercase">
@@ -157,18 +145,6 @@ const PhotoCardModal = ({ news, logoUrl, onClose }) => {
               >
                 RESET
               </button>
-            </div>
-            <div>
-              <label className="block text-sm font-bold text-gray-700 mb-2 uppercase">
-                Center Text (Bottom Bar)
-              </label>
-              <input
-                type="text"
-                value={commentText}
-                onChange={(e) => setCommentText(e.target.value)}
-                className="w-full border-2 border-gray-200 p-3 rounded-xl focus:border-blue-500 focus:ring-0 transition font-medium"
-                placeholder="e.g. বিস্তারিত কমেন্টে"
-              />
             </div>
             {/* Adjustable footerBar font size */}
             <div className="flex justify-between items-center mb-2">
