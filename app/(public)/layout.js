@@ -3,6 +3,7 @@ import "../globals.css";
 import MobileBottomNav from "@/components/common/MobileBottomNav";
 import Header from "@/components/common/Header/Header";
 import Footer from "@/components/common/Footer";
+import EidGreetingPopup from "@/components/common/EidGreetingPopup";
 import { Providers } from "@/provider/provider";
 import { getNavbarItems } from "@/lib/localData";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -32,6 +33,7 @@ export default async function PublicLayout({ children }) {
     >
       <body className=" bg-[#eff3f6] pb-16 md:pb-0">
         <Providers>
+          <EidGreetingPopup />
           <Header />
           {children}
           <MobileBottomNav news_categories={news_categories} />
