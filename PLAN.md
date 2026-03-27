@@ -32,8 +32,8 @@ This document tracks the strategic improvements for performance and user experie
 
 ### 2.2 Navigation & Search
 
-- [ ] **Instant Search:** Implement a debounced search in `components/common/Search.js` that shows results in a dropdown as the user types.
-- [ ] **Dark Mode:** Implement `next-themes` and update `globals.css` with a dark color palette for late-night reading comfort.
+- [x] **Instant Search:** Implement a debounced search in `components/common/Search.js` that shows results in a dropdown as the user types.
+- [x] **Dark Mode:** Implement `next-themes` and update `globals.css` with a dark color palette for late-night reading comfort.
 
 ### 2.3 Interactive Features
 
@@ -46,7 +46,7 @@ This document tracks the strategic improvements for performance and user experie
 
 ### 3.1 Resilience
 
-- [ ] **Global Error Boundary:** Create a custom `error.js` for the `(public)` route group to handle data-fetching failures gracefully.
+- [x] **Global Error Boundary:** Create a custom `error.js` for the `(public)` route group to handle data-fetching failures gracefully.
 - [ ] **API Rate Limiting:** Implement basic rate limiting for API routes to protect the database from bot scraping.
 
 ### 3.2 Type Safety & Refactoring

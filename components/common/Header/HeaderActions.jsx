@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Search from "../Search";
 import Link from "next/link";
-import { useSession, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
 import { Sun, Moon } from "lucide-react";
 
@@ -27,41 +27,40 @@ export default function HeaderActions() {
       <Search />
 
       <div className="flex items-center gap-2 md:gap-4">
-        {/* Theme toggle hidden for now */}
-        {/* {mounted && (
+        {mounted && (
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-800 dark:text-gray-200 transition-colors"
             aria-label="Toggle theme"
           >
             {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
           </button>
-        )} */}
+        )}
 
         <div className="flex items-center gap-4">
           {session ? (
             <Link
               href="/dashboard"
-              className="text-black font-bold text-xs sm:text-sm md:text-lg hover:underline whitespace-nowrap"
+              className="text-black dark:text-white font-bold text-xs sm:text-sm md:text-lg hover:underline whitespace-nowrap"
             >
               {language === "bn" ? "ড্যাশবোর্ড" : "Dashboard"}
             </Link>
           ) : (
             <Link
               href="/login"
-              className="text-black font-bold text-xs sm:text-sm md:text-lg hover:underline whitespace-nowrap"
+              className="text-black dark:text-white font-bold text-xs sm:text-sm md:text-lg hover:underline whitespace-nowrap"
             >
               {language === "bn" ? "লগইন" : "Log In"}
             </Link>
           )}
         </div>
-        {/* Language toggle hidden for now */}
-        {/* <button
+        
+        <button
           onClick={toggleLanguage}
-          className="bg-[#EE1D23] text-white px-4 py-1.5 font-bold text-sm hover:bg-red-700 transition-colors uppercase"
+          className="bg-[#EE1D23] text-white px-3 sm:px-4 py-1 sm:py-1.5 font-bold text-xs sm:text-sm hover:bg-red-700 transition-colors uppercase hidden sm:block"
         >
           {language === "bn" ? "English" : "বাংলা"}
-        </button> */}
+        </button>
       </div>
     </div>
   );
