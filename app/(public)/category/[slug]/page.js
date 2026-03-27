@@ -87,12 +87,22 @@ export default async function CategoryPage({ params, searchParams }) {
   const latestNews = allNews.slice(0, 7);
 
   // Robust category detection
+  const normalizedSlug = decodeURIComponent(slug).toLowerCase().trim();
+
   const categoryFromMenu = menus.find(
-    (c) => c.link === slug || c.slug === slug,
+    (c) => c.link === slug || c.slug === slug || c.slug === normalizedSlug,
   );
-  const categoryFromNews = categoryNews[0]?.categories?.find(
-    (c) => c.slug === slug,
-  );
+
+  const categoryFromNews = categoryNews[0]?.categories?.find((c) => {
+    const nameSlug = c?.name?.toLowerCase().trim().replace(/\s+/g, "-");
+    return (
+      c?.slug === slug ||
+      c?.slug === normalizedSlug ||
+      nameSlug === slug ||
+      nameSlug === normalizedSlug
+    );
+  });
+
   const categoryName =
     category?.name ||
     categoryFromMenu?.label ||

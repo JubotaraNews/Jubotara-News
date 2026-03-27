@@ -24,7 +24,7 @@ export default async function Home() {
     videoNewsResponse,
     internationalNews,
     entertainmentNews,
-    economyNews
+    economyNews,
   ] = await Promise.all([
     getTrendingTags(),
     getNewsByCat("রাজনীতি", 7),
@@ -36,14 +36,14 @@ export default async function Home() {
     getVideoNews(1, 4),
     getNewsByCat("আন্তর্জাতিক", 10),
     getNewsByCat("বিনোদন", 10),
-    getNewsByCat("অর্থনীতি", 10)
+    getNewsByCat("অর্থনীতি", 10),
   ]);
 
   const politicsFirstNews = politicsNews[0];
   const politicsSideNews = politicsNews.slice(1, 7);
 
-  const sportsFirstNews = sportsNews[0];
-  const sportsSideNews = sportsNews.slice(1, 7);
+  const nationalFirstNews = nationalNews[0];
+  const nationalSideNews = nationalNews.slice(1, 7);
 
   const saradeshFirstNews = saraDeshNews[0];
   const saradeshSideNews = saraDeshNews.slice(1, 7);
@@ -92,26 +92,26 @@ export default async function Home() {
 
         <VideoSection videos={videoNews} />
 
-        {sportsFirstNews && (
+        {nationalFirstNews && (
           <SpecialCategorySection
-            title="খেলাধুলা"
-            firstNews={sportsFirstNews}
-            sideNews={sportsSideNews}
-            slug={"খেলা"}
+            title="জাতীয়"
+            firstNews={nationalFirstNews}
+            sideNews={nationalSideNews}
+            slug={"জাতীয়"}
           />
         )}
 
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 md:gap-4 xl:gap-6">
             <PremiumCategoryBlock
-              title="জাতীয়"
-              news={nationalNews}
-              slug={"জাতীয়"}
-            />
-            <PremiumCategoryBlock
               title="আন্তর্জাতিক"
               news={internationalNews}
               slug={"আন্তর্জাতিক"}
+            />
+            <PremiumCategoryBlock
+              title="খেলাধুলা"
+              news={sportsNews}
+              slug={"খেলা"}
             />
           </div>
         </Container>
