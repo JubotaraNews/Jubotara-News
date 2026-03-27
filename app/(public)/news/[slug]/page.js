@@ -19,6 +19,7 @@ import { formatBengaliDate } from "@/utils/formatDate";
 import { FRONT_END_URL } from "@/utils/baseUrl";
 import FacebookComments from "@/components/news/FacebookComments";
 import { getMetaValueByMetaName } from "@/utils/metaHelpers";
+import ReadingProgressBar from "@/components/common/ReadingProgressBar";
 
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
@@ -178,7 +179,8 @@ export default async function NewsDetailPage({ params }) {
 
       {/* Screen UI - Hidden when printing */}
       <div className="flex flex-col min-h-screen bg-[#eff3f6] print:hidden">
-        {/* Add Structured Data */}
+        {/* Reading Progress Bar */}
+        <ReadingProgressBar />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

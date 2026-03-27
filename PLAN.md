@@ -27,8 +27,8 @@ This document tracks the strategic improvements for performance and user experie
 
 ### 2.1 Visual Feedback
 
-- [ ] **Global Skeleton System:** Replace current loading spinners with page-specific Skeleton screens (especially for the News Detail and Category pages).
-- [ ] **Reading Progress Bar:** Add a subtle animated progress bar at the top of the `app/(public)/news/[slug]/page.js` article view.
+- [x] **Global Skeleton System:** Replace current loading spinners with page-specific Skeleton screens (especially for the News Detail and Category pages).
+- [x] **Reading Progress Bar:** Add a subtle animated progress bar at the top of the `app/(public)/news/[slug]/page.js` article view.
 
 ### 2.2 Navigation & Search
 
