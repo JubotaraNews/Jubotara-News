@@ -21,7 +21,7 @@ const configureCloudinary = () => {
 export const uploadToCloudinary = async (file) => {
   try {
     configureCloudinary();
-    
+
     const data = await file.arrayBuffer();
     const buffer = Buffer.from(data);
 
@@ -47,4 +47,53 @@ export const deleteFromCloudinary = async (publicId) => {
     console.error("Cloudinary delete error:", err);
     throw err;
   }
+};
+
+// Optimize Cloudinary image URL with automatic format and quality
+export const optimizeCloudinaryUrl = (url, options = {}) => {
+  if (!url || !url.includes("cloudinary.com")) {
+    return url; // Return as-is if not a Cloudinary URL
+  }
+
+  try {
+    // Parse the Cloudinary URL
+    const urlParts = url.split("/upload/");
+    if (urlParts.length !== 2) return url;
+
+    const baseUrl = urlParts[0];
+    const imagePath = urlParts[1];
+
+    // Build transformation parameters
+    const transformations = [];
+
+    // Always add automatic format and quality
+    transformations.push("f_auto", "q_auto");
+
+    // Add additional transformations if specified
+    if (options.width) transformations.push(`w_${options.width}`);
+    if (options.height) transformations.push(`h_${options.height}`);
+    if (options.crop) transformations.push(`c_${options.crop}`);
+
+    // Insert transformations into the URL
+    const optimizedUrl = `${baseUrl}/upload/${transformations.join(",")}/${imagePath}`;
+
+    return optimizedUrl;
+  } catch (error) {
+    console.warn("Failed to optimize Cloudinary URL:", error);
+    return url; // Return original URL on error
+  }
+};
+
+// Generate blur placeholder for images
+export const generateBlurDataURL = (width = 10, height = 6) => {
+  // Create a simple SVG blur placeholder
+  const svg = `
+    <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+      <rect width="100%" height="100%" fill="#f3f4f6"/>
+    </svg>
+  `;
+
+  // Convert to base64 data URL
+  const base64 = Buffer.from(svg).toString("base64");
+  return `data:image/svg+xml;base64,${base64}`;
 };

@@ -27,10 +27,20 @@ const NewsSchema = new Schema(
         userName: String,
         text: String,
         createdAt: { type: Date, default: Date.now },
-      }
+      },
     ],
   },
   { timestamps: true },
 );
+
+// Optimized indexes for frequent queries
+NewsSchema.index({ category: 1, status: 1, publishedAt: -1 });
+NewsSchema.index({ status: 1, publishedAt: -1 });
+NewsSchema.index({ isFeatured: 1, status: 1, publishedAt: -1 });
+
+// Keep createdAt indexes for admin/history queries where createdAt is sorted
+NewsSchema.index({ category: 1, status: 1, createdAt: -1 });
+NewsSchema.index({ status: 1, createdAt: -1 });
+NewsSchema.index({ isFeatured: 1, status: 1, createdAt: -1 });
 
 export default mongoose.models.News || model("News", NewsSchema);

@@ -61,7 +61,7 @@ const NewsManageCard = ({
         </span>
       </div>
 
-      <h3 className="text-lg sm:text-xl font-semibold mt-1 break-words">
+      <h3 className="text-lg sm:text-xl font-semibold mt-1 wrap-break-word">
         {item.headline}
       </h3>
 
@@ -82,7 +82,7 @@ const NewsManageCard = ({
       </p>
 
       {item.content && (
-        <p className="mt-2 text-gray-700 break-words line-clamp-2">
+        <p className="mt-2 text-gray-700 wrap-break-word line-clamp-2">
           <span className="font-semibold text-black">বিস্তারিত সংবাদ :</span>{" "}
           {item.content}
         </p>

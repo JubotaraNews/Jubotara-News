@@ -9,26 +9,29 @@ export default async function TrendingNews() {
 
   if (!featuredNews) return null;
 
-  const featuredOthers = featuredNews.slice(1, 7)
+  const featuredOthers = featuredNews.slice(1, 7);
 
   return (
     <Container className="">
       <div className="   ">
         <div className="grid md:grid-cols-3 gap-2 md:gap-4">
           {featuredOthers?.map((news, i) => (
-            <div key={i} className="flex justify-between gap-2 border-b pb-4 cursor-pointer group">
-
+            <div
+              key={i}
+              className="flex justify-between gap-2 border-b pb-4 cursor-pointer group"
+            >
               {/* Text */}
               <div className="flex-1">
-                <Link href={`/news/${news?.slug}`} className="text-gray-600 text-lg md:text-[22px] leading-[24px] md:leading-[26px]
-                 group-hover:text-primary font-semibold line-clamp-2 ">
+                <Link
+                  href={`/news/${news?.slug}`}
+                  className="text-gray-600 text-lg md:text-[22px] leading-[24px] md:leading-[26px]
+                 group-hover:text-primary font-semibold line-clamp-2 "
+                >
                   {news?.name}
                 </Link>
                 <p className="text-gray-500 text-base md:text-xl mt-2 line-clamp-2 md:line-clamp-3">
-
                   {truncate(news?.description)}
                 </p>
-
               </div>
 
               {/* Image Right Side */}
@@ -39,10 +42,11 @@ export default async function TrendingNews() {
                   fill
                   sizes="(max-width: 768px) 120px, 200px"
                   className="object-cover"
+                  placeholder="blur"
+                  blurDataURL={news?.blurDataURL}
                 />
               </div>
             </div>
-
           ))}
         </div>
         {/* <div className="grid md:grid-cols-4 gap-2 mt-4 ">

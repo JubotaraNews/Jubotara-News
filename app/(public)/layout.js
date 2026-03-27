@@ -12,6 +12,9 @@ const solaimanLipi = localFont({
   src: "../../public/fonts/SolaimanLipi.ttf",
   variable: "--font-solaiman-lipi",
   display: "swap",
+  preload: true,
+  weight: "400",
+  style: "normal",
 });
 
 export const metadata = {

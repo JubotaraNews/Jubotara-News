@@ -11,16 +11,19 @@ export async function GET(request) {
     await dbConnect();
     const session = await getServerSession(authOptions);
     const url = request.nextUrl;
-    
+
     // Status filter (default to published for public)
     const requestedStatus = url.searchParams.get("status");
     const category = url.searchParams.get("category") || "all";
-    
+
     const query = {};
-    
+
     if (requestedStatus) {
       // If status is requested, check if user is authorized to see it
-      if (session && (session.user.role === "admin" || session.user.role === "user")) {
+      if (
+        session &&
+        (session.user.role === "admin" || session.user.role === "user")
+      ) {
         if (requestedStatus !== "all") {
           query.status = requestedStatus;
         }
@@ -34,7 +37,7 @@ export async function GET(request) {
       }
     } else {
       // Default to published if no status is specified
-      // But if it's an admin/user requesting without status, maybe they want all? 
+      // But if it's an admin/user requesting without status, maybe they want all?
       // For now, let's stick to published for public-facing components.
       // Most public components use this API.
       query.status = "published";
@@ -48,16 +51,21 @@ export async function GET(request) {
     const skip = (page - 1) * limit;
 
     const newsheadline = await News.find({ status: "published" }, "headline")
-      .sort({ createdAt: -1 })
-      .limit(20);
+      .sort({ publishedAt: -1 })
+      .limit(20)
+      .lean();
 
     const totalNewsCount = await News.countDocuments({ status: "published" });
     const filteredNewsCount = await News.countDocuments(query);
-    
+
     const news = await News.find(query)
-      .sort({ createdAt: -1 })
+      .sort({ publishedAt: -1 })
       .skip(skip)
-      .limit(limit);
+      .limit(limit)
+      .select(
+        "headline category imageSrc imageCaption authorName publishedAt status",
+      )
+      .lean();
 
     return NextResponse.json({
       success: true,
@@ -85,19 +93,23 @@ export async function GET(request) {
 export async function POST(req) {
   try {
     const session = await getServerSession(authOptions);
-    if (!session || (session.user.role !== "admin" && session.user.role !== "user")) {
+    if (
+      !session ||
+      (session.user.role !== "admin" && session.user.role !== "user")
+    ) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
 
     await dbConnect();
     const body = await req.json();
-    
+
     // Add author info and set initial status
     const newsData = {
       ...body,
       authorId: session.user.id,
       authorName: session.user.name,
-      status: session.user.role === "admin" ? (body.status || "published") : "pending",
+      status:
+        session.user.role === "admin" ? body.status || "published" : "pending",
     };
 
     const news = await News.create(newsData);
@@ -106,7 +118,7 @@ export async function POST(req) {
     console.error("POST News Error:", error);
     return NextResponse.json(
       { success: false, message: "Server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

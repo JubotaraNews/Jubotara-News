@@ -53,19 +53,24 @@ export default function CategoryPage() {
     if (!confirm("Are you sure you want to delete this category?")) return;
     try {
       const res = await fetch(`/api/category/${slug}`, { method: "DELETE" });
+      const data = await res.json();
+
       if (res.ok) {
         fetchCategories();
         toast.success("Category deleted successfully!");
+      } else {
+        toast.error(data.message || "Failed to delete category");
       }
     } catch (err) {
       console.error("Failed to delete category:", err);
+      toast.error("Failed to delete category. Please try again.");
     }
   };
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-6">Manage Categories</h1>
-      
+
       <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100 mb-8">
         <h2 className="text-lg font-semibold mb-4">Add New Category</h2>
         <form onSubmit={handleSubmit} className="flex gap-4">
@@ -91,7 +96,10 @@ export default function CategoryPage() {
         <h2 className="text-lg font-semibold mb-4">Existing Categories</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {categories.map((cat) => (
-            <div key={cat._id} className="flex items-center justify-between p-3 border rounded-lg bg-gray-50">
+            <div
+              key={cat._id}
+              className="flex items-center justify-between p-3 border rounded-lg bg-gray-50"
+            >
               <span className="font-medium">{cat.name}</span>
               <button
                 onClick={() => handleDelete(cat.slug)}
