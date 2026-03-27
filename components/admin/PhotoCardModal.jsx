@@ -10,11 +10,12 @@ const PhotoCardModal = ({ news, logoUrl, onClose }) => {
   const category = news.category || "অশ্রেণীভুক্ত";
   const [headline, setHeadline] = useState(news.headline);
   const [headlineFontSize, setHeadlineFontSize] = useState("65");
-  const [footerBarFontSize, setFooterBarFontSize] = useState(34);
-  const [centerTextFontSize, setCenterTextFontSize] = useState(28);
+  const [footerBarFontSize, setFooterBarFontSize] = useState(32);
+  const [centerTextFontSize, setCenterTextFontSize] = useState(30);
   const [accentColor, setAccentColor] = useState("#D9232D");
   const [imageScale, setImageScale] = useState(1);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [isAdvancedOptionsOpen, setIsAdvancedOptionsOpen] = useState(false);
   const cardRef = useRef(null);
 
   const date = new Date(news.createdAt).toLocaleDateString("bn-BD", {
@@ -120,141 +121,155 @@ const PhotoCardModal = ({ news, logoUrl, onClose }) => {
                 RESET
               </button>
             </div>
-            {/* Adjustable footerBar font size */}
-            <div className="flex justify-between items-center mb-2">
-              <label className="block text-sm font-bold text-gray-700 uppercase">
-                Footer Bar Font Size
-              </label>
-              <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-lg">
-                {footerBarFontSize}px
-              </span>
-            </div>
-            <div className="flex gap-4 items-center">
-              <input
-                type="range"
-                min="20"
-                max="37"
-                step="1"
-                value={footerBarFontSize}
-                onChange={(e) => setFooterBarFontSize(e.target.value)}
-                className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
-              />
-              <button
-                onClick={() => setFooterBarFontSize(34)}
-                className="text-xs font-bold text-gray-400 hover:text-red-500 transition"
-              >
-                RESET
-              </button>
-            </div>
-            {/* Adjustable footerBar font size */}
-            <div className="flex justify-between items-center mb-2">
-              <label className="block text-sm font-bold text-gray-700 uppercase">
-                Center Text Font Size
-              </label>
-              <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-lg">
-                {centerTextFontSize}px
-              </span>
-            </div>
-            <div className="flex gap-4 items-center">
-              <input
-                type="range"
-                min="20"
-                max="37"
-                step="1"
-                value={centerTextFontSize}
-                onChange={(e) => setCenterTextFontSize(e.target.value)}
-                className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
-              />
-              <button
-                onClick={() => setCenterTextFontSize(28)}
-                className="text-xs font-bold text-gray-400 hover:text-red-500 transition"
-              >
-                RESET
-              </button>
-            </div>
-            <div>
-              <label className="block text-sm font-bold text-gray-700 mb-2 uppercase">
-                Theme Color
-              </label>
-              <div className="flex gap-4 items-center">
-                <input
-                  type="color"
-                  value={accentColor}
-                  onChange={(e) => setAccentColor(e.target.value)}
-                  className="w-16 h-16 rounded-xl cursor-pointer border-2 border-gray-200"
-                />
-                <input
-                  type="text"
-                  value={accentColor}
-                  onChange={(e) => setAccentColor(e.target.value)}
-                  className="flex-1 border-2 border-gray-200 p-3 rounded-xl focus:border-blue-500 focus:ring-0 transition font-mono"
-                />
-              </div>
-            </div>
-            <div>
-              <div className="flex justify-between items-center mb-2">
-                <label className="block text-sm font-bold text-gray-700 uppercase">
-                  Image Zoom
-                </label>
-                <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-lg">
-                  {(imageScale * 100).toFixed(0)}%
-                </span>
-              </div>
-              <div className="flex gap-4 items-center">
-                <input
-                  type="range"
-                  min="1"
-                  max="3"
-                  step="0.01"
-                  value={imageScale}
-                  onChange={(e) => setImageScale(parseFloat(e.target.value))}
-                  className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
-                />
-                <button
-                  onClick={() => setImageScale(1)}
-                  className="text-xs font-bold text-gray-400 hover:text-red-500 transition"
-                >
-                  RESET
-                </button>
-              </div>
-            </div>
-          </div>
 
-          <div className="mt-10 pt-6 border-t">
+            {isAdvancedOptionsOpen && (
+              <>
+                {/* Adjustable footerBar font size */}
+                <div className="flex justify-between items-center mb-2">
+                  <label className="block text-sm font-bold text-gray-700 uppercase">
+                    Footer Bar Font Size
+                  </label>
+                  <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-lg">
+                    {footerBarFontSize}px
+                  </span>
+                </div>
+                <div className="flex gap-4 items-center">
+                  <input
+                    type="range"
+                    min="20"
+                    max="37"
+                    step="1"
+                    value={footerBarFontSize}
+                    onChange={(e) => setFooterBarFontSize(e.target.value)}
+                    className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                  />
+                  <button
+                    onClick={() => setFooterBarFontSize(34)}
+                    className="text-xs font-bold text-gray-400 hover:text-red-500 transition"
+                  >
+                    RESET
+                  </button>
+                </div>
+                {/* Adjustable footerBar font size */}
+                <div className="flex justify-between items-center mb-2">
+                  <label className="block text-sm font-bold text-gray-700 uppercase">
+                    Center Text Font Size
+                  </label>
+                  <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-lg">
+                    {centerTextFontSize}px
+                  </span>
+                </div>
+                <div className="flex gap-4 items-center">
+                  <input
+                    type="range"
+                    min="20"
+                    max="37"
+                    step="1"
+                    value={centerTextFontSize}
+                    onChange={(e) => setCenterTextFontSize(e.target.value)}
+                    className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                  />
+                  <button
+                    onClick={() => setCenterTextFontSize(28)}
+                    className="text-xs font-bold text-gray-400 hover:text-red-500 transition"
+                  >
+                    RESET
+                  </button>
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-gray-700 mb-2 uppercase">
+                    Theme Color
+                  </label>
+                  <div className="flex gap-4 items-center">
+                    <input
+                      type="color"
+                      value={accentColor}
+                      onChange={(e) => setAccentColor(e.target.value)}
+                      className="w-16 h-16 rounded-xl cursor-pointer border-2 border-gray-200"
+                    />
+                    <input
+                      type="text"
+                      value={accentColor}
+                      onChange={(e) => setAccentColor(e.target.value)}
+                      className="flex-1 border-2 border-gray-200 p-3 rounded-xl focus:border-blue-500 focus:ring-0 transition font-mono"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <label className="block text-sm font-bold text-gray-700 uppercase">
+                      Image Zoom
+                    </label>
+                    <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-lg">
+                      {(imageScale * 100).toFixed(0)}%
+                    </span>
+                  </div>
+                  <div className="flex gap-4 items-center">
+                    <input
+                      type="range"
+                      min="1"
+                      max="3"
+                      step="0.01"
+                      value={imageScale}
+                      onChange={(e) =>
+                        setImageScale(parseFloat(e.target.value))
+                      }
+                      className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                    />
+                    <button
+                      onClick={() => setImageScale(1)}
+                      className="text-xs font-bold text-gray-400 hover:text-red-500 transition"
+                    >
+                      RESET
+                    </button>
+                  </div>
+                </div>
+              </>
+            )}
+            {/* Show/hide advanced options */}
             <button
-              onClick={handleDownload}
-              disabled={isDownloading}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-bold flex items-center justify-center gap-3 transition shadow-lg shadow-blue-200 disabled:bg-blue-400"
+              onClick={() => setIsAdvancedOptionsOpen(!isAdvancedOptionsOpen)}
+              className="text-sm font-bold text-blue-600 hover:text-blue-800 transition"
             >
-              {isDownloading ? (
-                <span className="animate-pulse">Generating...</span>
-              ) : (
-                <>
-                  <MdDownload size={24} />
-                  Download PNG
-                </>
-              )}
+              {isAdvancedOptionsOpen ? "Hide" : "Show"} Advanced Options
             </button>
+
+            <div className="mt-10 pt-6 border-t">
+              <button
+                onClick={handleDownload}
+                disabled={isDownloading}
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-bold flex items-center justify-center gap-3 transition shadow-lg shadow-blue-200 disabled:bg-blue-400"
+              >
+                {isDownloading ? (
+                  <span className="animate-pulse">Generating...</span>
+                ) : (
+                  <>
+                    <MdDownload size={24} />
+                    Download PNG
+                  </>
+                )}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Hidden high-res card for capture */}
-      <NewsPhotoCard
-        cardRef={cardRef}
-        headline={headline}
-        category={category}
-        imageSrc={news.imageSrc}
-        logoUrl={logoUrl}
-        date={date}
-        commentText={commentText}
-        accentColor={accentColor}
-        imageScale={imageScale}
-        headlineFontSize={headlineFontSize}
-        footerBarFontSize={footerBarFontSize}
-        centerTextFontSize={centerTextFontSize}
-        isPreview={false}
-      />
+        {/* Hidden high-res card for capture */}
+        <NewsPhotoCard
+          cardRef={cardRef}
+          headline={headline}
+          category={category}
+          imageSrc={news.imageSrc}
+          logoUrl={logoUrl}
+          date={date}
+          commentText={commentText}
+          accentColor={accentColor}
+          imageScale={imageScale}
+          headlineFontSize={headlineFontSize}
+          footerBarFontSize={footerBarFontSize}
+          centerTextFontSize={centerTextFontSize}
+          isPreview={false}
+        />
+      </div>
     </div>
   );
 };
