@@ -9,6 +9,7 @@ import Link from "next/link";
 import Image from "next/image";
 import truncate from "@/utils/truncate";
 import { FRONT_END_URL } from "@/utils/baseUrl";
+import { notFound } from "next/navigation";
 
 const toBanglaNumber = (n) => {
   const banglaNumbers = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
@@ -109,6 +110,10 @@ export default async function CategoryPage({ params, searchParams }) {
     getCategoryNews(slug, currentPage, perPage),
     getNews(15),
   ]);
+
+  if (!category) {
+    notFound();
+  }
 
   const categoryNews = newsResponse?.data || [];
   const meta = newsResponse?.meta || {};

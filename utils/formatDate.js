@@ -4,6 +4,7 @@ export function formatBengaliDate(isoString) {
     if (!isoString) return "";
 
     const date = new Date(isoString);
+    if (isNaN(date.getTime())) return "অজানা তারিখ";
 
     const months = [
         "জানুয়ারি",

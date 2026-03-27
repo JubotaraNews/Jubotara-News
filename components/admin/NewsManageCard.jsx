@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
 import PhotoCardModal from "./PhotoCardModal";
 import CopyButton from "../news/CopyButton";
+import { formatBengaliDate } from "@/utils/formatDate";
 
 const NewsManageCard = ({
   item,
@@ -67,9 +68,7 @@ const NewsManageCard = ({
 
       <div className="flex flex-wrap gap-2 text-xs text-gray-500 mt-1">
         {isAdmin && <span>লেখক: {item.authorName || "অজানা"} • </span>}
-        <span>
-          তারিখ: {new Date(item.createdAt).toLocaleDateString("bn-BD")}
-        </span>
+        <span>তারিখ: {formatBengaliDate(item.publishedAt || item.createdAt) || "অজানা"}</span>
         <span>•</span>
         <span>লাইক: {item.likesCount || 0}</span>
         <span>•</span>
@@ -77,7 +76,7 @@ const NewsManageCard = ({
       </div>
 
       <p className="text-gray-600 mt-2">
-        <span className="font-semibold text-black">সংক্ষিপ্ত বিবরণ :</span>{" "}
+        <span className="font-semibold text-black">রিপোর্টার :</span>{" "}
         {item.reporterInfo}
       </p>
 

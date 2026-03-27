@@ -63,7 +63,7 @@ export async function GET(request) {
       .skip(skip)
       .limit(limit)
       .select(
-        "headline category imageSrc imageCaption authorName publishedAt status",
+        "headline category imageSrc imageCaption authorName publishedAt status createdAt",
       )
       .lean();
 

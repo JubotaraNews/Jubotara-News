@@ -18,7 +18,8 @@ const PhotoCardModal = ({ news, logoUrl, onClose }) => {
   const [isAdvancedOptionsOpen, setIsAdvancedOptionsOpen] = useState(false);
   const cardRef = useRef(null);
 
-  const date = new Date(news.createdAt).toLocaleDateString("bn-BD", {
+  const dateObj = news.publishedAt || news.createdAt || new Date();
+  const date = new Date(dateObj).toLocaleDateString("bn-BD", {
     day: "numeric",
     month: "long",
     year: "numeric",
