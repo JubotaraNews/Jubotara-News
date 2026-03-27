@@ -4,10 +4,16 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
-import NewsPhotoCard from "./NewsPhotoCard";
 import PhotoCardModal from "./PhotoCardModal";
+import CopyButton from "../news/CopyButton";
 
-const NewsManageCard = ({ item, onEdit, onDelete, onStatusUpdate, logoUrl }) => {
+const NewsManageCard = ({
+  item,
+  onEdit,
+  onDelete,
+  onStatusUpdate,
+  logoUrl,
+}) => {
   const { data: session } = useSession();
   const isAdmin = session?.user?.role === "admin";
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -48,18 +54,22 @@ const NewsManageCard = ({ item, onEdit, onDelete, onStatusUpdate, logoUrl }) => 
         <h2 className="text-sm text-red-500 font-medium">
           ক্যাটেগরি: {item.category}
         </h2>
-        <span className={`px-2 py-1 rounded text-xs font-semibold ${statusColors[item.status] || "bg-blue-100 text-blue-800"}`}>
+        <span
+          className={`px-2 py-1 rounded text-xs font-semibold ${statusColors[item.status] || "bg-blue-100 text-blue-800"}`}
+        >
           {statusLabels[item.status] || item.status}
         </span>
       </div>
-      
+
       <h3 className="text-lg sm:text-xl font-semibold mt-1 break-words">
         {item.headline}
       </h3>
 
       <div className="flex flex-wrap gap-2 text-xs text-gray-500 mt-1">
         {isAdmin && <span>লেখক: {item.authorName || "অজানা"} • </span>}
-        <span>তারিখ: {new Date(item.createdAt).toLocaleDateString("bn-BD")}</span>
+        <span>
+          তারিখ: {new Date(item.createdAt).toLocaleDateString("bn-BD")}
+        </span>
         <span>•</span>
         <span>লাইক: {item.likesCount || 0}</span>
         <span>•</span>
@@ -123,14 +133,15 @@ const NewsManageCard = ({ item, onEdit, onDelete, onStatusUpdate, logoUrl }) => 
         >
           Delete
         </button>
+        <CopyButton url={`/news/${item._id}`} />
       </div>
 
       {/* Modal for Customization and Download */}
       {isModalOpen && (
-        <PhotoCardModal 
-          news={item} 
-          logoUrl={logoUrl} 
-          onClose={() => setIsModalOpen(false)} 
+        <PhotoCardModal
+          news={item}
+          logoUrl={logoUrl}
+          onClose={() => setIsModalOpen(false)}
         />
       )}
     </div>
