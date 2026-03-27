@@ -19,20 +19,48 @@ const toBanglaNumber = (n) => {
     .join("");
 };
 
+const getCategoryTitle = (slug, category, menus, categoryNews = []) => {
+  const normalizedSlug = decodeURIComponent(slug).toLowerCase().trim();
+
+  const categoryFromMenu = menus.find(
+    (c) =>
+      c.link === slug ||
+      c.slug === slug ||
+      c.slug === normalizedSlug ||
+      c.label?.toLowerCase().trim().replace(/\s+/g, "-") === normalizedSlug,
+  );
+
+  const categoryFromNews = categoryNews[0]?.categories?.find((c) => {
+    if (!c?.name) return false;
+    const nameSlug = c.name.toLowerCase().trim().replace(/\s+/g, "-");
+    return (
+      c.slug === slug ||
+      c.slug === normalizedSlug ||
+      nameSlug === slug ||
+      nameSlug === normalizedSlug
+    );
+  });
+
+  const defaultName = decodeURIComponent(slug)
+    .replace(/[-_]+/g, " ")
+    .replace(/\b\w/g, (x) => x.toUpperCase());
+
+  return (
+    category?.name ||
+    categoryFromMenu?.label ||
+    categoryFromMenu?.name ||
+    categoryFromNews?.name ||
+    defaultName ||
+    "বিভাগ"
+  );
+};
+
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const category = await getSingleCategories(slug);
   const menus = await getMenus();
 
-  // Robust category detection
-  const categoryFromMenu = menus.find(
-    (c) => c.link === slug || c.slug === slug,
-  );
-  const categoryName =
-    category?.name ||
-    categoryFromMenu?.label ||
-    categoryFromMenu?.name ||
-    "বিভাগ";
+  const categoryName = getCategoryTitle(slug, category, menus); // no news data yet
 
   const title = `${categoryName} | যুবতারা নিউজ`;
   const description = `${categoryName} বিভাগের সর্বশেষ সংবাদ, ব্রেকিং নিউজ এবং বিশেষ প্রতিবেদন দেখুন বাংলা স্টার নিউজে।`;
@@ -89,26 +117,7 @@ export default async function CategoryPage({ params, searchParams }) {
   // Robust category detection
   const normalizedSlug = decodeURIComponent(slug).toLowerCase().trim();
 
-  const categoryFromMenu = menus.find(
-    (c) => c.link === slug || c.slug === slug || c.slug === normalizedSlug,
-  );
-
-  const categoryFromNews = categoryNews[0]?.categories?.find((c) => {
-    const nameSlug = c?.name?.toLowerCase().trim().replace(/\s+/g, "-");
-    return (
-      c?.slug === slug ||
-      c?.slug === normalizedSlug ||
-      nameSlug === slug ||
-      nameSlug === normalizedSlug
-    );
-  });
-
-  const categoryName =
-    category?.name ||
-    categoryFromMenu?.label ||
-    categoryFromMenu?.name ||
-    categoryFromNews?.name ||
-    "বিভাগ";
+  const categoryName = getCategoryTitle(slug, category, menus, categoryNews);
 
   const featuredNews = categoryNews[0];
   const otherNews = categoryNews.slice(1);
