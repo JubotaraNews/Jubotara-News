@@ -40,9 +40,9 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex  justify-center items-center sm:items-center  bg-white px-4">
-      <div className="max-w-md w-full bg-white p-8 rounded-2xl shadow-lg border border-gray-700">
-        <h1 className="text-3xl font-bold text-black text-center mb-6">
+    <div className="min-h-screen flex  justify-center items-center sm:items-center  bg-white dark:bg-[#121212] px-4">
+      <div className="max-w-md w-full bg-white dark:bg-[#1e1e1e] p-8 rounded-2xl shadow-lg border border-gray-700 dark:border-gray-700">
+        <h1 className="text-3xl font-bold text-black dark:text-white text-center mb-6">
           Login
         </h1>
 
@@ -54,8 +54,8 @@ export default function LoginPage() {
             value={formData.email}
             onChange={onChange}
             required
-            className="px-4 py-3 rounded-lg bg-white border border-gray-600 text-black 
-            focus:outline-none focus:ring-2 focus:ring-gray-500"
+            className="px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-600 dark:border-gray-700 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400
+            focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-600"
           />
 
           <div className="relative">
@@ -66,8 +66,8 @@ export default function LoginPage() {
               value={formData.password}
               onChange={onChange}
               required
-              className="w-full px-4 py-3 rounded-lg bg-white border border-gray-600 text-black 
-              focus:outline-none focus:ring-2 focus:ring-gray-500 pr-12"
+              className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-600 dark:border-gray-700 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400
+              focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-600 pr-12"
             />
             <button
               type="button"

@@ -135,8 +135,8 @@ export default function NewsForm({ initialData, onSuccess }) {
 
   return (
     <section className="container mx-auto">
-      <div className=" p-5 bg-white shadow">
-        <h2 className="text-2xl font-semibold mb-6">
+      <div className=" p-5 bg-white dark:bg-[#1e1e1e] shadow rounded-lg border dark:border-gray-800 transition-colors">
+        <h2 className="text-2xl font-semibold mb-6 dark:text-gray-100">
           {isEditMode ? "সংবাদ সম্পাদনা করুন" : "সংবাদ যুক্ত করুন"}
         </h2>
         <form onSubmit={handleSubmit}>
@@ -148,7 +148,7 @@ export default function NewsForm({ initialData, onSuccess }) {
                 placeholder="শিরোনাম (Headline)"
                 value={formData.headline}
                 onChange={handleChange}
-                className="w-full border px-3 py-2 rounded"
+                className="w-full border dark:border-gray-700 px-3 py-2 rounded dark:bg-[#121212] dark:text-white"
                 required
               />
             </li>
@@ -159,7 +159,7 @@ export default function NewsForm({ initialData, onSuccess }) {
                 placeholder="রিপোর্টার ইনফো"
                 value={formData.reporterInfo}
                 onChange={handleChange}
-                className="w-full border px-3 py-2 rounded"
+                className="w-full border dark:border-gray-700 px-3 py-2 rounded dark:bg-[#121212] dark:text-white"
                 required
               />
             </li>
@@ -168,12 +168,12 @@ export default function NewsForm({ initialData, onSuccess }) {
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
-                className="w-full border px-3 py-2 rounded"
+                className="w-full border dark:border-gray-700 px-3 py-2 rounded dark:bg-[#121212] dark:text-white"
                 required
               >
                 <option value="">বিভাগ নির্বাচন করুন</option>
                 {categories.map((c) => (
-                  <option key={c._id} value={c.name}>
+                  <option key={c._id} value={c.name} className="dark:bg-[#1e1e1e]">
                     {c.name}
                   </option>
                 ))}
@@ -185,29 +185,29 @@ export default function NewsForm({ initialData, onSuccess }) {
                 placeholder="বিস্তারিত সংবাদ"
                 value={formData.content}
                 onChange={handleChange}
-                className="w-full border px-3 py-2 rounded h-96"
+                className="w-full border dark:border-gray-700 px-3 py-2 rounded h-96 dark:bg-[#121212] dark:text-white"
               />
             </li>
             <li>
-              <label className="flex items-center gap-2">
+              <label className="flex items-center gap-2 dark:text-gray-300">
                 <input
                   type="checkbox"
                   name="isFeatured"
                   checked={formData.isFeatured}
                   onChange={handleChange}
-                  className="accent-blue-600"
+                  className="accent-blue-600 h-4 w-4"
                 />
                 ফিচার্ড সংবাদ
               </label>
             </li>
             <li>
               <div className="space-y-2">
-                <label className="block mb-1 font-medium">ছবি আপলোড করুন</label>
+                <label className="block mb-1 font-medium dark:text-gray-300">ছবি আপলোড করুন</label>
                 <input
                   type="file"
                   accept="image/*"
                   onChange={handleImageChange}
-                  className="w-full"
+                  className="w-full text-sm text-gray-500 dark:text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 dark:file:bg-blue-900/20 file:text-blue-700 dark:file:text-blue-400 hover:file:bg-blue-100"
                 />
                 <input
                   type="text"
@@ -215,18 +215,18 @@ export default function NewsForm({ initialData, onSuccess }) {
                   placeholder="ছবির ক্যাপশন (ঐচ্ছিক)"
                   value={formData.imageCaption}
                   onChange={handleChange}
-                  className="w-full border px-3 py-2 rounded text-sm"
+                  className="w-full border dark:border-gray-700 px-3 py-2 rounded text-sm dark:bg-[#121212] dark:text-white"
                 />
               </div>
             </li>
             {previewUrl && (
-              <li className="relative">
+              <li className="relative inline-block">
                 <Image
                   src={previewUrl}
                   alt="ছবি"
                   width={300}
                   height={200}
-                  className="rounded border object-cover"
+                  className="rounded border dark:border-gray-700 object-cover"
                   unoptimized={previewUrl.startsWith("blob:")}
                 />
                 {imageFile && (
@@ -245,28 +245,28 @@ export default function NewsForm({ initialData, onSuccess }) {
             )}
 
             {/* SEO Settings */}
-            <li className="pt-6 border-t mt-6">
-              <h3 className="text-lg font-semibold mb-4 text-gray-700">SEO সেটিংস (ঐচ্ছিক)</h3>
+            <li className="pt-6 border-t dark:border-gray-800 mt-6">
+              <h3 className="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-300">SEO সেটিংস (ঐচ্ছিক)</h3>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-600 mb-1">মেটা শিরোনাম (Meta Title)</label>
+                  <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">মেটা শিরোনাম (Meta Title)</label>
                   <input
                     type="text"
                     name="metaTitle"
                     placeholder="মেটা শিরোনাম দিন"
                     value={formData.metaTitle}
                     onChange={handleChange}
-                    className="w-full border px-3 py-2 rounded"
+                    className="w-full border dark:border-gray-700 px-3 py-2 rounded dark:bg-[#121212] dark:text-white"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-600 mb-1">মেটা বর্ণনা (Meta Description)</label>
+                  <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">মেটা বর্ণনা (Meta Description)</label>
                   <textarea
                     name="metaDescription"
                     placeholder="মেটা বর্ণনা দিন (সংক্ষিপ্ত বিবরণ)"
                     value={formData.metaDescription}
                     onChange={handleChange}
-                    className="w-full border px-3 py-2 rounded h-24"
+                    className="w-full border dark:border-gray-700 px-3 py-2 rounded h-24 dark:bg-[#121212] dark:text-white"
                   />
                 </div>
               </div>
@@ -276,7 +276,7 @@ export default function NewsForm({ initialData, onSuccess }) {
               <button
                 type="submit"
                 disabled={loading}
-                className="flex-1 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 disabled:bg-gray-400"
+                className="flex-1 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 disabled:bg-gray-400 dark:disabled:bg-gray-700 transition"
               >
                 {loading
                   ? "আপলোড হচ্ছে..."
@@ -289,7 +289,7 @@ export default function NewsForm({ initialData, onSuccess }) {
                   type="submit"
                   name="draft"
                   disabled={loading}
-                  className="flex-1 bg-gray-500 text-white py-2 rounded hover:bg-gray-600 disabled:bg-gray-400"
+                  className="flex-1 bg-gray-500 text-white py-2 rounded hover:bg-gray-600 disabled:bg-gray-400 dark:disabled:bg-gray-700 transition"
                 >
                   ড্রাফট হিসেবে সেভ করুন
                 </button>

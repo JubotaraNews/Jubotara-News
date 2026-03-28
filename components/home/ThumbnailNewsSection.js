@@ -9,7 +9,7 @@ const ThumbnailNewsSection = ({ news = [], title, slug }) => {
   return (
     <Container>
       <div className=" ">
-        <div className="flex items-center justify-between   border-b border-gray-100 pb-4">
+        <div className="flex items-center justify-between   border-b border-gray-100 dark:border-gray-700 pb-4">
           <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-3 text-secondary">
             <span className="w-2 h-8 bg-secondary"></span>
             {title}
@@ -54,7 +54,7 @@ const ThumbnailNewsSection = ({ news = [], title, slug }) => {
                 />
               </div>
               <h3
-                className="text-gray-600 text-lg md:text-[22px] leading-[24px] md:leading-[26px] group-hover:text-primary
+                className="text-gray-600 dark:text-gray-300 text-lg md:text-[22px] leading-6 md:leading-6.5 group-hover:text-primary
                              font-semibold transition-colors line-clamp-1"
               >
                 {item?.name}

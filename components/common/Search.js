@@ -11,6 +11,7 @@ const Search = () => {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const dropdownRef = useRef(null);
+  const inputRef = useRef(null);
 
   // Debounced search
   useEffect(() => {
@@ -40,7 +41,9 @@ const Search = () => {
   const fetchResults = async () => {
     setIsLoading(true);
     try {
-      const res = await fetch(`/api/news/search?q=${encodeURIComponent(query)}`);
+      const res = await fetch(
+        `/api/news/search?q=${encodeURIComponent(query)}`,
+      );
       const data = await res.json();
       if (data.success) {
         setResults(data.data);
@@ -58,6 +61,8 @@ const Search = () => {
     if (query.trim()) {
       router.push(`/search?q=${encodeURIComponent(query)}`);
       setIsOpen(false);
+    } else {
+      inputRef.current?.focus();
     }
   };
 
@@ -66,16 +71,19 @@ const Search = () => {
       <form onSubmit={handleSearch} className="flex items-center">
         <div className="relative group">
           <input
-            type="text"
+            type="search"
             placeholder="খুঁজুন..."
+            ref={inputRef}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            onFocus={() => query.trim() && results.length > 0 && setIsOpen(true)}
-            className="w-0 group-hover:w-48 sm:group-hover:w-64 focus:w-48 sm:focus:w-64 transition-all duration-300 bg-transparent border-b border-black text-black text-sm focus:outline-none placeholder-black/50 py-1"
+            onFocus={() =>
+              query.trim() && results.length > 0 && setIsOpen(true)
+            }
+            className="w-0 group-hover:w-20 sm:group-hover:w-42 focus:w-24 sm:focus:w-44 transition-all duration-300 bg-transparent border-b border-black dark:border-white text-black dark:text-white text-sm focus:outline-none placeholder-black/50 dark:placeholder-white/50 py-1"
           />
           <button
             type="submit"
-            className="p-2 text-black hover:text-black/80 transition-colors"
+            className="p-2 text-black dark:text-white hover:text-black/80 dark:hover:text-white/80 transition-colors"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -97,16 +105,16 @@ const Search = () => {
 
       {/* Results Dropdown */}
       {isOpen && (
-        <div className="absolute top-full right-0 mt-2 w-72 sm:w-96 bg-white border border-gray-200 shadow-xl rounded-lg overflow-hidden z-[100]">
+        <div className="fixed sm:absolute top-16 sm:top-full left-1/2 -translate-x-1/2 sm:left-auto sm:right-0 sm:translate-x-0 mt-2 w-[90vw] sm:w-96 bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 shadow-xl rounded-lg overflow-hidden z-[100]">
           <div className="max-h-96 overflow-y-auto">
             {results.map((item) => (
               <Link
                 key={item.id}
                 href={`/news/${item.slug}`}
                 onClick={() => setIsOpen(false)}
-                className="flex gap-3 p-3 hover:bg-gray-50 border-b border-gray-100 last:border-0 transition-colors group"
+                className="flex gap-3 p-3 hover:bg-gray-50 dark:hover:bg-gray-800 border-b border-gray-100 dark:border-gray-800 last:border-0 transition-colors group"
               >
-                <div className="relative w-16 h-12 flex-shrink-0">
+                <div className="relative w-16 h-12 shrink-0">
                   <Image
                     src={item.featured_image || "/placeholder.png"}
                     alt={item.name}
@@ -115,10 +123,10 @@ const Search = () => {
                   />
                 </div>
                 <div className="flex-1">
-                  <h4 className="text-sm font-bold text-gray-800 line-clamp-2 group-hover:text-red-600 transition-colors">
+                  <h4 className="text-sm font-bold text-gray-800 dark:text-gray-200 line-clamp-2 group-hover:text-red-600 transition-colors">
                     {item.name}
                   </h4>
-                  <span className="text-[10px] text-gray-500 uppercase tracking-wider">
+                  <span className="text-[10px] text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                     {item.category}
                   </span>
                 </div>
@@ -127,16 +135,16 @@ const Search = () => {
           </div>
           <button
             onClick={handleSearch}
-            className="w-full py-2 bg-gray-50 text-[#003366] text-xs font-bold hover:bg-gray-100 transition-colors border-t border-gray-200"
+            className="w-full py-2 bg-gray-50 dark:bg-gray-800 text-[#003366] dark:text-blue-400 text-xs font-bold hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors border-t border-gray-200 dark:border-gray-700"
           >
             সব ফলাফল দেখুন ({query})
           </button>
         </div>
       )}
-      
+
       {isLoading && query.trim() && !isOpen && (
-        <div className="absolute top-full right-0 mt-2 w-10 h-10 flex items-center justify-center">
-           <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-[#003366]"></div>
+        <div className="fixed sm:absolute top-16 sm:top-full left-1/2 -translate-x-1/2 sm:left-auto sm:right-0 sm:translate-x-0 mt-2 w-10 h-10 flex items-center justify-center">
+          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-[#003366] dark:border-blue-400"></div>
         </div>
       )}
     </div>

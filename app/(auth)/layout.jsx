@@ -16,8 +16,12 @@ export const metadata = {
 
 export default function AuthLayout({ children }) {
   return (
-    <html lang="bn" className={`${solaimanLipi.variable} font-sans`} suppressHydrationWarning>
-      <body className="bg-white">
+    <html
+      lang="bn"
+      className={`${solaimanLipi.variable} font-sans`}
+      suppressHydrationWarning
+    >
+      <body className="bg-white dark:bg-[#121212]">
         <Providers>
           {children}
           <SpeedInsights />

@@ -7,7 +7,7 @@ const MobileSidebar = ({ tabs }) => {
   const pathname = usePathname();
 
   return (
-    <aside className="md:hidden bg-white border-b p-4 sticky top-0 z-30 shadow-sm pb-5">
+    <aside className="md:hidden bg-white dark:bg-[#1e1e1e] border-b dark:border-gray-800 p-4 sticky top-0 z-30 shadow-sm pb-5">
       <div className="w-full">
         <label className="text-sm font-medium mb-2 block text-gray-600">
           Settings Menu

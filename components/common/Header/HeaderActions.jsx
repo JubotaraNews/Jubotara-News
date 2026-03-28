@@ -54,13 +54,13 @@ export default function HeaderActions() {
             </Link>
           )}
         </div>
-        
-        <button
+
+        {/* <button
           onClick={toggleLanguage}
           className="bg-[#EE1D23] text-white px-3 sm:px-4 py-1 sm:py-1.5 font-bold text-xs sm:text-sm hover:bg-red-700 transition-colors uppercase hidden sm:block"
         >
           {language === "bn" ? "English" : "বাংলা"}
-        </button>
+        </button> */}
       </div>
     </div>
   );

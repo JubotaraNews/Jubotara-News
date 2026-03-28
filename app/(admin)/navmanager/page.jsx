@@ -40,7 +40,9 @@ export default function NavManager() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const method = editingId ? "PATCH" : "POST";
-    const url = editingId ? `/api/admin/navbar/${editingId}` : "/api/admin/navbar";
+    const url = editingId
+      ? `/api/admin/navbar/${editingId}`
+      : "/api/admin/navbar";
 
     try {
       const res = await fetch(url, {
@@ -52,7 +54,9 @@ export default function NavManager() {
         setFormData({ label: "", href: "", order: 0 });
         setEditingId(null);
         fetchItems();
-        toast.success(editingId ? "Navbar item updated!" : "Navbar item added!");
+        toast.success(
+          editingId ? "Navbar item updated!" : "Navbar item added!",
+        );
       }
     } catch (err) {
       console.error(err);
@@ -75,49 +79,68 @@ export default function NavManager() {
   };
 
   const selectCategory = (cat) => {
-    setFormData({ ...formData, label: cat.name, href: `/category/${cat.slug}` });
+    setFormData({
+      ...formData,
+      label: cat.name,
+      href: `/category/${cat.slug}`,
+    });
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto px-4 py-8 mt-5">
       <h1 className="text-2xl font-bold mb-6">Navbar Manager</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Form Section */}
         <div className="lg:col-span-1">
-          <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+          <div className="bg-white dark:bg-[#1e1e1e] p-6 rounded-xl shadow-md border border-gray-100 dark:border-gray-700">
             <h2 className="text-lg font-semibold mb-4">
               {editingId ? "Edit Link" : "Add New Link"}
             </h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Label</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Label
+                </label>
                 <input
                   type="text"
                   value={formData.label}
-                  onChange={(e) => setFormData({ ...formData, label: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, label: e.target.value })
+                  }
                   className="w-full border rounded-lg px-4 py-2"
                   placeholder="e.g. Home, Sports"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Link (URL)</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Link (URL)
+                </label>
                 <input
                   type="text"
                   value={formData.href}
-                  onChange={(e) => setFormData({ ...formData, href: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, href: e.target.value })
+                  }
                   className="w-full border rounded-lg px-4 py-2"
                   placeholder="e.g. /, /category/sports"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Order</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Order
+                </label>
                 <input
                   type="number"
                   value={formData.order}
-                  onChange={(e) => setFormData({ ...formData, order: parseInt(e.target.value) })}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      order: parseInt(e.target.value),
+                    })
+                  }
                   className="w-full border rounded-lg px-4 py-2"
                 />
               </div>
@@ -135,7 +158,7 @@ export default function NavManager() {
                       setEditingId(null);
                       setFormData({ label: "", href: "", order: 0 });
                     }}
-                    className="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg"
+                    className="bg-gray-200 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg"
                   >
                     Cancel
                   </button>
@@ -144,13 +167,15 @@ export default function NavManager() {
             </form>
 
             <div className="mt-8">
-              <h3 className="text-sm font-bold text-gray-500 uppercase mb-3">Quick Add Categories</h3>
+              <h3 className="text-sm font-bold text-gray-500 dark:text-gray-200 uppercase mb-3">
+                Quick Add Categories
+              </h3>
               <div className="flex flex-wrap gap-2">
                 {categories.map((cat) => (
                   <button
                     key={cat._id}
                     onClick={() => selectCategory(cat)}
-                    className="text-xs bg-gray-100 hover:bg-blue-100 hover:text-blue-600 px-3 py-1 rounded-full transition"
+                    className="text-xs bg-gray-100 dark:bg-gray-800 hover:bg-blue-100 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-1 rounded-full transition"
                   >
                     {cat.name}
                   </button>
@@ -162,25 +187,36 @@ export default function NavManager() {
 
         {/* List Section */}
         <div className="lg:col-span-2">
-          <div className="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden">
+          <div className="bg-white dark:bg-[#1e1e1e] rounded-xl shadow-md border border-gray-100 dark:border-gray-700 overflow-hidden">
             <div className="p-6 border-b border-gray-100">
               <h2 className="text-lg font-semibold">Active Navbar Items</h2>
-              <p className="text-sm text-gray-500">Items will appear in the public header in this order.</p>
+              <p className="text-sm text-gray-500 dark:text-gray-300">
+                Items will appear in the public header in this order.
+              </p>
             </div>
             <div className="divide-y divide-gray-100">
               {loading ? (
-                <div className="p-6 text-center text-gray-500">Loading...</div>
+                <div className="p-6 text-center text-gray-500 dark:text-gray-300">
+                  Loading...
+                </div>
               ) : items.length === 0 ? (
-                <div className="p-6 text-center text-gray-500">No items found. Add some links to get started!</div>
+                <div className="p-6 text-center text-gray-500 dark:text-gray-300">
+                  No items found. Add some links to get started!
+                </div>
               ) : (
                 items.map((item) => (
-                  <div key={item._id} className="p-4 flex items-center justify-between hover:bg-gray-50 transition">
+                  <div
+                    key={item._id}
+                    className="p-4 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800 transition"
+                  >
                     <div className="flex items-center gap-4">
                       <div className="text-gray-400">
                         <MdDragHandle size={20} />
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-800">{item.label}</p>
+                        <p className="font-semibold text-gray-800 dark:text-gray-200">
+                          {item.label}
+                        </p>
                         <p className="text-xs text-blue-600">{item.href}</p>
                       </div>
                     </div>

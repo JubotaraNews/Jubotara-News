@@ -51,9 +51,9 @@ export default async function Home() {
   const videoNews = videoNewsResponse?.data || [];
 
   return (
-    <div className=" min-h-screen bg-[#eff3f6]">
+    <div className=" min-h-screen">
       <Container>
-        <div className=" h-32 bg-gray-100 border-2 border-dashed border-gray-300 flex items-center justify-center font-bold text-gray-400">
+        <div className="h-32 bg-gray-100 dark:bg-[#1e1e1e] border-2 border-dashed border-gray-300 dark:border-gray-700 flex items-center justify-center font-bold text-gray-400 dark:text-gray-500 mt-2">
           ADVERTISEMENT
         </div>
       </Container>
@@ -78,7 +78,7 @@ export default async function Home() {
         />
 
         <Container>
-          <div className=" h-32 bg-gray-100 border-2 border-dashed border-gray-300 flex items-center justify-center font-bold text-gray-400">
+          <div className=" h-32 bg-gray-100 dark:bg-[#1e1e1e] border-2 border-dashed border-gray-300 dark:border-gray-700 flex items-center justify-center font-bold text-gray-400 dark:text-gray-500">
             ADVERTISEMENT
           </div>
         </Container>
@@ -117,7 +117,7 @@ export default async function Home() {
         </Container>
 
         <Container>
-          <div className=" h-32 bg-gray-100 border-2 border-dashed border-gray-300 flex items-center justify-center font-bold text-gray-400">
+          <div className=" h-32 bg-gray-100 dark:bg-[#1e1e1e] border-2 border-dashed border-gray-300 dark:border-gray-700 flex items-center justify-center font-bold text-gray-400 dark:text-gray-500">
             ADVERTISEMENT
           </div>
         </Container>

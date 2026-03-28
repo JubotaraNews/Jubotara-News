@@ -113,14 +113,14 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-full w-64 bg-white border-r border-gray-200 z-500 transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 h-full w-64 bg-white dark:bg-[#1e1e1e] border-r border-gray-200 dark:border-gray-800 z-500 transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         }`}
       >
-        <div className="flex items-center justify-between p-4 border-b">
+        <div className="flex items-center justify-between p-4 border-b dark:border-gray-800">
           <Logo />
           <button
-            className="p-1 lg:hidden text-gray-500 hover:text-blue-600"
+            className="p-1 lg:hidden text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
             onClick={() => setIsOpen(false)}
           >
             <MdClose size={24} />
@@ -138,8 +138,8 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
                 onClick={() => setIsOpen(false)}
                 className={`flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium transition duration-200 ${
                   isActive
-                    ? "bg-blue-600 text-white shadow-sm"
-                    : "text-gray-600 hover:bg-gray-100 hover:text-blue-600"
+                    ? "bg-blue-600 dark:bg-blue-700 text-white shadow-sm"
+                    : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400"
                 }`}
               >
                 <Icon size={20} />
@@ -149,10 +149,10 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
           })}
         </nav>
 
-        <div className="absolute bottom-0 left-0 w-full p-4 border-t bg-white">
+        <div className="absolute bottom-0 left-0 w-full p-4 border-t bg-white dark:bg-[#1e1e1e] dark:border-gray-800">
           <button
             onClick={() => signOut({ callbackUrl: "/" })}
-            className="flex items-center space-x-3 px-4 py-3 w-full text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition"
+            className="flex items-center space-x-3 px-4 py-3 w-full text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition"
           >
             <MdLogout size={20} />
             <span>লগ আউট</span>

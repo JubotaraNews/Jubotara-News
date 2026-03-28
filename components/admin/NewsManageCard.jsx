@@ -38,9 +38,9 @@ const NewsManageCard = ({
   };
 
   const statusColors = {
-    published: "bg-green-100 text-green-800",
-    pending: "bg-yellow-100 text-yellow-800",
-    draft: "bg-gray-100 text-gray-800",
+    published: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400",
+    pending: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400",
+    draft: "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300",
   };
 
   const statusLabels = {
@@ -50,23 +50,23 @@ const NewsManageCard = ({
   };
 
   return (
-    <div className="p-4 bg-white border-b border-gray-300 rounded-md shadow-sm mb-4">
+    <div className="p-4 bg-white dark:bg-[#1e1e1e] border-b border-gray-300 dark:border-gray-800 rounded-md shadow-sm mb-4 transition-colors">
       <div className="flex justify-between items-start">
-        <h2 className="text-sm text-red-500 font-medium">
+        <h2 className="text-sm text-red-500 dark:text-red-400 font-medium">
           ক্যাটেগরি: {item.category}
         </h2>
         <span
-          className={`px-2 py-1 rounded text-xs font-semibold ${statusColors[item.status] || "bg-blue-100 text-blue-800"}`}
+          className={`px-2 py-1 rounded text-xs font-semibold ${statusColors[item.status] || "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400"}`}
         >
           {statusLabels[item.status] || item.status}
         </span>
       </div>
 
-      <h3 className="text-lg sm:text-xl font-semibold mt-1 wrap-break-word">
+      <h3 className="text-lg sm:text-xl font-semibold mt-1 wrap-break-word dark:text-gray-100">
         {item.headline}
       </h3>
 
-      <div className="flex flex-wrap gap-2 text-xs text-gray-500 mt-1">
+      <div className="flex flex-wrap gap-2 text-xs text-gray-500 dark:text-gray-400 mt-1">
         {isAdmin && <span>লেখক: {item.authorName || "অজানা"} • </span>}
         <span>তারিখ: {formatBengaliDate(item.publishedAt || item.createdAt) || "অজানা"}</span>
         <span>•</span>
@@ -75,14 +75,14 @@ const NewsManageCard = ({
         <span>কমেন্ট: {item.comments?.length || 0}</span>
       </div>
 
-      <p className="text-gray-600 mt-2">
-        <span className="font-semibold text-black">রিপোর্টার :</span>{" "}
+      <p className="text-gray-600 dark:text-gray-400 mt-2">
+        <span className="font-semibold text-black dark:text-white">রিপোর্টার :</span>{" "}
         {item.reporterInfo}
       </p>
 
       {item.content && (
-        <p className="mt-2 text-gray-700 wrap-break-word line-clamp-2">
-          <span className="font-semibold text-black">বিস্তারিত সংবাদ :</span>{" "}
+        <p className="mt-2 text-gray-700 dark:text-gray-300 wrap-break-word line-clamp-2">
+          <span className="font-semibold text-black dark:text-white">বিস্তারিত সংবাদ :</span>{" "}
           {item.content}
         </p>
       )}

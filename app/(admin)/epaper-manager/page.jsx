@@ -1,6 +1,11 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { MdDelete, MdAdd, MdCalendarToday, MdCloudUpload } from "react-icons/md";
+import {
+  MdDelete,
+  MdAdd,
+  MdCalendarToday,
+  MdCloudUpload,
+} from "react-icons/md";
 import { toast } from "react-toastify";
 import Image from "next/image";
 import { formatBengaliDate } from "@/utils/formatDate";
@@ -129,7 +134,7 @@ export default function EPaperManager() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto px-4 py-8 mt-5">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-2xl font-bold">ই-পেপার ম্যানেজমেন্ট</h1>
         <button
@@ -142,12 +147,12 @@ export default function EPaperManager() {
       </div>
 
       {showForm && (
-        <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100 mb-8">
+        <div className="bg-white dark:bg-[#1e1e1e] p-6 rounded-xl shadow-md border border-gray-100 dark:border-gray-700 mb-8">
           <h2 className="text-lg font-semibold mb-4">নতুন এডিশন আপলোড</h2>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   তারিখ নির্বাচন করুন
                 </label>
                 <input
@@ -159,7 +164,7 @@ export default function EPaperManager() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   পাতাগুলো নির্বাচন করুন (একাধিক)
                 </label>
                 <div className="relative border-2 border-dashed border-gray-300 rounded-lg p-4 hover:border-blue-500 transition cursor-pointer">
@@ -180,11 +185,21 @@ export default function EPaperManager() {
 
             {previewUrls.length > 0 && (
               <div className="space-y-2">
-                <p className="font-medium text-sm text-gray-700">প্রিভিউ ({previewUrls.length} পাতা):</p>
+                <p className="font-medium text-sm text-gray-700">
+                  প্রিভিউ ({previewUrls.length} পাতা):
+                </p>
                 <div className="flex gap-4 overflow-x-auto pb-4">
                   {previewUrls.map((url, index) => (
-                    <div key={index} className="relative w-32 h-44 flex-shrink-0 border rounded-lg overflow-hidden">
-                      <Image src={url} alt={`Preview ${index + 1}`} fill className="object-cover" />
+                    <div
+                      key={index}
+                      className="relative w-32 h-44 shrink-0 border rounded-lg overflow-hidden"
+                    >
+                      <Image
+                        src={url}
+                        alt={`Preview ${index + 1}`}
+                        fill
+                        className="object-cover"
+                      />
                       <div className="absolute bottom-0 left-0 w-full bg-black/50 text-white text-[10px] text-center py-1">
                         পাতা {index + 1}
                       </div>
@@ -198,7 +213,9 @@ export default function EPaperManager() {
               type="submit"
               disabled={uploading}
               className={`w-full py-3 rounded-lg font-bold text-white transition ${
-                uploading ? "bg-gray-400 cursor-not-allowed" : "bg-green-600 hover:bg-green-700"
+                uploading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-green-600 hover:bg-green-700"
               }`}
             >
               {uploading ? "আপলোড হচ্ছে..." : "এডিশনটি সেভ করুন"}
@@ -212,8 +229,11 @@ export default function EPaperManager() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {editions.map((edition) => (
-            <div key={edition._id} className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden group">
-              <div className="relative aspect-[3/4] w-full bg-gray-100">
+            <div
+              key={edition._id}
+              className="bg-white dark:bg-[#1e1e1e] rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden group"
+            >
+              <div className="relative aspect-3/4 w-full bg-gray-100">
                 <Image
                   src={edition.thumbnail}
                   alt={`EPaper ${edition.date}`}
@@ -223,7 +243,7 @@ export default function EPaperManager() {
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-4">
                   <button
                     onClick={() => handleDelete(edition._id)}
-                    className="p-3 bg-white text-red-600 rounded-full hover:bg-red-50 transition shadow-lg"
+                    className="p-3 bg-white dark:bg-gray-800 text-red-600 dark:text-red-400 rounded-full hover:bg-red-50 transition shadow-lg"
                     title="Delete"
                   >
                     <MdDelete size={20} />
@@ -232,7 +252,7 @@ export default function EPaperManager() {
               </div>
               <div className="p-4 space-y-3">
                 <div className="flex justify-between items-center">
-                  <h3 className="font-bold text-gray-900">
+                  <h3 className="font-bold text-gray-900 dark:text-gray-300">
                     {new Date(edition.date).toLocaleDateString("bn-BD", {
                       year: "numeric",
                       month: "long",
@@ -243,16 +263,25 @@ export default function EPaperManager() {
                     {edition.status}
                   </div>
                 </div>
-                <p className="text-sm text-gray-500">{edition.pages?.length || 0} পাতা</p>
-                
+                <p className="text-sm text-gray-500">
+                  {edition.pages?.length || 0} পাতা
+                </p>
+
                 <div className="pt-2 border-t">
-                  <p className="text-xs font-bold text-gray-400 mb-2 uppercase">হটস্পট ম্যানেজ করুন:</p>
+                  <p className="text-xs font-bold text-gray-400 mb-2 uppercase">
+                    হটস্পট ম্যানেজ করুন:
+                  </p>
                   <div className="flex flex-wrap gap-2">
                     {edition.pages.map((p) => (
                       <button
                         key={p.pageNumber}
-                        onClick={() => setEditingHotspots({ edition, pageNumber: p.pageNumber })}
-                        className="w-8 h-8 flex items-center justify-center bg-gray-100 hover:bg-blue-600 hover:text-white rounded text-xs font-bold transition"
+                        onClick={() =>
+                          setEditingHotspots({
+                            edition,
+                            pageNumber: p.pageNumber,
+                          })
+                        }
+                        className="w-8 h-8 flex items-center justify-center bg-gray-100 dark:bg-gray-700 hover:bg-blue-600 hover:text-white rounded text-xs font-bold transition"
                       >
                         {p.pageNumber}
                       </button>
@@ -266,7 +295,7 @@ export default function EPaperManager() {
       )}
 
       {editingHotspots && (
-        <HotspotEditor 
+        <HotspotEditor
           edition={editingHotspots.edition}
           pageNumber={editingHotspots.pageNumber}
           onClose={() => setEditingHotspots(null)}

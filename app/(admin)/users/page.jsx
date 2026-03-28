@@ -16,17 +16,27 @@ const UsersTableSkeleton = () => (
         <thead className="bg-gray-50">
           <tr>
             {[1, 2, 3, 4].map((i) => (
-              <th key={i} className="px-6 py-3"><Skeleton className="h-4 w-20" /></th>
+              <th key={i} className="px-6 py-3">
+                <Skeleton className="h-4 w-20" />
+              </th>
             ))}
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
           {[1, 2, 3, 4, 5].map((i) => (
             <tr key={i}>
-              <td className="px-6 py-4"><Skeleton className="h-4 w-32" /></td>
-              <td className="px-6 py-4"><Skeleton className="h-4 w-48" /></td>
-              <td className="px-6 py-4"><Skeleton className="h-8 w-24" /></td>
-              <td className="px-6 py-4"><Skeleton className="h-4 w-16" /></td>
+              <td className="px-6 py-4">
+                <Skeleton className="h-4 w-32" />
+              </td>
+              <td className="px-6 py-4">
+                <Skeleton className="h-4 w-48" />
+              </td>
+              <td className="px-6 py-4">
+                <Skeleton className="h-8 w-24" />
+              </td>
+              <td className="px-6 py-4">
+                <Skeleton className="h-4 w-16" />
+              </td>
             </tr>
           ))}
         </tbody>
@@ -37,7 +47,8 @@ const UsersTableSkeleton = () => (
 
 export default function UsersPage() {
   const { data, isLoading, isError } = useGetUsersQuery();
-  const [registerUser, { isLoading: isRegistering }] = useRegisterUserMutation();
+  const [registerUser, { isLoading: isRegistering }] =
+    useRegisterUserMutation();
   const [updateRole] = useUpdateRoleMutation();
   const [deleteUser] = useDeleteUserMutation();
 
@@ -104,16 +115,22 @@ export default function UsersPage() {
     toast.info("Activation link copied to clipboard!");
   };
 
-  if (isLoading) return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      <Skeleton className="h-8 w-48 mb-6" />
-      <UsersTableSkeleton />
-    </div>
-  );
-  if (isError) return <div className="p-8 text-center text-red-500 font-bold">সার্ভার থেকে ব্যবহারকারী তথ্য আনতে ব্যর্থ হয়েছে।</div>;
+  if (isLoading)
+    return (
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <Skeleton className="h-8 w-48 mb-6" />
+        <UsersTableSkeleton />
+      </div>
+    );
+  if (isError)
+    return (
+      <div className="p-8 text-center text-red-500 font-bold">
+        সার্ভার থেকে ব্যবহারকারী তথ্য আনতে ব্যর্থ হয়েছে।
+      </div>
+    );
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto px-4 py-8 mt-5">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">User Management</h1>
         <button
@@ -125,11 +142,18 @@ export default function UsersPage() {
       </div>
 
       {showAddForm && (
-        <div className="bg-white p-6 rounded-lg shadow-md mb-8">
-          <h2 className="text-xl font-semibold mb-4">Create New User (Reporter)</h2>
-          <form onSubmit={handleAddUser} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="bg-white dark:bg-[#1e1e1e] border-gray-200 dark:border-gray-800 p-6 rounded-lg shadow-md mb-8">
+          <h2 className="text-xl font-semibold mb-4">
+            Create New User (Reporter)
+          </h2>
+          <form
+            onSubmit={handleAddUser}
+            className="grid grid-cols-1 md:grid-cols-2 gap-4"
+          >
             <div>
-              <label className="block text-sm font-medium text-gray-700">Full Name</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                Full Name
+              </label>
               <input
                 type="text"
                 name="fullName"
@@ -140,7 +164,9 @@ export default function UsersPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Email Address</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                Email Address
+              </label>
               <input
                 type="email"
                 name="email"
@@ -151,7 +177,9 @@ export default function UsersPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Password</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                Password
+              </label>
               <input
                 type="password"
                 name="password"
@@ -162,7 +190,9 @@ export default function UsersPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Role</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                Role
+              </label>
               <select
                 name="role"
                 value={formData.role}
@@ -186,32 +216,53 @@ export default function UsersPage() {
         </div>
       )}
 
-      <div className="bg-white shadow-md rounded-lg overflow-hidden">
+      <div className="bg-white dark:bg-[#1e1e1e] border border-gray-200 dark:border-gray-800 shadow-md rounded-lg overflow-hidden">
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+            <thead className="bg-gray-50 dark:bg-gray-900 text-gray-500 dark:text-gray-400">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status/Token</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                  Name
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                  Email
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                  Role
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                  Status/Token
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                  Actions
+                </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-white dark:bg-[#1e1e1e] divide-y divide-gray-200 dark:divide-gray-800">
               {users.length === 0 ? (
-                <tr><td colSpan="5" className="px-6 py-4 text-center text-sm text-gray-500">No users found.</td></tr>
+                <tr>
+                  <td
+                    colSpan="5"
+                    className="px-6 py-4 text-center text-sm text-gray-500 dark:text-gray-400"
+                  >
+                    No users found.
+                  </td>
+                </tr>
               ) : (
                 users.map((user) => (
                   <tr key={user._id}>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
                       {user.name}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.email}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                      {user.email}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                       <select
                         value={user.role}
-                        onChange={(e) => handleRoleChange(user._id, e.target.value)}
+                        onChange={(e) =>
+                          handleRoleChange(user._id, e.target.value)
+                        }
                         className="border rounded px-2 py-1"
                       >
                         <option value="user">User</option>
@@ -220,13 +271,22 @@ export default function UsersPage() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       {user.isActivated ? (
-                        <span className="px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full font-semibold">Active</span>
+                        <span className="px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full font-semibold">
+                          Active
+                        </span>
                       ) : (
                         <div className="flex flex-col gap-1">
-                          <span className="w-fit px-2 py-1 text-xs bg-yellow-100 text-yellow-800 rounded-full font-semibold">Pending</span>
+                          <span className="w-fit px-2 py-1 text-xs bg-yellow-100 text-yellow-800 rounded-full font-semibold">
+                            Pending
+                          </span>
                           {user.activationToken && (
-                            <button 
-                              onClick={() => handleCopyToken(user.activationToken, user.email)}
+                            <button
+                              onClick={() =>
+                                handleCopyToken(
+                                  user.activationToken,
+                                  user.email,
+                                )
+                              }
                               className="text-[10px] text-blue-600 hover:underline text-left"
                             >
                               Copy Activation Link

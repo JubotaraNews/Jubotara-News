@@ -24,18 +24,18 @@ export default async function TrendingNews() {
               <div className="flex-1">
                 <Link
                   href={`/news/${news?.slug}`}
-                  className="text-gray-600 text-lg md:text-[22px] leading-[24px] md:leading-[26px]
+                  className="text-gray-600 dark:text-gray-300 text-lg md:text-[22px] leading-6 md:leading-6.5
                  group-hover:text-primary font-semibold line-clamp-2 "
                 >
                   {news?.name}
                 </Link>
-                <p className="text-gray-500 text-base md:text-xl mt-2 line-clamp-2 md:line-clamp-3">
+                <p className="text-gray-500 dark:text-gray-500 text-base md:text-xl mt-2 line-clamp-2 md:line-clamp-3">
                   {truncate(news?.description)}
                 </p>
               </div>
 
               {/* Image Right Side */}
-              <div className="w-[120px] h-[100px] lg:w-[200px] lg:h-[150px] relative flex-shrink-0">
+              <div className="w-30 h-25 lg:w-50 lg:h-37.5 relative shrink-0">
                 <Image
                   src={news?.featured_image}
                   alt={news?.name}

@@ -34,6 +34,54 @@
     @apply bg-[#1e1e1e] border-gray-800;
   }
 
+  .dark .bg-gray-50 {
+    @apply bg-[#121212];
+  }
+
+  .dark .bg-gray-100 {
+    @apply bg-gray-900;
+  }
+
+  .dark .bg-gray-200 {
+    @apply bg-gray-800;
+  }
+
+  .dark .bg-gray-300 {
+    @apply bg-gray-700;
+  }
+
+  .dark .bg-gray-400 {
+    @apply bg-gray-600;
+  }
+
+  .dark .text-gray-400 {
+    @apply text-gray-500;
+  }
+
+  .dark .text-gray-300 {
+    @apply text-gray-400;
+  }
+
+  .dark .border-gray-400 {
+    @apply border-gray-700;
+  }
+
+  .dark .via-gray-300 {
+    @apply via-gray-800;
+  }
+
+  .dark .via-gray-200 {
+    @apply via-gray-900;
+  }
+
+  .dark .text-black {
+    @apply text-white;
+  }
+
+  .dark .text-gray-950 {
+    @apply text-white;
+  }
+
   .dark .text-gray-900 {
     @apply text-gray-100;
   }
@@ -50,19 +98,148 @@
     @apply text-gray-400;
   }
 
+  .dark .text-gray-500 {
+    @apply text-gray-400;
+  }
+
+  /* Color utility mappings for dark mode */
+  .dark .bg-red-50 {
+    @apply bg-red-950;
+  }
+
+  .dark .bg-red-100 {
+    @apply bg-red-900;
+  }
+
+  .dark .bg-red-500 {
+    @apply bg-red-700;
+  }
+
+  .dark .bg-red-600 {
+    @apply bg-red-700;
+  }
+
+  .dark .bg-blue-50 {
+    @apply bg-blue-950;
+  }
+
+  .dark .bg-blue-100 {
+    @apply bg-blue-900;
+  }
+
+  .dark .bg-blue-200 {
+    @apply bg-blue-800;
+  }
+
+  .dark .bg-blue-600 {
+    @apply bg-blue-700;
+  }
+
+  .dark .bg-green-50 {
+    @apply bg-green-950;
+  }
+
+  .dark .bg-green-100 {
+    @apply bg-green-900;
+  }
+
+  .dark .bg-green-600 {
+    @apply bg-green-700;
+  }
+
+  .dark .bg-green-700 {
+    @apply bg-green-800;
+  }
+
+  .dark .text-red-500 {
+    @apply text-red-400;
+  }
+
+  .dark .text-red-600 {
+    @apply text-red-400;
+  }
+
+  .dark .text-blue-600 {
+    @apply text-blue-400;
+  }
+
+  .dark .text-blue-700 {
+    @apply text-blue-400;
+  }
+
+  .dark .text-green-600 {
+    @apply text-green-400;
+  }
+
+  .dark .text-green-700 {
+    @apply text-green-400;
+  }
+
+  .dark .border-red-400 {
+    @apply border-red-700;
+  }
+
+  .dark .border-blue-600 {
+    @apply border-blue-700;
+  }
+
+  .dark .border-blue-700 {
+    @apply border-blue-800;
+  }
+
+  .dark .border-green-400 {
+    @apply border-green-700;
+  }
+
+  .dark select {
+    @apply bg-[#1e1e1e] text-gray-100 border-gray-800;
+  }
+
+  .dark option {
+    @apply bg-[#1e1e1e] text-gray-100;
+  }
+
+  .dark input,
+  .dark textarea {
+    @apply bg-[#1e1e1e] text-gray-100 border-gray-800 placeholder-gray-500;
+  }
+
+  .dark input:focus,
+  .dark textarea:focus {
+    @apply border-gray-700 ring-gray-700;
+  }
+
   .dark .border-gray-100,
   .dark .border-gray-200,
-  .dark .border-gray-300 {
+  .dark .border-gray-300,
+  .dark .border-slate-300 {
     @apply border-gray-800;
   }
 
-  .dark .border-slate-300,
-  .dark .border-gray-300 {
+  .dark .divide-gray-100 > * + *,
+  .dark .divide-gray-200 > * + *,
+  .dark .divide-gray-300 > * + * {
     @apply border-gray-800;
+  }
+
+  .dark .hover\:bg-gray-100:hover {
+    @apply bg-gray-800;
+  }
+
+  .dark .hover\:bg-gray-50:hover {
+    @apply bg-gray-900;
   }
 
   .dark .hover\:bg-\[\#eff3f6\]:hover {
     @apply bg-[#1e1e1e];
+  }
+
+  .dark .hover\:bg-red-50:hover {
+    @apply bg-red-950;
+  }
+
+  .dark .hover\:bg-blue-100:hover {
+    @apply bg-blue-900;
   }
 
   .dark .bg-\[\#eff3f6\] {
@@ -75,6 +252,66 @@
 
   .dark .bg-secondary {
     @apply bg-[#1e1e1e];
+  }
+
+  /* Hover text color fixes */
+  .dark .hover\:text-gray-700:hover {
+    @apply text-gray-300;
+  }
+
+  .dark .hover\:text-gray-600:hover {
+    @apply text-gray-400;
+  }
+
+  .dark .hover\:text-primary:hover {
+    @apply text-red-400;
+  }
+
+  /* placeholder color fixes */
+  .dark .placeholder-black {
+    @apply placeholder-gray-300;
+  }
+
+  .dark .placeholder-gray-300 {
+    @apply placeholder-gray-600;
+  }
+
+  /* Ring and border focus states */
+  .dark .focus\:ring-blue-500:focus {
+    --tw-ring-color: rgb(59 130 246);
+  }
+
+  .dark .focus\:border-blue-500:focus {
+    @apply border-blue-700;
+  }
+
+  /* Shadow adjustments */
+  .dark .shadow-sm,
+  .dark .shadow,
+  .dark .shadow-md,
+  .dark .shadow-lg,
+  .dark .shadow-xl {
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.5),
+      0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Scrollbar styling */
+  .dark::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .dark::-webkit-scrollbar-track {
+    @apply bg-gray-800;
+  }
+
+  .dark::-webkit-scrollbar-thumb {
+    @apply bg-gray-600 rounded-full;
+  }
+
+  .dark::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500;
   }
 }
 
@@ -102,6 +339,92 @@
 
   .dark .section-title {
     @apply text-gray-100;
+  }
+
+  /* Card Styling */
+  .card-light {
+    @apply bg-white text-gray-900;
+  }
+
+  .dark .card-light {
+    @apply bg-[#1e1e1e] text-gray-100 border-gray-800;
+  }
+
+  /* Button Styling */
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-red-700 transition-colors;
+  }
+
+  .dark .btn-primary {
+    @apply bg-red-700 hover:bg-red-600;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-200 text-gray-900 hover:bg-gray-300 transition-colors;
+  }
+
+  .dark .btn-secondary {
+    @apply bg-gray-800 text-gray-100 hover:bg-gray-700;
+  }
+
+  /* Link Styling */
+  .link-light {
+    @apply text-gray-900 hover:text-primary transition-colors;
+  }
+
+  .dark .link-light {
+    @apply text-gray-100 hover:text-red-400;
+  }
+
+  /* Badge Styling */
+  .badge-light {
+    @apply bg-gray-100 text-gray-900;
+  }
+
+  .dark .badge-light {
+    @apply bg-gray-800 text-gray-100;
+  }
+
+  .badge-primary {
+    @apply bg-primary text-white;
+  }
+
+  .dark .badge-primary {
+    @apply bg-red-700 text-white;
+  }
+
+  /* Input Focus Ring */
+  .input-focus {
+    @apply focus:ring-2 focus:ring-primary focus:border-primary;
+  }
+
+  .dark .input-focus {
+    @apply focus:ring-red-700 focus:border-red-700;
+  }
+
+  /* Category Tags */
+  .tag-blue {
+    @apply bg-blue-100 text-blue-600;
+  }
+
+  .dark .tag-blue {
+    @apply bg-blue-950 text-blue-400;
+  }
+
+  .tag-green {
+    @apply bg-green-100 text-green-600;
+  }
+
+  .dark .tag-green {
+    @apply bg-green-950 text-green-400;
+  }
+
+  .tag-red {
+    @apply bg-red-100 text-red-600;
+  }
+
+  .dark .tag-red {
+    @apply bg-red-950 text-red-400;
   }
 }
 

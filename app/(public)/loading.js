@@ -4,14 +4,14 @@ import Container from "@/components/common/Container";
 
 const HomeSkeleton = () => {
   return (
-    <div className="min-h-screen bg-[#eff3f6]">
+    <div className="min-h-screen bg-[#eff3f6] dark:bg-[#121212] transition-colors">
       {/* Ad Skeleton */}
       <Container>
         <Skeleton className="h-32 w-full my-4" />
       </Container>
 
       {/* Trending Bar Skeleton */}
-      <div className="bg-white border-y border-gray-200 py-2">
+      <div className="bg-white dark:bg-[#1e1e1e] border-y border-gray-200 dark:border-gray-700 py-2">
         <Container>
           <div className="flex gap-4">
             <Skeleton className="h-6 w-20" />

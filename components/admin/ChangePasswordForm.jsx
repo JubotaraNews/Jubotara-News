@@ -49,62 +49,60 @@ export default function ChangePasswordForm() {
   };
 
   return (
-    <>
-      <div className="max-w-md mx-auto p-6 bg-white rounded shadow">
-        <h2 className="text-xl font-bold mb-4">Change Password</h2>
+    <div className="max-w-md mx-auto p-8 bg-white dark:bg-[#1e1e1e] rounded-xl shadow-lg border dark:border-gray-800 transition-colors">
+      <h2 className="text-2xl font-bold mb-6 dark:text-gray-100">Change Password</h2>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Current Password */}
-          <div>
-            <label className="block mb-1">বর্তমান পাসওয়ার্ড</label>
-            <input
-              type="password"
-              name="currentPassword"
-              value={formData.currentPassword}
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
-              required
-            />
-          </div>
+      <form onSubmit={handleSubmit} className="space-y-5">
+        {/* Current Password */}
+        <div>
+          <label className="block mb-1.5 font-medium text-gray-700 dark:text-gray-300">বর্তমান পাসওয়ার্ড</label>
+          <input
+            type="password"
+            name="currentPassword"
+            value={formData.currentPassword}
+            onChange={handleChange}
+            className="w-full p-2.5 border dark:border-gray-700 rounded-lg dark:bg-[#121212] dark:text-white focus:ring-2 focus:ring-blue-500 outline-none"
+            required
+          />
+        </div>
 
-          {/* New Password */}
-          <div>
-            <label className="block mb-1">নতুন পাসওয়ার্ড</label>
-            <input
-              type="password"
-              name="newPassword"
-              value={formData.newPassword}
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
-              required
-            />
-          </div>
+        {/* New Password */}
+        <div>
+          <label className="block mb-1.5 font-medium text-gray-700 dark:text-gray-300">নতুন পাসওয়ার্ড</label>
+          <input
+            type="password"
+            name="newPassword"
+            value={formData.newPassword}
+            onChange={handleChange}
+            className="w-full p-2.5 border dark:border-gray-700 rounded-lg dark:bg-[#121212] dark:text-white focus:ring-2 focus:ring-blue-500 outline-none"
+            required
+          />
+        </div>
 
-          {/* Confirm Password */}
-          <div>
-            <label className="block mb-1">কনফার্ম পাসওয়ার্ড</label>
-            <input
-              type="password"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
-              required
-            />
-          </div>
+        {/* Confirm Password */}
+        <div>
+          <label className="block mb-1.5 font-medium text-gray-700 dark:text-gray-300">কনফার্ম পাসওয়ার্ড</label>
+          <input
+            type="password"
+            name="confirmPassword"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            className="w-full p-2.5 border dark:border-gray-700 rounded-lg dark:bg-[#121212] dark:text-white focus:ring-2 focus:ring-blue-500 outline-none"
+            required
+          />
+        </div>
 
-          {/* Error & Success Message */}
-          {error && <p className="text-red-500 text-sm">{error}</p>}
-          {success && <p className="text-green-600 text-sm">{success}</p>}
+        {/* Error & Success Message */}
+        {error && <p className="text-red-500 dark:text-red-400 text-sm font-medium">{error}</p>}
+        {success && <p className="text-green-600 dark:text-green-400 text-sm font-medium">{success}</p>}
 
-          <button
-            type="submit"
-            className="w-full bg-black text-white py-2 rounded "
-          >
-            Update Password
-          </button>
-        </form>
-      </div>
-    </>
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition font-semibold shadow-sm"
+        >
+          Update Password
+        </button>
+      </form>
+    </div>
   );
 }

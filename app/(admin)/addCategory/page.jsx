@@ -71,7 +71,7 @@ export default function CategoryPage() {
     <div className="max-w-4xl mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-6">Manage Categories</h1>
 
-      <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100 mb-8">
+      <div className="bg-white dark:bg-[#1e1e1e] p-6 rounded-xl shadow-md border border-gray-100 dark:border-gray-800 mb-8">
         <h2 className="text-lg font-semibold mb-4">Add New Category</h2>
         <form onSubmit={handleSubmit} className="flex gap-4">
           <input
@@ -92,13 +92,13 @@ export default function CategoryPage() {
         </form>
       </div>
 
-      <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+      <div className="bg-white dark:bg-[#1e1e1e] p-6 rounded-xl shadow-md border border-gray-100 dark:border-gray-800">
         <h2 className="text-lg font-semibold mb-4">Existing Categories</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {categories.map((cat) => (
             <div
               key={cat._id}
-              className="flex items-center justify-between p-3 border rounded-lg bg-gray-50"
+              className="flex items-center justify-between p-3 border rounded-lg bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700"
             >
               <span className="font-medium">{cat.name}</span>
               <button

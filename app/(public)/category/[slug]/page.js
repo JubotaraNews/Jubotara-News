@@ -151,7 +151,7 @@ export default async function CategoryPage({ params, searchParams }) {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#eff3f6]">
+    <div className="flex flex-col min-h-screen bg-[#eff3f6] dark:bg-[#121212]">
       {/* Add Structured Data */}
       <script
         type="application/ld+json"
@@ -164,10 +164,10 @@ export default async function CategoryPage({ params, searchParams }) {
               {/* Category Title */}
               <div className="mb-4">
                 <div className="flex items-center gap-4  mb-4">
-                  <h1 className="text-3xl font-bold text-[#003366]">
+                  <h1 className="text-3xl font-bold text-[#003366] dark:text-gray-300">
                     {categoryName}
                   </h1>
-                  <div className="flex-1 border-t border-gray-300 mt-2"></div>
+                  <div className="flex-1 border-t border-gray-300 dark:border-gray-700 mt-2"></div>
                 </div>
 
                 {/* Sub-categories Bar */}
@@ -188,20 +188,20 @@ export default async function CategoryPage({ params, searchParams }) {
                 {/* Main Content */}
                 <div className="w-full">
                   {featuredNews ? (
-                    <div className="mb-2 md:mb-4 border-b border-gray-300 pb-2 md:pb-4">
+                    <div className="mb-2 md:mb-4 border-b border-gray-300 dark:border-gray-700 pb-2 md:pb-4">
                       <Link
                         href={`/news/${featuredNews.slug}`}
                         className="flex flex-col md:flex-row gap-4"
                       >
                         <div className="md:w-1/2">
-                          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight hover:text-red-600 transition-colors mb-4">
+                          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-gray-300 leading-tight hover:text-red-600 transition-colors mb-4">
                             {featuredNews.name}
                           </h2>
-                          <p className="text-gray-600 text-base md:text-xl line-clamp-3 lg:line-clamp-6">
+                          <p className="text-gray-600 dark:text-gray-400 text-base md:text-xl line-clamp-3 lg:line-clamp-6">
                             {truncate(featuredNews?.description, 1000)}
                           </p>
                         </div>
-                        <div className="md:w-1/2 relative h-[250px] md:h-auto min-h-[250px] md:min-h-[300px]">
+                        <div className="md:w-1/2 relative h-62.5 md:h-auto min-h-62.5 md:min-h-75">
                           <Image
                             src={featuredNews.featured_image}
                             alt={featuredNews.name}
@@ -227,20 +227,20 @@ export default async function CategoryPage({ params, searchParams }) {
                       <Link
                         key={news.id}
                         href={`/news/${news.slug}`}
-                        className="flex gap-3 group border border-gray-300 p-3 hover:bg-gray-50 transition-colors rounded-lg shadow-sm"
+                        className="flex gap-3 group border border-gray-300 dark:border-gray-800/80 p-3 hover:bg-gray-50 dark:hover:bg-[#181818] transition-colors rounded-lg shadow-sm"
                       >
                         <div className="flex-1">
                           <h3
-                            className="text-base md:text-xl font-bold text-gray-800 leading-snug group-hover:text-red-600 
+                            className="text-base md:text-xl font-bold text-gray-800 dark:text-gray-300 leading-snug group-hover:text-red-600 
                                                     transition-colors line-clamp-2"
                           >
                             {news.name}
                           </h3>
-                          <p className="text-gray-600 text-base md:text-xl line-clamp-1">
+                          <p className="text-gray-600 dark:text-gray-400 text-base md:text-xl line-clamp-1">
                             {truncate(news?.description)}
                           </p>
                         </div>
-                        <div className="relative w-24 h-24 flex-shrink-0">
+                        <div className="relative w-24 h-24 shrink-0">
                           <Image
                             src={news.featured_image}
                             alt={news.name}
@@ -257,7 +257,7 @@ export default async function CategoryPage({ params, searchParams }) {
                       {currentPage > 1 && (
                         <Link
                           href={`/category/${slug}?page=${currentPage - 1}`}
-                          className="px-4 py-2 bg-white border border-gray-300 rounded hover:bg-gray-100 text-[#003366] font-bold"
+                          className="px-4 py-2 bg-white dark:bg-[#1e1e1e] border border-gray-300 dark:border-gray-800/80 rounded hover:bg-gray-100 dark:hover:bg-[#181818] text-[#003366] dark:text-gray-300 font-bold"
                         >
                           পূর্ববর্তী
                         </Link>
@@ -281,8 +281,8 @@ export default async function CategoryPage({ params, searchParams }) {
                                                                                                         text-base md:text-xl ${
                                                                                                           currentPage ===
                                                                                                           pageNum
-                                                                                                            ? "bg-red-700 text-white border-red-700"
-                                                                                                            : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
+                                                                                                            ? "bg-red-700 dark:bg-red-950 text-white border-red-700 dark:border-red-950"
+                                                                                                            : "bg-white dark:bg-[#1e1e1e] text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-800/80 hover:bg-gray-100 dark:hover:bg-[#181818]"
                                                                                                         }`}
                               >
                                 {toBanglaNumber(pageNum)}
@@ -308,7 +308,7 @@ export default async function CategoryPage({ params, searchParams }) {
                       {currentPage < totalPages && (
                         <Link
                           href={`/category/${slug}?page=${currentPage + 1}`}
-                          className="px-4 py-2 bg-white border border-gray-300 rounded hover:bg-gray-100 text-[#003366] font-bold"
+                          className="px-4 py-2 bg-white dark:bg-[#1e1e1e] border border-gray-300 dark:border-gray-800/80 rounded hover:bg-gray-100 dark:hover:bg-[#181818] text-[#003366] dark:text-gray-300 font-bold"
                         >
                           পরবর্তী
                         </Link>
@@ -328,20 +328,20 @@ export default async function CategoryPage({ params, searchParams }) {
                     <Link
                       key={news.id}
                       href={`/news/${news.slug}`}
-                      className="flex gap-3 group border-b border-gray-200 pb-4 last:border-0"
+                      className="flex gap-3 group border-b border-gray-200 dark:border-gray-700/70 pb-4 last:border-0"
                     >
                       <div className="flex-1">
                         <h4
-                          className="text-base md:text-xl font-bold text-gray-800 leading-tight group-hover:text-red-600
+                          className="text-base md:text-xl font-bold text-gray-800 dark:text-gray-300 leading-tight group-hover:text-red-600
                                                  transition-colors line-clamp-2"
                         >
                           {news?.name}
                         </h4>
-                        <p className="text-base md:text-xl text-gray-500 mt-1 line-clamp-1">
+                        <p className="text-base md:text-xl text-gray-500 dark:text-gray-400 mt-1 line-clamp-1">
                           {truncate(news?.description)}
                         </p>
                       </div>
-                      <div className="relative w-16 h-16 flex-shrink-0">
+                      <div className="relative w-16 h-16 shrink-0">
                         <Image
                           src={news?.featured_image || news.image}
                           alt={news?.name || "news image"}

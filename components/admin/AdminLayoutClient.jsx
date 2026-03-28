@@ -15,7 +15,7 @@ export default function AdminLayoutClient({ children }) {
         
         <div className="flex-1 flex flex-col min-h-screen lg:pl-64 transition-all duration-300">
           <AdminNavbar onMenuClick={() => setIsSidebarOpen(true)} />
-          <main className="flex-1 pt-20 p-4 md:p-6 lg:p-8 bg-[#eff3f6]">
+          <main className="flex-1 pt-20 p-4 md:p-6 lg:p-8">
             {children}
           </main>
           <AdminFooter />

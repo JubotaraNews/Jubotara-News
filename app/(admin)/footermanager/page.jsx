@@ -66,16 +66,16 @@ export default function FooterManager() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSaving(true);
-    
+
     try {
       // Save each field as a separate setting for maximum flexibility
-      const promises = Object.entries(footerData).map(([key, value]) => 
-        saveSetting(key, value)
+      const promises = Object.entries(footerData).map(([key, value]) =>
+        saveSetting(key, value),
       );
-      
+
       const results = await Promise.all(promises);
-      
-      if (results.every(res => res)) {
+
+      if (results.every((res) => res)) {
         toast.success("Footer settings updated successfully!");
       } else {
         toast.warn("Some settings might not have saved correctly.");
@@ -87,10 +87,11 @@ export default function FooterManager() {
     }
   };
 
-  if (loading) return <div className="p-8 text-center">Loading footer settings...</div>;
+  if (loading)
+    return <div className="p-8 text-center">Loading footer settings...</div>;
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-8">
+    <div className="max-w-5xl mx-auto px-4 py-8 mt-5">
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-2xl font-bold">Footer Content Manager</h1>
         <button
@@ -106,13 +107,15 @@ export default function FooterManager() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* About Section */}
         <div className="space-y-6">
-          <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+          <div className="bg-white dark:bg-[#1e1e1e] p-6 rounded-xl shadow-md border border-gray-100 dark:border-gray-700">
             <div className="flex items-center gap-2 mb-4 text-blue-600">
               <MdInfo size={24} />
               <h2 className="text-lg font-semibold">About Content</h2>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">About Text (Bengali)</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                About Text (Bengali)
+              </label>
               <textarea
                 name="about_text"
                 value={footerData.about_text}
@@ -124,14 +127,16 @@ export default function FooterManager() {
           </div>
 
           {/* Contact Section */}
-          <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+          <div className="bg-white dark:bg-[#1e1e1e] p-6 rounded-xl shadow-md border border-gray-100 dark:border-gray-700">
             <div className="flex items-center gap-2 mb-4 text-green-600">
               <MdContactPhone size={24} />
               <h2 className="text-lg font-semibold">Contact Information</h2>
             </div>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Address
+                </label>
                 <input
                   type="text"
                   name="address"
@@ -141,7 +146,9 @@ export default function FooterManager() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Phone
+                </label>
                 <input
                   type="text"
                   name="phone"
@@ -151,7 +158,9 @@ export default function FooterManager() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Email
+                </label>
                 <input
                   type="email"
                   name="email"
@@ -165,14 +174,16 @@ export default function FooterManager() {
         </div>
 
         {/* Social Links Section */}
-        <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+        <div className="bg-white dark:bg-[#1e1e1e] p-6 rounded-xl shadow-md border border-gray-100 dark:border-gray-700">
           <div className="flex items-center gap-2 mb-4 text-red-600">
             <MdShare size={24} />
             <h2 className="text-lg font-semibold">Social Media Links</h2>
           </div>
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Facebook URL</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Facebook URL
+              </label>
               <input
                 type="url"
                 name="facebook_url"
@@ -183,7 +194,9 @@ export default function FooterManager() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Twitter URL</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Twitter URL
+              </label>
               <input
                 type="url"
                 name="twitter_url"
@@ -194,7 +207,9 @@ export default function FooterManager() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">YouTube URL</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                YouTube URL
+              </label>
               <input
                 type="url"
                 name="youtube_url"
@@ -205,7 +220,9 @@ export default function FooterManager() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Instagram URL</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Instagram URL
+              </label>
               <input
                 type="url"
                 name="instagram_url"

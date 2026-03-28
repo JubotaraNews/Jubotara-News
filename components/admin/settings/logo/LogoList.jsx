@@ -40,20 +40,22 @@ export default function LogoList() {
     }
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <p className="dark:text-gray-400">Loading...</p>;
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-6">
       {logos.map((logo) => (
         <div
           key={logo._id}
-          className="border rounded-xl p-3 flex flex-col items-center"
+          className="bg-white dark:bg-[#1e1e1e] border dark:border-gray-800 rounded-xl p-3 flex flex-col items-center shadow-sm transition-colors"
         >
-          <img src={logo.logoUrl} className="h-20 object-contain" alt="" />
+          <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-2 w-full flex justify-center border dark:border-gray-700">
+             <img src={logo.logoUrl} className="h-20 object-contain" alt="Logo" />
+          </div>
 
           <button
             onClick={() => deleteLogo(logo._id)}
-            className="mt-3 text-sm text-white bg-red-500 px-3 py-1 rounded"
+            className="mt-3 text-sm text-white bg-red-600 hover:bg-red-700 px-4 py-1.5 rounded-lg transition-colors font-medium shadow-sm"
           >
             Delete
           </button>

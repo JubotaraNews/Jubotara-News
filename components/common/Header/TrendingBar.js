@@ -11,23 +11,20 @@ import "swiper/css";
 
 const TrendingBar = ({ trendingTags }) => {
   return (
-    <div className=" py-3.5">
+    <div className="bg-white dark:bg-[#121212] py-3.5 border-b border-gray-100 dark:border-gray-800">
       <Container>
         <div className="flex items-center gap-4">
-
           {/* Left Title */}
-          <div className="flex items-center gap-2 shrink-0 bg-red-100 px-3 md:px-4 py-0.5">
+          <div className="flex items-center gap-2 shrink-0 bg-red-100 dark:bg-red-900/20 px-3 md:px-4 py-0.5">
             <span className="text-[#EE1D23] font-black text-[15px] sm:text-base md:text-lg ">
               ট্রেন্ডিং
             </span>
             <TrendingUp
               size={16}
               className="text-[#EE1D23]"
-            //   strokeWidth={2.5}
+              //   strokeWidth={2.5}
             />
           </div>
-
-
 
           {/* Swiper Slider */}
           <div className=" overflow-hidden">
@@ -40,17 +37,14 @@ const TrendingBar = ({ trendingTags }) => {
                 delay: 2500,
                 disableOnInteraction: false,
               }}
-              className="!overflow-visible"
+              className="overflow-visible!"
             >
               {trendingTags?.map((topic) => (
-                <SwiperSlide
-                  key={topic.id}
-                  className="!w-auto "
-                >
+                <SwiperSlide key={topic.id} className="w-auto! ">
                   <Link
                     href={`/category/${topic?.slug}`}
-                    className="text-[#003366] font-black text-[15px] sm:text-base md:text-lg hover:text-[#EE1D23] transition-colors
-                     uppercase   bg-gray-200 px-3 md:px-4 py-1"
+                    className="text-[#003366] dark:text-blue-400 font-black text-[15px] sm:text-base md:text-lg hover:text-[#EE1D23] transition-colors
+                     uppercase bg-gray-200 dark:bg-gray-800 px-3 md:px-4 py-1"
                   >
                     {topic?.name}
                   </Link>
@@ -58,7 +52,6 @@ const TrendingBar = ({ trendingTags }) => {
               ))}
             </Swiper>
           </div>
-
         </div>
       </Container>
     </div>

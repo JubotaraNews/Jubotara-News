@@ -16,8 +16,8 @@ const Navbar = ({ news_categories }) => {
                 href={item.href}
                 className={`px-3 py-4 text-[13px] sm:text-sm md:text-xl font-semibold tracking-wide transition-colors duration-200 flex items-center gap-1 ${
                   pathname === item.href
-                    ? "text-black underline decoration-2 underline-offset-8"
-                    : "text-black hover:text-black/80"
+                    ? "text-black dark:text-white underline decoration-2 underline-offset-8"
+                    : "text-black dark:text-white hover:text-black/80 dark:hover:text-white/80"
                 }`}
               >
                 {item?.name}
@@ -29,8 +29,8 @@ const Navbar = ({ news_categories }) => {
               href={`/video`}
               className={`px-3 py-4 text-[13px] sm:text-sm md:text-xl font-semibold tracking-wide transition-colors duration-200 flex items-center gap-1 ${
                 pathname === "/video"
-                  ? "text-black underline decoration-2 underline-offset-8"
-                  : "text-black/90 hover:text-black"
+                  ? "text-black dark:text-white underline decoration-2 underline-offset-8"
+                  : "text-black/90 dark:text-white/90 hover:text-black dark:hover:text-white"
               }`}
             >
               ভিডিও
@@ -41,8 +41,8 @@ const Navbar = ({ news_categories }) => {
               href={`/epaper`}
               className={`px-3 py-4 text-[13px] sm:text-sm md:text-xl font-semibold tracking-wide transition-colors duration-200 flex items-center gap-1 ${
                 pathname === "/epaper"
-                  ? "text-black underline decoration-2 underline-offset-8"
-                  : "text-black/90 hover:text-black"
+                  ? "text-black dark:text-white underline decoration-2 underline-offset-8"
+                  : "text-black/90 dark:text-white/90 hover:text-black dark:hover:text-white"
               }`}
             >
               ই-পেপার

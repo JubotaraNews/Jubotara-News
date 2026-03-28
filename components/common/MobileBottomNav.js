@@ -63,19 +63,19 @@ export default function MobileBottomNav({ news_categories }) {
 
       {/* Category Drawer */}
       <div
-        className={`fixed inset-y-0 left-0 w-[85%] max-w-sm bg-white z-[110] shadow-2xl transition-transform duration-500 ease-out md:hidden flex flex-col ${
+        className={`fixed inset-y-0 left-0 w-[85%] max-w-sm bg-white dark:bg-[#121212] z-[110] shadow-2xl transition-transform duration-500 ease-out md:hidden flex flex-col ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         {/* Drawer Header */}
-        <div className="p-6 border-b border-gray-100 flex items-center justify-between bg-white text-black">
+        <div className="p-6 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between bg-white dark:bg-[#121212] text-black dark:text-white">
           <div>
             <h2 className="text-lg font-black">যুবতারা নিউজ</h2>
             <p className="text-base opacity-80">সর্বশেষ সংবাদ ও বিনোদন</p>
           </div>
           <button
             onClick={() => setIsMenuOpen(false)}
-            className="w-8 h-8 flex items-center justify-center rounded-full bg-black/10 hover:bg-black/20 transition-colors"
+            className="w-8 h-8 flex items-center justify-center rounded-full bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 transition-colors"
           >
             <X size={20} />
           </button>
@@ -83,29 +83,29 @@ export default function MobileBottomNav({ news_categories }) {
 
         {/* Categories Scrollable Area */}
         <div className="flex-1 overflow-y-auto p-4 space-y-2">
-          <p className="text-lg font-bold text-gray-700 uppercase tracking-widest mb-2 ">
+          <p className="text-lg font-bold text-gray-700 dark:text-gray-300 uppercase tracking-widest mb-2 ">
             বিভাগসমূহ
           </p>
           {news_categories?.map((cat) => (
             <Link
               key={cat?.id}
               href={`/category/${cat?.slug}`}
-              className="flex items-center justify-between gap-4 p-1 rounded-xl hover:bg-[#eff3f6] transition-all group"
+              className="flex items-center justify-between gap-4 p-1 rounded-xl hover:bg-[#eff3f6] dark:hover:bg-white/5 transition-all group"
             >
-              <span className="font-bold text-gray-500 group-hover:text-primary transition-colors">
+              <span className="font-bold text-gray-500 dark:text-gray-400 group-hover:text-primary dark:group-hover:text-red-500 transition-colors">
                 {cat?.name}
               </span>
-              <span className="w-8 h-8  flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors">
+              <span className="w-8 h-8  flex items-center justify-center text-gray-400 group-hover:bg-primary/10 dark:group-hover:bg-primary/20 group-hover:text-primary transition-colors">
                 <ChevronRight size={16} />
               </span>
             </Link>
           ))}
 
-          <div className="pt-6 border-t border-gray-100 mt-2 space-y-2">
+          <div className="pt-6 border-t border-gray-100 dark:border-gray-800 mt-2 space-y-2">
             {session ? (
               <Link
                 href="/dashboard"
-                className="flex items-center gap-2 text-gray-600 font-bold hover:text-primary transition-colors group"
+                className="flex items-center gap-2 text-gray-600 dark:text-gray-400 font-bold hover:text-primary transition-colors group"
               >
                 <User
                   size={20}
@@ -116,7 +116,7 @@ export default function MobileBottomNav({ news_categories }) {
             ) : (
               <Link
                 href="/login"
-                className="flex items-center gap-2 text-gray-600 font-bold hover:text-primary transition-colors group"
+                className="flex items-center gap-2 text-gray-600 dark:text-gray-400 font-bold hover:text-primary transition-colors group"
               >
                 <User
                   size={20}
@@ -129,7 +129,7 @@ export default function MobileBottomNav({ news_categories }) {
         </div>
 
         {/* Drawer Footer */}
-        <div className="p-6 bg-[#eff3f6] border-t border-gray-100">
+        <div className="p-6 bg-[#eff3f6] dark:bg-[#1a1a1a] border-t border-gray-100 dark:border-gray-800">
           <div className="flex gap-4 justify-center">
             <a
               href="#"
@@ -139,7 +139,7 @@ export default function MobileBottomNav({ news_categories }) {
             </a>
             <a
               href="#"
-              className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center transition-transform hover:scale-110"
+              className="w-10 h-10 rounded-full bg-black dark:bg-white/10 text-white dark:text-white/90 flex items-center justify-center transition-transform hover:scale-110"
             >
               <Twitter size={20} />
             </a>
@@ -154,7 +154,7 @@ export default function MobileBottomNav({ news_categories }) {
       </div>
 
       {/* Bottom Navigation Bar */}
-      <nav className="fixed bottom-0 left-0 right-0 z-[100] md:hidden bg-white backdrop-blur-xl border-t border-gray-100 shadow-[0_-8px_30px_rgba(0,0,0,0.08)] pb-safe">
+      <nav className="fixed bottom-0 left-0 right-0 z-[100] md:hidden bg-white/95 dark:bg-[#121212]/95 backdrop-blur-md border-t border-gray-100 dark:border-gray-800 shadow-[0_-8px_30px_rgba(0,0,0,0.08)] dark:shadow-[0_-8px_30px_rgba(0,0,0,0.3)] pb-safe">
         <div className="flex items-center justify-between h-16 px-2 max-w-lg mx-auto">
           {navItems.map((item) => {
             const isActive = pathname === item.path;
@@ -163,7 +163,9 @@ export default function MobileBottomNav({ news_categories }) {
                 key={item.path}
                 href={item.path}
                 className={`flex flex-col items-center justify-center w-full h-full space-y-1 transition-all duration-300 ${
-                  isActive ? "text-primary" : "text-black hover:text-primary"
+                  isActive
+                    ? "text-primary"
+                    : "text-black dark:text-gray-400 hover:text-primary"
                 }`}
               >
                 <div
@@ -184,7 +186,9 @@ export default function MobileBottomNav({ news_categories }) {
           <button
             onClick={() => setIsMenuOpen(true)}
             className={`flex flex-col items-center justify-center w-full h-full space-y-1 transition-all duration-300 ${
-              isMenuOpen ? "text-primary" : "text-black hover:text-primary"
+              isMenuOpen
+                ? "text-primary"
+                : "text-black dark:text-gray-400 hover:text-primary"
             }`}
           >
             <div

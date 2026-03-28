@@ -33,7 +33,7 @@ export default async function PublicLayout({ children }) {
       className={`${solaimanLipi.variable} font-sans`}
       suppressHydrationWarning
     >
-      <body className=" bg-[#eff3f6] pb-16 md:pb-0">
+      <body className="pb-16 md:pb-0 bg-[#eff3f6] dark:bg-[#121212] transition-colors duration-300">
         <Providers>
           <Header />
           {children}

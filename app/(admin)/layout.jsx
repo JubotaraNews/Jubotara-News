@@ -18,13 +18,15 @@ export const metadata = {
 
 export default function AdminLayout({ children }) {
   return (
-    <html lang="bn" className={`${solaimanLipi.variable} font-sans`} suppressHydrationWarning>
-      <body className="bg-[#eff3f6]">
-          <AdminLayoutClient>
-            {children}
-          </AdminLayoutClient>
-          <ToastContainer position="top-right" autoClose={3000} />
-          <SpeedInsights />
+    <html
+      lang="bn"
+      className={`${solaimanLipi.variable} font-sans`}
+      suppressHydrationWarning
+    >
+      <body className="bg-[#eff3f6] dark:bg-[#121212] transition-colors">
+        <AdminLayoutClient>{children}</AdminLayoutClient>
+        <ToastContainer position="top-right" autoClose={3000} />
+        <SpeedInsights />
       </body>
     </html>
   );

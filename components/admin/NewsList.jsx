@@ -7,7 +7,7 @@ import Skeleton from "@/components/common/Skeleton";
 const NewsListSkeleton = () => (
   <div className="space-y-4">
     {[1, 2, 3, 4, 5].map((i) => (
-      <div key={i} className="p-4 bg-white border-b border-gray-300 rounded-md shadow-sm">
+      <div key={i} className="p-4 bg-white dark:bg-[#1e1e1e] border-b border-gray-300 dark:border-gray-800 rounded-md shadow-sm">
         <div className="flex justify-between mb-4">
           <Skeleton className="h-4 w-24" />
           <Skeleton className="h-6 w-16" />
@@ -129,10 +129,10 @@ const NewsList = ({ onEditClick }) => {
 
   return (
     <div className="max-w-7xl mx-auto lg:w-full">
-      <h2 className="text-2xl font-bold mb-4">সংবাদ ব্যবস্থাপনা</h2>
+      <h2 className="text-2xl font-bold mb-4 dark:text-gray-100">সংবাদ ব্যবস্থাপনা</h2>
 
       {/* Status Tabs */}
-      <div className="flex border-b mb-6 overflow-x-auto">
+      <div className="flex border-b dark:border-gray-800 mb-6 overflow-x-auto">
         {STATUS_TABS.map((tab) => (
           <button
             key={tab.value}
@@ -140,7 +140,7 @@ const NewsList = ({ onEditClick }) => {
             className={`px-6 py-3 text-sm font-medium transition whitespace-nowrap ${
               selectedStatus === tab.value
                 ? "border-b-2 border-blue-600 text-blue-600"
-                : "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
+                : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800"
             }`}
           >
             {tab.label}
@@ -157,7 +157,7 @@ const NewsList = ({ onEditClick }) => {
             className={`px-3 py-1.5 rounded-full text-xs font-medium border transition ${
               selectedCategory === cat.name
                 ? "bg-blue-600 text-white border-blue-700"
-                : "bg-white text-gray-700 hover:bg-gray-100"
+                : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700"
             }`}
           >
             {cat.name}
@@ -168,7 +168,7 @@ const NewsList = ({ onEditClick }) => {
       {isLoading ? (
         <NewsListSkeleton />
       ) : news.length === 0 ? (
-        <p>কোনো সংবাদ পাওয়া যায়নি।</p>
+        <p className="dark:text-gray-400">কোনো সংবাদ পাওয়া যায়নি।</p>
       ) : (
         <div className="space-y-4">
           {news.map((item) => (
