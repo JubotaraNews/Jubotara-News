@@ -14,6 +14,7 @@ import {
   getSingleNews,
   getTrandingNews,
   getSettings,
+  getCategoryByName,
 } from "@/lib/localData";
 import { formatBengaliDate } from "@/utils/formatDate";
 import { FRONT_END_URL } from "@/utils/baseUrl";
@@ -130,12 +131,10 @@ export default async function NewsDetailPage({ params }) {
   const whatsappChannelUrl =
     getMetaValueByMetaName(settings, "whats_app_channle_link") || "#";
 
-  let category;
-  if (news?.categories) {
-    category = news?.categories[0];
-  }
+  const categoryObj = await getCategoryByName(news.category);
+  const categorySlug = categoryObj?.slug || "all";
 
-  const reletedNews = await getRelatedNews(category?.slug, news._id, 6);
+  const reletedNews = await getRelatedNews(categorySlug, news._id, 6);
 
   const formattedPublishedDate = formatBengaliDate(news?.created_at);
 
@@ -374,7 +373,7 @@ export default async function NewsDetailPage({ params }) {
         <ThumbnailNewsSection
           title={"আরও খবর"}
           news={reletedNews}
-          slug={category?.slug}
+          slug={categorySlug}
         />
       </div>
     </>
