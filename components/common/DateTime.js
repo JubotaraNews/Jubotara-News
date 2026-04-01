@@ -2,12 +2,15 @@
 import { useState, useEffect } from "react";
 
 const DateTime = () => {
-  const [dateTime, setDateTime] = useState(new Date());
+  const [dateTime, setDateTime] = useState(null);
 
   useEffect(() => {
+    setDateTime(new Date());
     const timer = setInterval(() => setDateTime(new Date()), 60000);
     return () => clearInterval(timer);
   }, []);
+
+  if (!dateTime) return null;
 
   const formatBengaliDate = (date) => {
     return date.toLocaleDateString("bn-BD", {

@@ -13,7 +13,6 @@ export default function NewsListPage() {
 
   const handleSuccess = () => {
     setEditingNews(null);
-    // You might want to trigger a refresh in NewsList if it doesn't auto-refresh
   };
 
   return (

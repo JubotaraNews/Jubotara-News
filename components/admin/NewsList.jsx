@@ -103,9 +103,23 @@ const NewsList = ({ onEditClick }) => {
   // =========================
   // 🔹 Edit & Delete handlers
   // =========================
-  const handleEdit = (id) => {
-    const itemToEdit = news.find((item) => item._id === id);
-    if (itemToEdit) onEditClick(itemToEdit);
+  const handleEdit = async (id) => {
+    try {
+      const res = await fetch(`/api/news/${id}`);
+      const data = await res.json();
+      if (res.ok) {
+        onEditClick(data);
+      } else {
+        console.error("Failed to fetch news details for editing");
+        // Fallback to what we have in the list if fetch fails
+        const itemToEdit = news.find((item) => item._id === id);
+        if (itemToEdit) onEditClick(itemToEdit);
+      }
+    } catch (err) {
+      console.error("Error fetching news details:", err);
+      const itemToEdit = news.find((item) => item._id === id);
+      if (itemToEdit) onEditClick(itemToEdit);
+    }
   };
 
   const handleDelete = async (id) => {

@@ -1,14 +1,3 @@
-import localFont from "next/font/local";
-import "../globals.css";
-import { Providers } from "@/provider/provider";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-
-const solaimanLipi = localFont({
-  src: "../../public/fonts/SolaimanLipi.ttf",
-  variable: "--font-solaiman-lipi",
-  display: "swap",
-});
-
 export const metadata = {
   title: "Authentication | Jubo Tara News",
   description: "Login or Register to Jubo Tara News",
@@ -16,17 +5,8 @@ export const metadata = {
 
 export default function AuthLayout({ children }) {
   return (
-    <html
-      lang="bn"
-      className={`${solaimanLipi.variable} font-sans`}
-      suppressHydrationWarning
-    >
-      <body className="bg-white dark:bg-[#121212]">
-        <Providers>
-          {children}
-          <SpeedInsights />
-        </Providers>
-      </body>
-    </html>
+    <div className="bg-white dark:bg-[#121212] min-h-screen">
+      {children}
+    </div>
   );
 }

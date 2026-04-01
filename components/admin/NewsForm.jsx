@@ -67,7 +67,6 @@ export default function NewsForm({ initialData, onSuccess }) {
     e.preventDefault();
     if (
       !formData.headline ||
-      !formData.reporterInfo ||
       !formData.category ||
       !formData.content
     ) {
@@ -160,7 +159,6 @@ export default function NewsForm({ initialData, onSuccess }) {
                 value={formData.reporterInfo}
                 onChange={handleChange}
                 className="w-full border dark:border-gray-700 px-3 py-2 rounded dark:bg-[#121212] dark:text-white"
-                required
               />
             </li>
             <li>
