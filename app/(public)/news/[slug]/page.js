@@ -174,7 +174,7 @@ export default async function NewsDetailPage({ params }) {
   return (
     <>
       {/* Dedicated Print Template - Only visible when printing */}
-      <NewsPrintTemplate news={news} category={category} />
+      <NewsPrintTemplate news={news} category={categoryObj} />
 
       {/* Screen UI - Hidden when printing */}
       <div className="flex flex-col min-h-screen bg-[#eff3f6] dark:bg-[#121212] print:hidden">
@@ -193,7 +193,7 @@ export default async function NewsDetailPage({ params }) {
                 {/* Category and Date */}
                 <div className="flex items-center gap-4 text-base md:text-xl">
                   <span className="bg-primary text-white px-3 py-1 font-bold">
-                    {category?.name}
+                    {categoryObj?.name || news.category}
                   </span>
                 </div>
 
