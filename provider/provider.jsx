@@ -6,7 +6,7 @@ import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
 import { makeStore } from "@/app/store/store";
 
-export function Providers({ children, session }) {
+export function Providers({ children, session = null }) {
   const storeRef = useRef(null);
   if (!storeRef.current) {
     storeRef.current = makeStore();

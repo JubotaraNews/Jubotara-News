@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import Container from '@/components/common/Container';
+import Link from 'next/link';
 
 export default function Error({ error, reset }) {
     useEffect(() => {
@@ -35,12 +36,12 @@ export default function Error({ error, reset }) {
                         >
                             আবার চেষ্টা করুন
                         </button>
-                        <a
+                        <Link
                             href="/"
                             className="inline-flex items-center justify-center px-8 py-3 text-lg font-bold text-[#003366] dark:text-blue-400 bg-white dark:bg-gray-800 border border-[#003366] dark:border-blue-400 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors shadow-sm"
                         >
                             হোমে ফিরে যান
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </Container>
