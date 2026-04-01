@@ -25,6 +25,8 @@ export default async function Home() {
     internationalNews,
     entertainmentNews,
     economyNews,
+    educationNews,
+    arrestNews,
   ] = await Promise.all([
     getTrendingTags(),
     getNewsByCat("রাজনীতি", 7),
@@ -37,6 +39,8 @@ export default async function Home() {
     getNewsByCat("আন্তর্জাতিক", 10),
     getNewsByCat("বিনোদন", 10),
     getNewsByCat("অর্থনীতি", 10),
+    getNewsByCat("শিক্ষা", 10),
+    getNewsByCat("গ্রেপ্তার", 10),
   ]);
 
   const politicsFirstNews = politicsNews[0];
@@ -141,6 +145,20 @@ export default async function Home() {
               news={economyNews}
               vertical={true}
               slug={"অর্থনীতি"}
+            />
+          </div>
+        </Container>
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 md:gap-4 xl:gap-6">
+            <PremiumCategoryBlock
+              title="শিক্ষা"
+              news={educationNews}
+              slug={"শিক্ষা"}
+            />
+            <PremiumCategoryBlock
+              title="গ্রেপ্তার"
+              news={arrestNews}
+              slug={"গ্রেপ্তার"}
             />
           </div>
         </Container>
