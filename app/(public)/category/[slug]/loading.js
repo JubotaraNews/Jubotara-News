@@ -4,7 +4,7 @@ import Container from "@/components/common/Container";
 
 const CategorySkeleton = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-[#eff3f6]">
+    <div className="flex flex-col min-h-screen bg-[#eff3f6] dark:bg-[#1e1e1e]">
       <main className="py-6 px-2">
         <Container>
           <div className="flex flex-col lg:flex-row gap-6">
@@ -18,7 +18,7 @@ const CategorySkeleton = () => {
               {/* Sub-categories Skeleton */}
               <div className="flex gap-2 mb-8 overflow-hidden">
                 {[1, 2, 3, 4, 5].map((i) => (
-                  <Skeleton key={i} className="h-8 w-24 flex-shrink-0" />
+                  <Skeleton key={i} className="h-8 w-24 shrink-0" />
                 ))}
               </div>
 
@@ -31,7 +31,7 @@ const CategorySkeleton = () => {
                     <Skeleton className="h-32 w-full" />
                   </div>
                   <div className="md:w-1/2">
-                    <Skeleton className="h-[300px] w-full" />
+                    <Skeleton className="h-75 w-full" />
                   </div>
                 </div>
               </div>
@@ -39,7 +39,10 @@ const CategorySkeleton = () => {
               {/* News Grid Skeleton */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {[1, 2, 3, 4, 5, 6].map((i) => (
-                  <div key={i} className="border border-gray-200 p-3 rounded-lg bg-white flex gap-3">
+                  <div
+                    key={i}
+                    className="border border-gray-200 p-3 rounded-lg bg-white dark:bg-[#1e1e1e] dark:border-[#1e1e1e] flex gap-3"
+                  >
                     <div className="flex-1 space-y-2">
                       <Skeleton className="h-4 w-full" />
                       <Skeleton className="h-4 w-3/4" />

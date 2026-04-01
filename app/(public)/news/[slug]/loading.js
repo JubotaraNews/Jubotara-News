@@ -4,11 +4,11 @@ import Container from "@/components/common/Container";
 
 const NewsDetailSkeleton = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-[#eff3f6]">
+    <div className="flex flex-col min-h-screen bg-[#eff3f6] dark:bg-[#1e1e1e]">
       <main className="py-2">
         <Container className="grid grid-cols-1 lg:grid-cols-12 gap-4">
           {/* Main Content Skeleton */}
-          <article className="lg:col-span-8 p-3 md:p-6 border border-slate-300 bg-white">
+          <article className="lg:col-span-8 p-3 md:p-6 border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#1e1e1e]">
             <div className="space-y-6">
               {/* Category Skeleton */}
               <Skeleton className="h-8 w-24" />
@@ -34,7 +34,7 @@ const NewsDetailSkeleton = () => {
               </div>
 
               {/* Main Image Skeleton */}
-              <Skeleton className="h-[400px] w-full" />
+              <Skeleton className="h-100 w-full" />
 
               {/* Body Text Skeleton */}
               <div className="space-y-4">
@@ -49,7 +49,7 @@ const NewsDetailSkeleton = () => {
 
           {/* Sidebar Skeleton */}
           <aside className="lg:col-span-4 space-y-6">
-            <div className="bg-white p-4 border border-slate-300">
+            <div className="bg-white dark:bg-[#1e1e1e] p-4 border border-slate-300 dark:border-slate-700">
               <Skeleton className="h-8 w-32 mb-4" />
               <div className="space-y-4">
                 {[1, 2, 3, 4, 5].map((i) => (

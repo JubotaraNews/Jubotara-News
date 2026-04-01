@@ -11,7 +11,7 @@ const HomeSkeleton = () => {
       </Container>
 
       {/* Trending Bar Skeleton */}
-      <div className="bg-white dark:bg-[#1e1e1e] border-y border-gray-200 dark:border-gray-700 py-2">
+      <div className="bg-white dark:bg-[#1e1e1e]  dark:border-gray-700bg-[#1e1e1e] border-y border-gray-200 dark:border-gray-700 py-2">
         <Container>
           <div className="flex gap-4">
             <Skeleton className="h-6 w-20" />
@@ -23,7 +23,7 @@ const HomeSkeleton = () => {
       <main className="pb-12 space-y-8 mt-4">
         {/* Hero Section Skeleton */}
         <Container>
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 border border-gray-200 p-4 bg-white">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] p-4">
             <div className="md:col-span-5 space-y-4">
               <Skeleton className="h-12 w-full" />
               <Skeleton className="h-32 w-full" />
@@ -33,7 +33,7 @@ const HomeSkeleton = () => {
               </div>
             </div>
             <div className="md:col-span-5">
-              <Skeleton className="h-[400px] w-full" />
+              <Skeleton className="h-100 w-full" />
             </div>
             <div className="md:col-span-2">
               <Skeleton className="h-full w-full" />
