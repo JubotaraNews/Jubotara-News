@@ -10,7 +10,7 @@ import ThumbnailNewsSection from "@/components/home/ThumbnailNewsSection";
 import { FaGoogle, FaWhatsapp } from "react-icons/fa";
 import truncate from "@/utils/truncate";
 import {
-  getNewsByCat,
+  getRelatedNews,
   getSingleNews,
   getTrandingNews,
   getSettings,
@@ -135,7 +135,7 @@ export default async function NewsDetailPage({ params }) {
     category = news?.categories[0];
   }
 
-  const reletedNews = await getNewsByCat(category?.slug, 5);
+  const reletedNews = await getRelatedNews(category?.slug, news._id, 6);
 
   const formattedPublishedDate = formatBengaliDate(news?.created_at);
 
@@ -312,6 +312,40 @@ export default async function NewsDetailPage({ params }) {
 
               {/* Facebook Comments */}
               {/* <FacebookComments url={fullUrl} /> */}
+
+              {/* Related News Section */}
+              <div className="mt-12 pt-8 border-t border-slate-300 dark:border-slate-700">
+                <h2 className="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3 text-secondary">
+                  <span className="w-2 h-8 bg-secondary"></span>
+                  সম্পর্কিত খবর
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {reletedNews?.slice(0, 4).map((item) => (
+                    <Link
+                      key={item.id}
+                      href={`/news/${item.slug}`}
+                      className="group flex gap-4 border-b border-gray-100 dark:border-gray-800 pb-4 last:border-0"
+                    >
+                      <div className="relative w-24 h-24 md:w-32 md:h-32 shrink-0 overflow-hidden rounded-lg">
+                        <Image
+                          src={item.featured_image}
+                          alt={item.name}
+                          fill
+                          className="object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                      </div>
+                      <div className="flex flex-col justify-center">
+                        <h3 className="text-lg md:text-xl font-bold text-gray-800 dark:text-gray-200 line-clamp-2 group-hover:text-primary transition-colors">
+                          {item.name}
+                        </h3>
+                        <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                          {formatBengaliDate(item.created_at)}
+                        </p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
             </article>
 
             {/* Sidebar */}
