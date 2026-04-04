@@ -48,8 +48,9 @@ export default withSentryConfig(nextConfig, {
   // For all available options, see:
   // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
 
-  // Upload a larger set of source maps for prettier stack traces (increases build time)
-  widenClientFileUpload: true,
+  // When true, Sentry uploads extra client chunks; many have no .map, which spams
+  // "could not determine a source map reference" on Vercel. Default/narrow upload is enough for stack traces.
+  widenClientFileUpload: false,
 
   // Uncomment to route browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers.
   // This can increase your server load as well as your hosting bill.
