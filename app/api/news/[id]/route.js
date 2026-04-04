@@ -123,7 +123,7 @@ export async function DELETE(req, context) {
       }
     }
 
-    const deleted = await News.findByIdAndDelete(newsId);
+    await News.findByIdAndDelete(newsId);
 
     return NextResponse.json({ success: true, id: newsId }, { status: 200 });
   } catch (error) {

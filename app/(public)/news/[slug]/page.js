@@ -18,7 +18,6 @@ import {
 } from "@/lib/localData";
 import { formatBengaliDate } from "@/utils/formatDate";
 import { FRONT_END_URL } from "@/utils/baseUrl";
-import FacebookComments from "@/components/news/FacebookComments";
 import { getMetaValueByMetaName } from "@/utils/metaHelpers";
 import ReadingProgressBar from "@/components/common/ReadingProgressBar";
 

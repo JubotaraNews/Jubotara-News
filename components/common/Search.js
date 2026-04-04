@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -13,32 +13,7 @@ const Search = () => {
   const dropdownRef = useRef(null);
   const inputRef = useRef(null);
 
-  // Debounced search
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (query.trim()) {
-        fetchResults();
-      } else {
-        setResults([]);
-        setIsOpen(false);
-      }
-    }, 300);
-
-    return () => clearTimeout(timer);
-  }, [query]);
-
-  // Close dropdown on click outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  const fetchResults = async () => {
+  const fetchResults = useCallback(async () => {
     setIsLoading(true);
     try {
       const res = await fetch(
@@ -54,7 +29,32 @@ const Search = () => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [query]);
+
+  // Debounced search
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (query.trim()) {
+        fetchResults();
+      } else {
+        setResults([]);
+        setIsOpen(false);
+      }
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [query, fetchResults]);
+
+  // Close dropdown on click outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const handleSearch = (e) => {
     e.preventDefault();

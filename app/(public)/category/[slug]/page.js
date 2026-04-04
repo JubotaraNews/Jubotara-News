@@ -119,9 +119,6 @@ export default async function CategoryPage({ params, searchParams }) {
   const meta = newsResponse?.meta || {};
   const latestNews = allNews.slice(0, 7);
 
-  // Robust category detection
-  const normalizedSlug = decodeURIComponent(slug).toLowerCase().trim();
-
   const categoryName = getCategoryTitle(slug, category, menus, categoryNews);
 
   const featuredNews = categoryNews[0];

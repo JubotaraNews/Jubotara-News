@@ -1,6 +1,8 @@
 import { withSentryConfig } from "@sentry/nextjs";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Emits browser source maps so @sentry/webpack-plugin can upload them (reduces “could not determine a source map reference” warnings).
+  productionBrowserSourceMaps: true,
   env: {
     BASE_URL: process.env.BASE_URL || "http://localhost:3000",
   },
@@ -13,18 +15,6 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "img.youtube.com",
-      },
-      {
-        protocol: "https",
-        hostname: "admin.crimevision24.com",
-      },
-      {
-        protocol: "https",
-        hostname: "admin.banglastarnews.com",
-      },
-      {
-        protocol: "http",
-        hostname: "admin.banglastarnews.com",
       },
       {
         protocol: "https",
@@ -47,6 +37,10 @@ export default withSentryConfig(nextConfig, {
   org: "shahrwebworks",
 
   project: "jubotara-news",
+
+  sourcemaps: {
+    deleteSourcemapsAfterUpload: true,
+  },
 
   // Only print logs for uploading source maps in CI
   silent: !process.env.CI,
